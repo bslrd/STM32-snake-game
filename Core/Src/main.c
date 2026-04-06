@@ -71,9 +71,9 @@ int head_position[2]={0};
 uint8_t prev_head_position[2]={0};
 uint8_t tail_x[64] = {0};
 uint8_t tail_y[64] = {0};
-uint8_t move_direction;
+uint8_t move_direction = RIGHT;
 uint8_t prev_move_direction = RIGHT;
-uint8_t fruit_position[2];
+uint8_t fruit_position[2]={0};
 uint8_t GROWTH = 0;
 uint8_t EATEN = 1;
 uint8_t collision[8][8]={0};
@@ -716,8 +716,8 @@ int main(void)
 	  	if(EATEN)
 	  	{
 	  	do{
-	  		fruit_position[0] = rand()%7;
-	  		fruit_position[1] = rand()%7;
+	  		fruit_position[0] = rand()%8;
+	  		fruit_position[1] = rand()%8;
 	  	}while(collision[fruit_position[0]][fruit_position[1]]==1 || (fruit_position[0] == head_position[0] && fruit_position[1] == head_position[1]));
 	  	EATEN = 0;
 	  	}
@@ -1039,6 +1039,7 @@ static void MX_TIM2_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* USER CODE BEGIN MX_GPIO_Init_1 */
 //  __HAL_RCC_SYSCFG_CLK_ENABLE();
   /* USER CODE END MX_GPIO_Init_1 */
@@ -1048,12 +1049,18 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
-  /* USER CODE BEGIN MX_GPIO_Init_2 */
-//  SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR1_EXTI0; // wyczyść
-//  SYSCFG->EXTICR[0] |= SYSCFG_EXTICR1_EXTI0_PC; // ustaw port C
+  /*Configure GPIO pin : PA0 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  HAL_NVIC_SetPriority(EXTI0_IRQn, 2, 0);
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
@@ -1061,6 +1068,30 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
     moved = 1;
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+
+
+	GAME_OVER = 0;
+	length = 0;
+	head_position[0] = 0;
+	head_position[1] = 0;
+	for(int i = 0; i < 64; i++)
+	{
+		tail_x[i] = 0;
+		tail_y[i] = 0;
+	}
+
+	EATEN = 1;
+	prev_head_position[0]= 0;
+	prev_head_position[0]= 1;
+	prev_move_direction = RIGHT;
+	move_direction = RIGHT;
+	fruit_position[0]= 0;
+	fruit_position[1]= 0;
+
 }
 /* USER CODE END 4 */
 
