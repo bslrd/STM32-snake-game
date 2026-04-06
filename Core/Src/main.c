@@ -18,7 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "stdlib.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -37,6 +37,13 @@ typedef struct ws2812b_color {
 #define one 0b11111000
 
 #define WS2812B_LEDS 64
+
+#define UP 		0
+#define DOWN 	1
+#define LEFT	3
+#define RIGHT 	4
+
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -56,6 +63,26 @@ SPI_HandleTypeDef *hspi_ws2812b;
 ws2812b_color ws2812b_array[WS2812B_LEDS];
 
 static uint8_t buffer[64*24+120];
+
+uint8_t length = 0;
+int head_position[2]={0};
+uint8_t prev_head_position[2]={0};
+uint8_t tail_x[64] = {0};
+uint8_t tail_y[64] = {0};
+uint8_t move_direction;
+uint8_t prev_move_direction = RIGHT;
+uint8_t fruit_position[2];
+uint8_t GROWTH = 0;
+uint8_t EATEN = 1;
+int MOVEX = 1;
+ int MOVEY = 1;
+
+ int tail_X[64] = {0};
+ int tail_Y[64] = {0};
+ int moved = 0;
+
+
+
 
 
 void WS2812B_Init(SPI_HandleTypeDef * spi_handler)
@@ -118,6 +145,77 @@ void sendlight()
 
 	HAL_SPI_Transmit(hspi_ws2812b, buffer, (WS2812B_LEDS+5) * 24, 1000);
 }
+
+void move()
+		{
+			if(GROWTH)
+			{
+				tail_x[length] = head_position[0]+1;
+				tail_y[length] = head_position[1]+1;
+				length++;
+				GROWTH = 0;
+			}
+			else if(length)
+			{
+				for(int i = 0; i < length-1; i++)
+				{
+					tail_x[i] = tail_x[i+1];
+					tail_y[i] = tail_y[i+1];
+				}
+				tail_x[length-1] = head_position[0]+1;
+				tail_y[length-1] = head_position[1]+1;
+			}
+
+			switch(move_direction)
+			{
+			case UP:
+				if(prev_move_direction == DOWN)
+					{
+						move_direction = prev_move_direction;
+						head_position[1] -= 1;
+					}
+				else 	head_position[1] += 1;
+				break;
+			case DOWN:
+				if(prev_move_direction == UP)
+					{
+						move_direction = prev_move_direction;
+						head_position[1] += 1;
+					}
+				else 	head_position[1] -= 1;
+				break;
+			case LEFT:
+				if(prev_move_direction == RIGHT)
+					{
+						move_direction = prev_move_direction;
+						head_position[0] += 1;
+					}
+				else 	head_position[0] -= 1;
+				break;
+			case RIGHT:
+				if(prev_move_direction == LEFT)
+					{
+						move_direction = prev_move_direction;
+						head_position[0] -= 1;
+					}
+				else 	head_position[0] += 1;
+				break;
+			}
+			if(head_position[0] < 0)
+				head_position[0] = 0;
+			if(head_position[0] > 7)
+				head_position[0] = 7;
+			if(head_position[1] < 0)
+				head_position[1] = 0;
+			if(head_position[1] > 7)
+				head_position[1] = 7;
+
+			prev_head_position[0] = head_position[0];
+			prev_head_position[1] = head_position[1];
+			prev_move_direction = move_direction;
+
+
+		}
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -129,9 +227,8 @@ static void MX_ADC1_Init(void);
 int R = 1;
   int G = 100;
   int B = 200;
-  volatile int8_t X = 0;
-  volatile int8_t Y = 0;
   volatile int Joystick[2];
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -193,80 +290,108 @@ int main(void)
   int directionR = 1;
   int directionG = 1;
   int directionB = 1;
-  int MOVEX = 1;
-  int MOVEY = 1;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  for(int i = 0; i < WS2812B_LEDS; i++)
+	  	  {
+	  	      WS2812B_SetDiodeRGB(i,0,0,0);
+	  	  }
 
 	  if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
-	      {
-	        Joystick[0] = HAL_ADC_GetValue(&hadc1); // Get X value
-	        ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_7);
-	        HAL_ADC_Start(&hadc1);
-	      }
+	  	      {
+	  	        Joystick[0] = HAL_ADC_GetValue(&hadc1); // Get X value
+	  	        ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_7);
+	  	        HAL_ADC_Start(&hadc1);
+	  	      }
 
-	      if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
-	      {
-	        Joystick[1] = HAL_ADC_GetValue(&hadc1); // Get Y value
-	        ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_6);
-	        HAL_ADC_Start(&hadc1);
-	      }
-	    if(Joystick[0] == 0 && MOVEX == 1)
+	  	      if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
+	  	      {
+	  	        Joystick[1] = HAL_ADC_GetValue(&hadc1); // Get Y value
+	  	        ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_6);
+	  	        HAL_ADC_Start(&hadc1);
+	  	      }
+	  	if(fruit_position[0] == head_position[0] && fruit_position[1] == head_position[1])
+	  	{
+	  		EATEN = 1;
+	  		GROWTH = 1;
+	  	}
+	  	if(EATEN)
+	  	{
+	  	fruit_position[0] = rand()%7;
+	  	fruit_position[1] = rand()%7;
+	  	EATEN = 0;
+	  	}
+
+	    if(Joystick[0] < 100 && MOVEX == 1 && MOVEY == 1)
 	    {
-	    	X = X-1;
+	    	move_direction = LEFT;
 	    	MOVEX = 0;
+	    	moved = 1;
+
 	    }
-
-
-	    if(Joystick[1] > 4090 && MOVEY == 1)
+	    else if(Joystick[0] > 4000 && MOVEX == 1 && MOVEY == 1)
 	    	{
-	    	Y = Y+1;
-	    	MOVEY = 0;
-	    	}
-
-	    if(Joystick[0] > 4090  && MOVEX == 1)
-	    	{
-	    	X = X+1;
+	    	move_direction = RIGHT;
 	    	MOVEX = 0;
+	    	moved = 1;
 	    	}
-
-		if(Joystick[1] == 0 && MOVEY == 1)
+	    else if(Joystick[1] > 4000  && MOVEX == 1 && MOVEY == 1)
+	    	{
+	    	move_direction = UP;
+	    	MOVEY = 0;
+	    	moved = 1;
+	    	}
+	    else if(Joystick[1] < 100 && MOVEX == 1 && MOVEY == 1)
 			{
-			Y = Y-1;
+			move_direction = DOWN;
 			MOVEY = 0;
+			moved = 1;
 			}
 
-		if(Joystick[0] < 4090 && Joystick[0]>0) MOVEX = 1;
-		if(Joystick[1] < 4090 && Joystick[1]>0) MOVEY = 1;
+		if(moved)
+		{
+			move();
+			moved = 0;
+		}
 
-		if(X>7) X = 7;
-		if(X<0)X = 0;
-		if(Y>7) Y = 7;
-		if(Y<0) Y = 0;
-	  for(int i = 0; i < WS2812B_LEDS; i++)
-	  {
-	      WS2812B_SetDiodeRGB(i,255,G,B);
-	  }
 
-	  SetDiodeCoord(X,Y,254,0,0);
 
-	if(R >= 254) directionR = -1; // zmiana kierunku na malejący
-	else if(R <= 1)   directionR = 1;  // zmiana kierunku na rosnący
-	if(G >= 254) directionG = -1; // zmiana kierunku na malejący
-	else if(G <= 1)   directionG = 1;  // zmiana kierunku na rosnący
-	if(B >= 254) directionB = -1; // zmiana kierunku na malejący
-	else if(B <= 1)   directionB = 1;  // zmiana kierunku na rosnący
+		if(Joystick[0] < 3000 && Joystick[0]>1000) MOVEX = 1;
+		if(Joystick[1] < 3000 && Joystick[1]>1000) MOVEY = 1;
 
-	if(!(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_0)))
-	  {
-		R=R+directionR;
-		G=G+directionG;
-		B=B+directionB;
-	  }
+//		if(head_X>7)head_X= 7;
+//		if(head_X<0)head_X = 0;
+//		if(head_Y>7) head_Y = 7;
+//		if(head_Y<0) head_Y = 0;
+		SetDiodeCoord(head_position[0],head_position[1],0,0,254);
+		SetDiodeCoord(fruit_position[0],fruit_position[1],254,0,0);
+	 for(int i = 0; i < 64; i++)
+		  {
+			  if(tail_x[i] != 0)
+				  SetDiodeCoord(tail_x[i]-1,tail_y[i]-1,0,254,0);
+
+		  }
+
+
+
+//	if(R >= 254) directionR = -1; // zmiana kierunku na malejąchead_Y
+//	else if(R <= 1)   directionR = 1;  // zmiana kierunku na rosnący
+//	if(G >= 254) directionG = -1; // zmiana kierunku na malejący
+//	else if(G <= 1)   directionG = 1;  // zmiana kierunku na rosnący
+//	if(B >= 254) directionB = -1; // zmiana kierunku na malejący
+//	else if(B <= 1)   directionB = 1;  // zmiana kierunku na rosnący
+//
+//	if(!(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_0)))
+//	  {
+//		R=R+directionR;
+//		G=G+directionG;
+//		B=B+directionB;
+//	  }
 
 
 
