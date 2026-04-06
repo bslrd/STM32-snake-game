@@ -242,8 +242,8 @@ void move()
 		{
 			if(GROWTH)
 			{
-				tail_x[length] = head_position[0]+1;
-				tail_y[length] = head_position[1]+1;
+				tail_x[length] = head_position[0];
+				tail_y[length] = head_position[1];
 				length++;
 				GROWTH = 0;
 			}
@@ -254,8 +254,8 @@ void move()
 					tail_x[i] = tail_x[i+1];
 					tail_y[i] = tail_y[i+1];
 				}
-				tail_x[length-1] = head_position[0]+1;
-				tail_y[length-1] = head_position[1]+1;
+				tail_x[length-1] = head_position[0];
+				tail_y[length-1] = head_position[1];
 			}
 
 			switch(move_direction)
@@ -680,9 +680,7 @@ int main(void)
 
 
   HAL_Delay(10);
-  int directionR = 1;
-  int directionG = 1;
-  int directionB = 1;
+
 
   /* USER CODE END 2 */
 
@@ -705,6 +703,7 @@ int main(void)
 			 sendlight();
 			}
 		}
+
 	  for(int i = 0; i < WS2812B_LEDS; i++)
 	  	  {
 	  	      WS2812B_SetDiodeRGB(i,0,0,0);
@@ -759,7 +758,7 @@ int main(void)
 
 	    	}
 	    else if(Joystick[1] < 100 && MOVEX == 1 && MOVEY == 1)
-			{
+			{xxx
 			move_direction = DOWN;
 			MOVEY = 0;
 
@@ -777,12 +776,9 @@ int main(void)
 					collision[i][j] = 0;
 				}
 			}
-			for(int i = 0; i < 64; i++)
+			for(int i = 0; i < length; i++)
 			{
-				if(tail_x[i] !=0)
-				{
-					collision[tail_x[i]-1][tail_y[i]-1] = 1;
-				}
+					collision[tail_x[i]][tail_y[i]] = 1;
 
 			}
 			if(collision[head_position[0]][head_position[1]] == 1)
@@ -797,16 +793,11 @@ int main(void)
 		if(Joystick[0] < 3000 && Joystick[0]>1000) MOVEX = 1;
 		if(Joystick[1] < 3000 && Joystick[1]>1000) MOVEY = 1;
 
-//		if(head_X>7)head_X= 7;
-//		if(head_X<0)head_X = 0;
-//		if(head_Y>7) head_Y = 7;
-//		if(head_Y<0) head_Y = 0;
 		SetDiodeCoord(head_position[0],head_position[1],0,0,25);
 		SetDiodeCoord(fruit_position[0],fruit_position[1],25,0,0);
-	 for(int i = 0; i < 64; i++)
+	 for(int i = 0; i < length; i++)
 		  {
-			  if(tail_x[i] != 0)
-				  SetDiodeCoord(tail_x[i]-1,tail_y[i]-1,0,25,0);
+		 	 SetDiodeCoord(tail_x[i],tail_y[i],0,25,0);
 
 		  }
 
