@@ -22,27 +22,18 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdlib.h"
+#include "LED_matrix.h"
+#include "LED_digits.h"
+#include "snake.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-typedef struct ws2812b_color {
-  uint8_t red, green, blue;
-} ws2812b_color;
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define zero 0b1000000
-#define one 0b11111000
-
-#define WS2812B_LEDS 64
-
-#define UP 		0
-#define DOWN 	1
-#define LEFT	3
-#define RIGHT 	4
-
 
 /* USER CODE END PD */
 
@@ -60,254 +51,6 @@ TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 
-
-SPI_HandleTypeDef *hspi_ws2812b;
-ws2812b_color ws2812b_array[WS2812B_LEDS];
-
-static uint8_t buffer[64*24+120];
-
-uint8_t length = 1;
-int head_position[2]={0};
-uint8_t prev_head_position[2]={0};
-uint8_t tail_x[64] = {0};
-uint8_t tail_y[64] = {0};
-uint8_t move_direction = RIGHT;
-uint8_t prev_move_direction = RIGHT;
-uint8_t fruit_position[2]={0};
-uint8_t GROWTH = 0;
-uint8_t EATEN = 1;
-uint8_t collision[8][8]={0};
-uint8_t GAME_OVER = 1;
-int MOVEX = 1;
- int MOVEY = 1;
-
- int tail_X[64] = {0};
- int tail_Y[64] = {0};
- int moved = 0;
-
- int M0[8][8] = {{0,0,0,0,0,0,0,0},
- 				{0,0,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,1,0,1,0,0,0,0},
- 				{0,1,0,1,0,0,0,0},
- 				{0,1,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,0,0,0,0,0}};
-
- int M1[8][8] = {{0,0,0,0,0,0,0,0},
- 				{0,0,0,0,0,0,0,0},
- 				{0,1,1,0,0,0,0,0},
- 				{0,0,1,0,0,0,0,0},
- 				{0,0,1,0,0,0,0,0},
- 				{0,0,1,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,0,0,0,0,0}};
-
- int M2[8][8] = {{0,0,0,0,0,0,0,0},
- 				{0,0,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,1,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,0,0,0,0,0}};
-
- int M3[8][8] = {{0,0,0,0,0,0,0,0},
- 				{0,0,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,0,0,0,0,0}};
-
- int M4[8][8] = {{0,0,0,0,0,0,0,0},
- 				{0,0,0,0,0,0,0,0},
- 				{0,1,0,1,0,0,0,0},
- 				{0,1,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,1,0,0,0,0},
- 				{0,0,0,1,0,0,0,0},
- 				{0,0,0,0,0,0,0,0}};
-
- int M5[8][8] = {{0,0,0,0,0,0,0,0},
- 				{0,0,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,1,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,0,0,0,0,0}};
-
- int M6[8][8] = {{0,0,0,0,0,0,0,0},
- 				{0,0,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,1,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,1,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,0,0,0,0,0}};
-
- int M7[8][8] = {{0,0,0,0,0,0,0,0},
- 				{0,0,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,1,0,1,0,0,0,0},
- 				{0,0,0,1,0,0,0,0},
- 				{0,0,0,1,0,0,0,0},
- 				{0,0,0,1,0,0,0,0},
- 				{0,0,0,0,0,0,0,0}};
-
- int M8[8][8] = {{0,0,0,0,0,0,0,0},
- 				{0,0,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,1,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,1,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,0,0,0,0,0}};
-
- int M9[8][8] = {{0,0,0,0,0,0,0,0},
- 				{0,0,0,0,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,1,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,1,0,0,0,0},
- 				{0,1,1,1,0,0,0,0},
- 				{0,0,0,0,0,0,0,0}};
-
-
-
-void WS2812B_Init(SPI_HandleTypeDef * spi_handler)
-{
-	hspi_ws2812b = spi_handler;
-}
-
-void WS2812B_SetDiodeRGB(int16_t diode_id, uint8_t R, uint8_t G, uint8_t B)
-{
-	if(diode_id >= WS2812B_LEDS || diode_id < 0) return;
-	ws2812b_array[diode_id].red = R;
-	ws2812b_array[diode_id].green = G;
-	ws2812b_array[diode_id].blue = B;
-}
-
-void SetDiodeCoord(uint8_t x, uint8_t y, uint8_t R, uint8_t G, uint8_t B)
-{
-	WS2812B_SetDiodeRGB(x+y*8,R,G,B);
-}
-
-
-void sendlight()
-{
-	for(uint8_t i = 0; i < 120; i++)
-		buffer[i] = 0x00;
-
-	for(uint16_t i=0, j=120; i<WS2812B_LEDS; i++)
-	{
-		//GREEN
-		for(int8_t k=7; k>=0; k--)
-		{
-			if((ws2812b_array[i].green & (1<<k)) == 0)
-				buffer[j] = zero;
-			else
-				buffer[j] = one;
-			j++;
-		}
-
-		//RED
-		for(int8_t k=7; k>=0; k--)
-		{
-			if((ws2812b_array[i].red & (1<<k)) == 0)
-				buffer[j] = zero;
-			else
-				buffer[j] = one;
-			j++;
-		}
-
-		//BLUE
-		for(int8_t k=7; k>=0; k--)
-		{
-			if((ws2812b_array[i].blue & (1<<k)) == 0)
-				buffer[j] = zero;
-			else
-				buffer[j] = one;
-			j++;
-		}
-	}
-
-
-	HAL_SPI_Transmit(hspi_ws2812b, buffer, (WS2812B_LEDS+5) * 24, 1000);
-}
-
-void move()
-		{
-			if(GROWTH)
-			{
-				tail_x[length] = head_position[0];
-				tail_y[length] = head_position[1];
-				length++;
-				GROWTH = 0;
-			}
-			else if(length)
-			{
-				for(int i = 0; i < length-1; i++)
-				{
-					tail_x[i] = tail_x[i+1];
-					tail_y[i] = tail_y[i+1];
-				}
-				tail_x[length-1] = head_position[0];
-				tail_y[length-1] = head_position[1];
-			}
-
-			switch(move_direction)
-			{
-			case UP:
-				if(prev_move_direction == DOWN)
-					{
-						move_direction = prev_move_direction;
-						head_position[1] -= 1;
-					}
-				else 	head_position[1] += 1;
-				break;
-			case DOWN:
-				if(prev_move_direction == UP)
-					{
-						move_direction = prev_move_direction;
-						head_position[1] += 1;
-					}
-				else 	head_position[1] -= 1;
-				break;
-			case LEFT:
-				if(prev_move_direction == RIGHT)
-					{
-						move_direction = prev_move_direction;
-						head_position[0] += 1;
-					}
-				else 	head_position[0] -= 1;
-				break;
-			case RIGHT:
-				if(prev_move_direction == LEFT)
-					{
-						move_direction = prev_move_direction;
-						head_position[0] -= 1;
-					}
-				else 	head_position[0] += 1;
-				break;
-			}
-			if(head_position[0] < 0)
-				head_position[0] = 0;
-			if(head_position[0] > 7)
-				head_position[0] = 7;
-			if(head_position[1] < 0)
-				head_position[1] = 0;
-			if(head_position[1] > 7)
-				head_position[1] = 7;
-
-			prev_head_position[0] = head_position[0];
-			prev_head_position[1] = head_position[1];
-			prev_move_direction = move_direction;
-
-
-		}
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -316,329 +59,63 @@ static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
-/* USER CODE BEGIN PFP */
-int R = 1;
-  int G = 100;
-  int B = 200;
-  volatile int Joystick[2];
 
+/* USER CODE BEGIN PFP */
+volatile int Joystick[2];
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-  void ADC_SetActiveChannel(ADC_HandleTypeDef *hadc, uint32_t AdcChannel)
-  {
-    ADC_ChannelConfTypeDef sConfig = {0};
-    sConfig.Channel = AdcChannel;
-    sConfig.Rank = 1;
-    sConfig.SamplingTime = 480;
-    if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK)
-    {
-     Error_Handler();
-    }
-  }
 
+	void ADC_SetActiveChannel(ADC_HandleTypeDef *hadc, uint32_t AdcChannel)
+	{
+		ADC_ChannelConfTypeDef sConfig = {0};
+		sConfig.Channel = AdcChannel;
+		sConfig.Rank = 1;
+		sConfig.SamplingTime = 480;
+		if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK)
+		{
+			Error_Handler();
+		}
+	}
 
-  void led_digits(int digit1, int digit2, int Rb, int Gb, int Bb, int Rd, int Gd, int Bd)
-  {
-  for(int i = 0; i < WS2812B_LEDS; i++)
-  	  	  {
-  	  	      WS2812B_SetDiodeRGB(i,Rb,Gb,Bb);
-  	  	  }
+	void joystick_read()
+	{
+		if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
+		{
+			Joystick[0] = HAL_ADC_GetValue(&hadc1); // Get X value
+			ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_7);
+			HAL_ADC_Start(&hadc1);
+		}
 
+		if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
+		{
+			Joystick[1] = HAL_ADC_GetValue(&hadc1); // Get Y value
+			ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_6);
+			HAL_ADC_Start(&hadc1);
+		}
 
+	}
 
-  switch(digit1)
-  {
-  case 0:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M0[i][j] == 1)
-  			{
-  				SetDiodeCoord(j,i,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 1:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M1[i][j] == 1)
-  			{
-  				SetDiodeCoord(j,i,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 2:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M2[i][j] == 1)
-  			{
-  				SetDiodeCoord(j,i,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 3:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M3[i][j] == 1)
-  			{
-  				SetDiodeCoord(j,i,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 4:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M4[i][j] == 1)
-  			{
-  				SetDiodeCoord(j,i,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 5:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M5[i][j] == 1)
-  			{
-  				SetDiodeCoord(j,i,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 6:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M6[i][j] == 1)
-  			{
-  				SetDiodeCoord(j,i,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 7:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M7[i][j] == 1)
-  			{
-  				SetDiodeCoord(j,i,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 8:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M8[i][j] == 1)
-  			{
-  				SetDiodeCoord(j,i,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 9:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M9[i][j] == 1)
-  			{
-  				SetDiodeCoord(j,i,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  }
-
-  switch(digit2)
-  {
-  case 0:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M0[i][j+4] == 1)
-  			{
-  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 1:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M1[i][j+4] == 1)
-  			{
-  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 2:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M2[i][j+4] == 1)
-  			{
-  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 3:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M3[i][j+4] == 1)
-  			{
-  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 4:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M4[i][j+4] == 1)
-  			{
-  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 5:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M5[i][j+4] == 1)
-  			{
-  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 6:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M6[i][j+4] == 1)
-  			{
-  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 7:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M7[i][j+4] == 1)
-  			{
-  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 8:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M8[i][j+4] == 1)
-  			{
-  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  case 9:
-
-  	for(int i = 0; i<8; i++)
-  	{
-  		for(int j = 0; j<8; j++)
-  		{
-  			if(M9[i][j+4] == 1)
-  			{
-  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
-  			}
-  		}
-  	}
-  	break;
-
-  }
-
-  }
-
-
+	void joystick_getdirection()
+	{
+		if(Joystick[0] < 100)
+		{
+			move_direction = LEFT;
+		}
+		else if(Joystick[0] > 4000)
+		{
+			move_direction = RIGHT;
+		}
+		else if(Joystick[1] > 4000)
+		{
+			move_direction = UP;
+		}
+		else if(Joystick[1] < 100)
+		{
+			move_direction = DOWN;
+		}
+	}
 /* USER CODE END 0 */
 
 /**
@@ -676,11 +153,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_ADC_Start(&hadc1);
-  WS2812B_Init(&hspi1);
-
-
-  HAL_Delay(10);
-
+  LED_init(&hspi1);
 
   /* USER CODE END 2 */
 
@@ -688,145 +161,53 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if(GAME_OVER)
+
+	// game over state handling
+	if(GAME_OVER)
+	{
+		fill_color(25,0,0,10,1);
+		while(GAME_OVER)
 		{
 
-			for(int i = 0; i < WS2812B_LEDS; i++)
-					  {
-						  WS2812B_SetDiodeRGB(i,50,0,0);
-						  sendlight();
-						  HAL_Delay(20);
-					  }
-			while(GAME_OVER)
-			{
-			 led_digits((length-1)/10,(length-1)%10,50,0,0,25,25,25);
-			 sendlight();
-			}
+			 led_digits((length-1)/10,(length-1)%10,25,0,0,25,25,25);
+			 LED_update();
 		}
+		fill_color(0,0,0,10,1);
+	}
 
-	  for(int i = 0; i < WS2812B_LEDS; i++)
-	  	  {
-	  	      WS2812B_SetDiodeRGB(i,0,0,0);
-	  	  }
+	// joystick handling
+	joystick_read();
+	joystick_getdirection();
 
-	  if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
-	  	      {
-	  	        Joystick[0] = HAL_ADC_GetValue(&hadc1); // Get X value
-	  	        ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_7);
-	  	        HAL_ADC_Start(&hadc1);
-	  	      }
+	// fruit consumption handling
+	fruit_check();
 
-	  	      if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
-	  	      {
-	  	        Joystick[1] = HAL_ADC_GetValue(&hadc1); // Get Y value
-	  	        ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_6);
-	  	        HAL_ADC_Start(&hadc1);
-	  	      }
-	  	if(fruit_position[0] == head_position[0] && fruit_position[1] == head_position[1])
-	  	{
-	  		EATEN = 1;
-	  		GROWTH = 1;
-	  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, 1);
+	// growth sound indicator
+	if(GROWTH)
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, 1);
+
+	//  movement handling
+	if(MOVE)
+	{
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, 0);
+		move();
+		collision_check();
+		MOVE = 0;
+	}
 
 
-	  	}
-	  	if(EATEN)
-	  	{
-	  	do{
-	  		fruit_position[0] = rand()%8;
-	  		fruit_position[1] = rand()%8;
-	  	}while(collision[fruit_position[0]][fruit_position[1]]==1 || (fruit_position[0] == head_position[0] && fruit_position[1] == head_position[1]));
-	  	EATEN = 0;
-	  	}
-
-	    if(Joystick[0] < 100 && MOVEX == 1 && MOVEY == 1)
-	    {
-	    	move_direction = LEFT;
-
-
-	    }
-	    else if(Joystick[0] > 4000 && MOVEX == 1 && MOVEY == 1)
-	    	{
-	    	move_direction = RIGHT;
-	    	MOVEX = 0;
-
-	    	}
-	    else if(Joystick[1] > 4000  && MOVEX == 1 && MOVEY == 1)
-	    	{
-	    	move_direction = UP;
-	    	MOVEY = 0;
-
-	    	}
-	    else if(Joystick[1] < 100 && MOVEX == 1 && MOVEY == 1)
-			{xxx
-			move_direction = DOWN;
-			MOVEY = 0;
-
-			}
-
-		if(moved)
-		{
-			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, 0);
-			move();
-			moved = 0;
-			for(int i = 0; i < 8; i++)
-			{
-				for(int j = 0; j < 8; j++)
-				{
-					collision[i][j] = 0;
-				}
-			}
-			for(int i = 0; i < length; i++)
-			{
-					collision[tail_x[i]][tail_y[i]] = 1;
-
-			}
-			if(collision[head_position[0]][head_position[1]] == 1)
-				GAME_OVER = 1;
-
-		}
-
-
-
-
-
-		if(Joystick[0] < 3000 && Joystick[0]>1000) MOVEX = 1;
-		if(Joystick[1] < 3000 && Joystick[1]>1000) MOVEY = 1;
-
-		SetDiodeCoord(head_position[0],head_position[1],0,0,25);
-		SetDiodeCoord(fruit_position[0],fruit_position[1],25,0,0);
-	 for(int i = 0; i < length; i++)
-		  {
-		 	 SetDiodeCoord(tail_x[i],tail_y[i],0,25,0);
-
-		  }
-
-
-
-//	if(R >= 254) directionR = -1; // zmiana kierunku na malejąchead_Y
-//	else if(R <= 1)   directionR = 1;  // zmiana kierunku na rosnący
-//	if(G >= 254) directionG = -1; // zmiana kierunku na malejący
-//	else if(G <= 1)   directionG = 1;  // zmiana kierunku na rosnący
-//	if(B >= 254) directionB = -1; // zmiana kierunku na malejący
-//	else if(B <= 1)   directionB = 1;  // zmiana kierunku na rosnący
-//
-//	if(!(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_0)))
-//	  {
-//		R=R+directionR;
-//		G=G+directionG;
-//		B=B+directionB;
-//	  }
-
-
-
-	sendlight();
-
-
-
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-  }
+	// displaying current state of the game
+	fill_color(0,0,0,0,0);
+	LED_set_coord(head_position[0],head_position[1],Rh,Gh,Bh);
+	LED_set_coord(fruit_position[0],fruit_position[1],Rf,Gf,Bf);
+	for(int i = 0; i < length; i++)
+	{
+		LED_set_coord(tail_x[i],tail_y[i],Rt,Gt,Bt);
+	}
+	LED_update();
+		/* USER CODE END WHILE */
+		/* USER CODE BEGIN 3 */
+	  }
   /* USER CODE END 3 */
 }
 
@@ -1073,31 +454,12 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
-    moved = 1;
+    MOVE = 1;
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-
-
-	GAME_OVER = 0;
-	length = 0;
-	head_position[0] = 0;
-	head_position[1] = 0;
-	for(int i = 0; i < 64; i++)
-	{
-		tail_x[i] = 0;
-		tail_y[i] = 0;
-	}
-
-	EATEN = 1;
-	prev_head_position[0]= 0;
-	prev_head_position[0]= 1;
-	prev_move_direction = RIGHT;
-	move_direction = RIGHT;
-	fruit_position[0]= 0;
-	fruit_position[1]= 0;
-
+	game_init();
 }
 /* USER CODE END 4 */
 

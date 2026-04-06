@@ -1,4 +1,7 @@
+"./Core/Src/LED_digits.o"
+"./Core/Src/LED_matrix.o"
 "./Core/Src/main.o"
+"./Core/Src/snake.o"
 "./Core/Src/stm32f3xx_hal_msp.o"
 "./Core/Src/stm32f3xx_it.o"
 "./Core/Src/syscalls.o"
