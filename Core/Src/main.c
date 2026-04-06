@@ -66,7 +66,7 @@ ws2812b_color ws2812b_array[WS2812B_LEDS];
 
 static uint8_t buffer[64*24+120];
 
-uint8_t length = 0;
+uint8_t length = 1;
 int head_position[2]={0};
 uint8_t prev_head_position[2]={0};
 uint8_t tail_x[64] = {0};
@@ -77,7 +77,7 @@ uint8_t fruit_position[2]={0};
 uint8_t GROWTH = 0;
 uint8_t EATEN = 1;
 uint8_t collision[8][8]={0};
-uint8_t GAME_OVER = 0;
+uint8_t GAME_OVER = 1;
 int MOVEX = 1;
  int MOVEY = 1;
 
@@ -690,6 +690,21 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  if(GAME_OVER)
+		{
+
+			for(int i = 0; i < WS2812B_LEDS; i++)
+					  {
+						  WS2812B_SetDiodeRGB(i,50,0,0);
+						  sendlight();
+						  HAL_Delay(20);
+					  }
+			while(GAME_OVER)
+			{
+			 led_digits((length-1)/10,(length-1)%10,50,0,0,25,25,25);
+			 sendlight();
+			}
+		}
 	  for(int i = 0; i < WS2812B_LEDS; i++)
 	  	  {
 	  	      WS2812B_SetDiodeRGB(i,0,0,0);
@@ -712,6 +727,9 @@ int main(void)
 	  	{
 	  		EATEN = 1;
 	  		GROWTH = 1;
+	  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, 1);
+
+
 	  	}
 	  	if(EATEN)
 	  	{
@@ -749,6 +767,7 @@ int main(void)
 
 		if(moved)
 		{
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, 0);
 			move();
 			moved = 0;
 			for(int i = 0; i < 8; i++)
@@ -771,21 +790,7 @@ int main(void)
 
 		}
 
-		if(GAME_OVER)
-		{
 
-				for(int i = 0; i < WS2812B_LEDS; i++)
-					  	  {
-					  	      WS2812B_SetDiodeRGB(i,254,0,0);
-					  	      sendlight();
-					  	      HAL_Delay(20);
-					  	  }
-				while(GAME_OVER)
-				{
-				 led_digits((length-1)/10,(length-1)%10,254,0,0,254,254,254);
-				 sendlight();
-				}
-		}
 
 
 
@@ -796,12 +801,12 @@ int main(void)
 //		if(head_X<0)head_X = 0;
 //		if(head_Y>7) head_Y = 7;
 //		if(head_Y<0) head_Y = 0;
-		SetDiodeCoord(head_position[0],head_position[1],0,0,254);
-		SetDiodeCoord(fruit_position[0],fruit_position[1],254,0,0);
+		SetDiodeCoord(head_position[0],head_position[1],0,0,25);
+		SetDiodeCoord(fruit_position[0],fruit_position[1],25,0,0);
 	 for(int i = 0; i < 64; i++)
 		  {
 			  if(tail_x[i] != 0)
-				  SetDiodeCoord(tail_x[i]-1,tail_y[i]-1,0,254,0);
+				  SetDiodeCoord(tail_x[i]-1,tail_y[i]-1,0,25,0);
 
 		  }
 
@@ -1048,6 +1053,16 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PC3 */
+  GPIO_InitStruct.Pin = GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PA0 */
   GPIO_InitStruct.Pin = GPIO_PIN_0;
