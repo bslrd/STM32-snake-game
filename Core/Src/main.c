@@ -18,10 +18,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "stdlib.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdlib.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,6 +56,8 @@ ADC_HandleTypeDef hadc1;
 
 SPI_HandleTypeDef hspi1;
 
+TIM_HandleTypeDef htim2;
+
 /* USER CODE BEGIN PV */
 
 
@@ -74,6 +76,8 @@ uint8_t prev_move_direction = RIGHT;
 uint8_t fruit_position[2];
 uint8_t GROWTH = 0;
 uint8_t EATEN = 1;
+uint8_t collision[8][8]={0};
+uint8_t GAME_OVER = 0;
 int MOVEX = 1;
  int MOVEY = 1;
 
@@ -81,7 +85,95 @@ int MOVEX = 1;
  int tail_Y[64] = {0};
  int moved = 0;
 
+ int M0[8][8] = {{0,0,0,0,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,1,0,1,0,0,0,0},
+ 				{0,1,0,1,0,0,0,0},
+ 				{0,1,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0}};
 
+ int M1[8][8] = {{0,0,0,0,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0},
+ 				{0,1,1,0,0,0,0,0},
+ 				{0,0,1,0,0,0,0,0},
+ 				{0,0,1,0,0,0,0,0},
+ 				{0,0,1,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0}};
+
+ int M2[8][8] = {{0,0,0,0,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,1,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0}};
+
+ int M3[8][8] = {{0,0,0,0,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0}};
+
+ int M4[8][8] = {{0,0,0,0,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0},
+ 				{0,1,0,1,0,0,0,0},
+ 				{0,1,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,1,0,0,0,0},
+ 				{0,0,0,1,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0}};
+
+ int M5[8][8] = {{0,0,0,0,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,1,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0}};
+
+ int M6[8][8] = {{0,0,0,0,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,1,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,1,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0}};
+
+ int M7[8][8] = {{0,0,0,0,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,1,0,1,0,0,0,0},
+ 				{0,0,0,1,0,0,0,0},
+ 				{0,0,0,1,0,0,0,0},
+ 				{0,0,0,1,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0}};
+
+ int M8[8][8] = {{0,0,0,0,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,1,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,1,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0}};
+
+ int M9[8][8] = {{0,0,0,0,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,1,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,1,0,0,0,0},
+ 				{0,1,1,1,0,0,0,0},
+ 				{0,0,0,0,0,0,0,0}};
 
 
 
@@ -223,6 +315,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_ADC1_Init(void);
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 int R = 1;
   int G = 100;
@@ -244,6 +337,308 @@ int R = 1;
      Error_Handler();
     }
   }
+
+
+  void led_digits(int digit1, int digit2, int Rb, int Gb, int Bb, int Rd, int Gd, int Bd)
+  {
+  for(int i = 0; i < WS2812B_LEDS; i++)
+  	  	  {
+  	  	      WS2812B_SetDiodeRGB(i,Rb,Gb,Bb);
+  	  	  }
+
+
+
+  switch(digit1)
+  {
+  case 0:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M0[i][j] == 1)
+  			{
+  				SetDiodeCoord(j,i,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 1:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M1[i][j] == 1)
+  			{
+  				SetDiodeCoord(j,i,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 2:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M2[i][j] == 1)
+  			{
+  				SetDiodeCoord(j,i,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 3:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M3[i][j] == 1)
+  			{
+  				SetDiodeCoord(j,i,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 4:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M4[i][j] == 1)
+  			{
+  				SetDiodeCoord(j,i,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 5:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M5[i][j] == 1)
+  			{
+  				SetDiodeCoord(j,i,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 6:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M6[i][j] == 1)
+  			{
+  				SetDiodeCoord(j,i,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 7:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M7[i][j] == 1)
+  			{
+  				SetDiodeCoord(j,i,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 8:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M8[i][j] == 1)
+  			{
+  				SetDiodeCoord(j,i,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 9:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M9[i][j] == 1)
+  			{
+  				SetDiodeCoord(j,i,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  }
+
+  switch(digit2)
+  {
+  case 0:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M0[i][j+4] == 1)
+  			{
+  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 1:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M1[i][j+4] == 1)
+  			{
+  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 2:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M2[i][j+4] == 1)
+  			{
+  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 3:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M3[i][j+4] == 1)
+  			{
+  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 4:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M4[i][j+4] == 1)
+  			{
+  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 5:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M5[i][j+4] == 1)
+  			{
+  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 6:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M6[i][j+4] == 1)
+  			{
+  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 7:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M7[i][j+4] == 1)
+  			{
+  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 8:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M8[i][j+4] == 1)
+  			{
+  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  case 9:
+
+  	for(int i = 0; i<8; i++)
+  	{
+  		for(int j = 0; j<8; j++)
+  		{
+  			if(M9[i][j+4] == 1)
+  			{
+  				SetDiodeCoord(j,i+1,Rd,Gd,Bd);
+  			}
+  		}
+  	}
+  	break;
+
+  }
+
+  }
+
+
 /* USER CODE END 0 */
 
 /**
@@ -277,14 +672,12 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_ADC1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_Base_Start_IT(&htim2);
   HAL_ADC_Start(&hadc1);
   WS2812B_Init(&hspi1);
-//  WS2812B_SetDiodeRGB(0,100,200,0);
-//  WS2812B_SetDiodeRGB(1,0,200,0);
-//  WS2812B_SetDiodeRGB(2,200,200,0);
-//  WS2812B_SetDiodeRGB(3,0,200,200);
-//  sendlight();
+
 
   HAL_Delay(10);
   int directionR = 1;
@@ -322,41 +715,76 @@ int main(void)
 	  	}
 	  	if(EATEN)
 	  	{
-	  	fruit_position[0] = rand()%7;
-	  	fruit_position[1] = rand()%7;
+	  	do{
+	  		fruit_position[0] = rand()%7;
+	  		fruit_position[1] = rand()%7;
+	  	}while(collision[fruit_position[0]][fruit_position[1]]==1 || (fruit_position[0] == head_position[0] && fruit_position[1] == head_position[1]));
 	  	EATEN = 0;
 	  	}
 
 	    if(Joystick[0] < 100 && MOVEX == 1 && MOVEY == 1)
 	    {
 	    	move_direction = LEFT;
-	    	MOVEX = 0;
-	    	moved = 1;
+
 
 	    }
 	    else if(Joystick[0] > 4000 && MOVEX == 1 && MOVEY == 1)
 	    	{
 	    	move_direction = RIGHT;
 	    	MOVEX = 0;
-	    	moved = 1;
+
 	    	}
 	    else if(Joystick[1] > 4000  && MOVEX == 1 && MOVEY == 1)
 	    	{
 	    	move_direction = UP;
 	    	MOVEY = 0;
-	    	moved = 1;
+
 	    	}
 	    else if(Joystick[1] < 100 && MOVEX == 1 && MOVEY == 1)
 			{
 			move_direction = DOWN;
 			MOVEY = 0;
-			moved = 1;
+
 			}
 
 		if(moved)
 		{
 			move();
 			moved = 0;
+			for(int i = 0; i < 8; i++)
+			{
+				for(int j = 0; j < 8; j++)
+				{
+					collision[i][j] = 0;
+				}
+			}
+			for(int i = 0; i < 64; i++)
+			{
+				if(tail_x[i] !=0)
+				{
+					collision[tail_x[i]-1][tail_y[i]-1] = 1;
+				}
+
+			}
+			if(collision[head_position[0]][head_position[1]] == 1)
+				GAME_OVER = 1;
+
+		}
+
+		if(GAME_OVER)
+		{
+
+				for(int i = 0; i < WS2812B_LEDS; i++)
+					  	  {
+					  	      WS2812B_SetDiodeRGB(i,254,0,0);
+					  	      sendlight();
+					  	      HAL_Delay(20);
+					  	  }
+				while(GAME_OVER)
+				{
+				 led_digits((length-1)/10,(length-1)%10,254,0,0,254,254,254);
+				 sendlight();
+				}
 		}
 
 
@@ -444,8 +872,9 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC12;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC12|RCC_PERIPHCLK_TIM2;
   PeriphClkInit.Adc12ClockSelection = RCC_ADC12PLLCLK_DIV1;
+  PeriphClkInit.Tim2ClockSelection = RCC_TIM2CLK_HCLK;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
@@ -559,6 +988,51 @@ static void MX_SPI1_Init(void)
 }
 
 /**
+  * @brief TIM2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM2_Init(void)
+{
+
+  /* USER CODE BEGIN TIM2_Init 0 */
+
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 999;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 20000;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -570,6 +1044,7 @@ static void MX_GPIO_Init(void)
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
@@ -583,7 +1058,10 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
+{
+    moved = 1;
+}
 /* USER CODE END 4 */
 
 /**
