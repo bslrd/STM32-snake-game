@@ -59,63 +59,64 @@ static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
-
 /* USER CODE BEGIN PFP */
+
 volatile int Joystick[2];
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-	void ADC_SetActiveChannel(ADC_HandleTypeDef *hadc, uint32_t AdcChannel)
+void ADC_SetActiveChannel(ADC_HandleTypeDef *hadc, uint32_t AdcChannel)
+{
+	ADC_ChannelConfTypeDef sConfig = {0};
+	sConfig.Channel = AdcChannel;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = 480;
+	if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK)
 	{
-		ADC_ChannelConfTypeDef sConfig = {0};
-		sConfig.Channel = AdcChannel;
-		sConfig.Rank = 1;
-		sConfig.SamplingTime = 480;
-		if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK)
-		{
-			Error_Handler();
-		}
+		Error_Handler();
+	}
+}
+
+void joystick_read()
+{
+	if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
+	{
+		Joystick[0] = HAL_ADC_GetValue(&hadc1); // Get X value
+		ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_7);
+		HAL_ADC_Start(&hadc1);
 	}
 
-	void joystick_read()
+	if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
 	{
-		if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
-		{
-			Joystick[0] = HAL_ADC_GetValue(&hadc1); // Get X value
-			ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_7);
-			HAL_ADC_Start(&hadc1);
-		}
-
-		if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
-		{
-			Joystick[1] = HAL_ADC_GetValue(&hadc1); // Get Y value
-			ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_6);
-			HAL_ADC_Start(&hadc1);
-		}
-
+		Joystick[1] = HAL_ADC_GetValue(&hadc1); // Get Y value
+		ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_6);
+		HAL_ADC_Start(&hadc1);
 	}
 
-	void joystick_getdirection()
+}
+
+void joystick_getdirection()
+{
+	if(Joystick[0] < 100)
 	{
-		if(Joystick[0] < 100)
-		{
-			move_direction = LEFT;
-		}
-		else if(Joystick[0] > 4000)
-		{
-			move_direction = RIGHT;
-		}
-		else if(Joystick[1] > 4000)
-		{
-			move_direction = UP;
-		}
-		else if(Joystick[1] < 100)
-		{
-			move_direction = DOWN;
-		}
+		move_direction = LEFT;
 	}
+	else if(Joystick[0] > 4000)
+	{
+		move_direction = RIGHT;
+	}
+	else if(Joystick[1] > 4000)
+	{
+		move_direction = UP;
+	}
+	else if(Joystick[1] < 100)
+	{
+		move_direction = DOWN;
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -161,53 +162,42 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
 	// game over state handling
 	if(GAME_OVER)
 	{
-		fill_color(25,0,0,10,1);
+		fill_color(255,0,0,10,1);
 		while(GAME_OVER)
 		{
-
-			 led_digits((length-1)/10,(length-1)%10,25,0,0,25,25,25);
-			 LED_update();
+			led_digits(length-1,255,255,255);
+			LED_update();
 		}
 		fill_color(0,0,0,10,1);
 	}
-
 	// joystick handling
 	joystick_read();
 	joystick_getdirection();
-
 	// fruit consumption handling
 	fruit_check();
-
-	// growth sound indicator
-	if(GROWTH)
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, 1);
-
 	//  movement handling
 	if(MOVE)
 	{
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, 0);
 		move();
 		collision_check();
 		MOVE = 0;
-	}
 
-
-	// displaying current state of the game
-	fill_color(0,0,0,0,0);
-	LED_set_coord(head_position[0],head_position[1],Rh,Gh,Bh);
-	LED_set_coord(fruit_position[0],fruit_position[1],Rf,Gf,Bf);
-	for(int i = 0; i < length; i++)
-	{
-		LED_set_coord(tail_x[i],tail_y[i],Rt,Gt,Bt);
+		// displaying snake
+		fill_color(0,0,0,0,0);
+		LED_set_coord(fruit_position[0],fruit_position[1],Rf,Gf,Bf);
+		LED_set_coord(head_position[0],head_position[1],Rh,Gh,Bh);
+		for(uint8_t i = 0; i < length; i++)
+		{
+			LED_set_coord(tail_x[i],tail_y[i],Rt,Gt,Bt);
+		}
+		LED_update();
 	}
-	LED_update();
-		/* USER CODE END WHILE */
-		/* USER CODE BEGIN 3 */
-	  }
+    /* USER CODE END WHILE */
+    /* USER CODE BEGIN 3 */
+  }
   /* USER CODE END 3 */
 }
 
@@ -425,16 +415,6 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : PC3 */
-  GPIO_InitStruct.Pin = GPIO_PIN_3;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PA0 */
   GPIO_InitStruct.Pin = GPIO_PIN_0;

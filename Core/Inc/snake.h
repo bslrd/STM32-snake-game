@@ -8,15 +8,15 @@
 // snake head color
 #define Rh		0
 #define Gh		0
-#define Bh		25
+#define Bh		255
 
 // snake tail color
 #define Rt		0
-#define Gt		25
+#define Gt		255
 #define Bt		0
 
 // fruit color
-#define Rf		25
+#define Rf		255
 #define Gf		0
 #define Bf		0
 

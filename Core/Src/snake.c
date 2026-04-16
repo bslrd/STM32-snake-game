@@ -2,7 +2,7 @@
 #include "stdlib.h"
 
 // game variables
-uint8_t length = 0;
+uint8_t length = 1;
 int head_position[2]={0};
 uint8_t prev_head_position[2]={0};
 uint8_t tail_x[64] = {0};

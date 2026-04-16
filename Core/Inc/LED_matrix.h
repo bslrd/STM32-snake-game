@@ -11,6 +11,8 @@
 #define zero 0b1000000
 #define one 0b11111000
 
+#define LED_BRIGHTNESS_SWITCH 1
+#define BRIGHTNESS 1
 typedef struct ws2812b_color {
   uint8_t red, green, blue;
 } ws2812b_color;

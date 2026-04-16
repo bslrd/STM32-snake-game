@@ -13,9 +13,9 @@ void LED_init(SPI_HandleTypeDef * spi_handler)
 void LED_set_rgb(int16_t diode_id, uint8_t R, uint8_t G, uint8_t B)
 {
 	if(diode_id >= WS2812B_LEDS || diode_id < 0) return;
-	ws2812b_array[diode_id].red = R;
-	ws2812b_array[diode_id].green = G;
-	ws2812b_array[diode_id].blue = B;
+	ws2812b_array[diode_id].red = R * BRIGHTNESS/100.0;
+	ws2812b_array[diode_id].green = G * BRIGHTNESS/100.0;
+	ws2812b_array[diode_id].blue = B * BRIGHTNESS/100.0;
 }
 
 void LED_set_coord(uint8_t x, uint8_t y, uint8_t R, uint8_t G, uint8_t B)
@@ -25,6 +25,9 @@ void LED_set_coord(uint8_t x, uint8_t y, uint8_t R, uint8_t G, uint8_t B)
 
 void LED_update()
 {
+
+
+
 	for(uint8_t i = 0; i < 120; i++)
 		buffer[i] = 0x00;
 
