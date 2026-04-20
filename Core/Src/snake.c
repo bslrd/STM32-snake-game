@@ -4,15 +4,13 @@
 // game variables
 uint8_t length = 1;
 int head_position[2]={0};
-uint8_t prev_head_position[2]={0};
-uint8_t tail_x[64] = {0};
-uint8_t tail_y[64] = {0};
-uint8_t move_direction = RIGHT;
-uint8_t prev_move_direction = RIGHT;
+uint8_t tail_x[GAME_SIZE] = {0};
+uint8_t tail_y[GAME_SIZE] = {0};
+enum direction move_direction = RIGHT;
+enum direction prev_move_direction = RIGHT;
 uint8_t fruit_position[2]={0};
-uint8_t collision[8][8]={0};
+uint8_t collision[GAME_DIM][GAME_DIM]={0};
 uint8_t GROWTH = 0;
-uint8_t EATEN = 1;
 uint8_t MOVE = 0;
 uint8_t GAME_OVER = 1;
 
@@ -25,7 +23,7 @@ void move()
 		length++;
 		GROWTH = 0;
 	}
-	else if(length)
+	else
 	{
 		for(int i = 0; i < length-1; i++)
 		{
@@ -72,12 +70,10 @@ void move()
 			break;
 	}
 	if(head_position[0] < 0) head_position[0] = 0;
-	if(head_position[0] > 7) head_position[0] = 7;
+	if(head_position[0] >= GAME_DIM) head_position[0] = GAME_DIM-1;
 	if(head_position[1] < 0) head_position[1] = 0;
-	if(head_position[1] > 7) head_position[1] = 7;
+	if(head_position[1] >= GAME_DIM) head_position[1] = GAME_DIM-1;
 
-	prev_head_position[0] = head_position[0];
-	prev_head_position[1] = head_position[1];
 	prev_move_direction = move_direction;
 }
 
@@ -87,17 +83,17 @@ void fruit_check()
 	{
 		GROWTH = 1;
 		do{
-			fruit_position[0] = rand()%8;
-			fruit_position[1] = rand()%8;
+			fruit_position[0] = rand()%GAME_DIM;
+			fruit_position[1] = rand()%GAME_DIM;
 		}while(collision[fruit_position[0]][fruit_position[1]]==1 || (fruit_position[0] == head_position[0] && fruit_position[1] == head_position[1]));
   	}
 }
 
 void collision_check()
 {
-	for(int i = 0; i < 8; i++)
+	for(int i = 0; i < GAME_DIM; i++)
 	{
-		for(int j = 0; j < 8; j++)
+		for(int j = 0; j < GAME_DIM; j++)
 		{
 			collision[i][j] = 0;
 		}
@@ -117,15 +113,12 @@ void game_init()
 	length = 0;
 	head_position[0] = 0;
 	head_position[1] = 0;
-	for(int i = 0; i < 64; i++)
+	for(int i = 0; i < GAME_SIZE; i++)
 	{
 		tail_x[i] = 0;
 		tail_y[i] = 0;
 	}
 
-	EATEN = 1;
-	prev_head_position[0]= 0;
-	prev_head_position[0]= 1;
 	prev_move_direction = RIGHT;
 	move_direction = RIGHT;
 	fruit_position[0]= 0;

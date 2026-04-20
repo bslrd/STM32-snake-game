@@ -98,7 +98,7 @@ void joystick_read()
 
 }
 
-void joystick_getdirection()
+void joystick_get_direction()
 {
 	if(Joystick[0] < 100)
 	{
@@ -165,17 +165,17 @@ int main(void)
 	// game over state handling
 	if(GAME_OVER)
 	{
-		fill_color(255,0,0,10,1);
+		LED_fill(255,0,0,10,1);
 		while(GAME_OVER)
 		{
 			led_digits(length-1,255,255,255);
 			LED_update();
 		}
-		fill_color(0,0,0,10,1);
+		LED_fill(0,0,0,10,1);
 	}
 	// joystick handling
 	joystick_read();
-	joystick_getdirection();
+	joystick_get_direction();
 	// fruit consumption handling
 	fruit_check();
 	//  movement handling
@@ -186,7 +186,7 @@ int main(void)
 		MOVE = 0;
 
 		// displaying snake
-		fill_color(0,0,0,0,0);
+		LED_fill(0,0,0,0,0);
 		LED_set_coord(fruit_position[0],fruit_position[1],Rf,Gf,Bf);
 		LED_set_coord(head_position[0],head_position[1],Rh,Gh,Bh);
 		for(uint8_t i = 0; i < length; i++)

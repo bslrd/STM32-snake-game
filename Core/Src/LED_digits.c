@@ -1,5 +1,4 @@
 #include "LED_digits.h"
-#include "LED_matrix.h"
 
 // number definitions
 
@@ -111,9 +110,9 @@
 
  void led_symbole(const uint8_t symbole[8][8], int R, int G, int B, int x_offset, int y_offset)
  {
-		for(int i = 0; i<8; i++)
+		for(int i = 0; i<LED_MATRIX_DIM; i++)
 		{
-			for(int j = 0; j<8; j++)
+			for(int j = 0; j<LED_MATRIX_DIM; j++)
 			{
 				if(symbole[i][j] == 1)
 				{
@@ -126,6 +125,4 @@
 {
 	led_symbole(digits[number/10], R, G, B, 0, 0);
 	led_symbole(digits[number%10], R, G, B, 4, 0);
-	//led_symbole(digits[digit2], R, G, B, 0, 0);
-	//led_symbole(digits[digit1], R, G, B, 4, 1);
 }

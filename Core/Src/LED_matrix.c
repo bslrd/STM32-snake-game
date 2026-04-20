@@ -1,26 +1,26 @@
 #include "LED_matrix.h"
 
-ws2812b_color ws2812b_array[WS2812B_LEDS];
-SPI_HandleTypeDef *hspi_ws2812b;
+LED_color LED_array[LED_MATRIX_SIZE];
+SPI_HandleTypeDef *hspi_LED_matrix;
 
-static uint8_t buffer[WS2812B_LEDS*24+120];
+static uint8_t buffer[LED_MATRIX_SIZE*24+120];
 
 void LED_init(SPI_HandleTypeDef * spi_handler)
 {
-	hspi_ws2812b = spi_handler;
+	hspi_LED_matrix = spi_handler;
 }
 
 void LED_set_rgb(int16_t diode_id, uint8_t R, uint8_t G, uint8_t B)
 {
-	if(diode_id >= WS2812B_LEDS || diode_id < 0) return;
-	ws2812b_array[diode_id].red = R * BRIGHTNESS/100.0;
-	ws2812b_array[diode_id].green = G * BRIGHTNESS/100.0;
-	ws2812b_array[diode_id].blue = B * BRIGHTNESS/100.0;
+	if(diode_id >= LED_MATRIX_SIZE || diode_id < 0) return;
+	LED_array[diode_id].red = R * BRIGHTNESS/100.0;
+	LED_array[diode_id].green = G * BRIGHTNESS/100.0;
+	LED_array[diode_id].blue = B * BRIGHTNESS/100.0;
 }
 
 void LED_set_coord(uint8_t x, uint8_t y, uint8_t R, uint8_t G, uint8_t B)
 {
-	LED_set_rgb(x+y*8,R,G,B);
+	LED_set_rgb(x+y*LED_MATRIX_DIM,R,G,B);
 }
 
 void LED_update()
@@ -31,12 +31,12 @@ void LED_update()
 	for(uint8_t i = 0; i < 120; i++)
 		buffer[i] = 0x00;
 
-	for(uint16_t i=0, j=120; i<WS2812B_LEDS; i++)
+	for(uint16_t i=0, j=120; i<LED_MATRIX_SIZE; i++)
 	{
 		//GREEN
 		for(int8_t k=7; k>=0; k--)
 		{
-			if((ws2812b_array[i].green & (1<<k)) == 0)
+			if((LED_array[i].green & (1<<k)) == 0)
 				buffer[j] = zero;
 			else
 				buffer[j] = one;
@@ -46,7 +46,7 @@ void LED_update()
 		//RED
 		for(int8_t k=7; k>=0; k--)
 		{
-			if((ws2812b_array[i].red & (1<<k)) == 0)
+			if((LED_array[i].red & (1<<k)) == 0)
 				buffer[j] = zero;
 			else
 				buffer[j] = one;
@@ -56,7 +56,7 @@ void LED_update()
 		//BLUE
 		for(int8_t k=7; k>=0; k--)
 		{
-			if((ws2812b_array[i].blue & (1<<k)) == 0)
+			if((LED_array[i].blue & (1<<k)) == 0)
 				buffer[j] = zero;
 			else
 				buffer[j] = one;
@@ -65,14 +65,14 @@ void LED_update()
 	}
 
 
-	HAL_SPI_Transmit(hspi_ws2812b, buffer, (WS2812B_LEDS) * 24 + 120, 1000);
+	HAL_SPI_Transmit(hspi_LED_matrix, buffer, LED_MATRIX_SIZE* 24 + 120, 1000);
 }
 
-void fill_color(uint8_t R, uint8_t G, uint8_t B, uint8_t delay, uint8_t send)
+void LED_fill(uint8_t R, uint8_t G, uint8_t B, uint8_t delay, uint8_t send)
 {
 	if(delay)
 	{
-		for(int i = 0; i < WS2812B_LEDS; i++)
+		for(int i = 0; i < LED_MATRIX_SIZE; i++)
 		{
 			LED_set_rgb(i,R,G,B);
 			if(send)
@@ -82,7 +82,7 @@ void fill_color(uint8_t R, uint8_t G, uint8_t B, uint8_t delay, uint8_t send)
 	}
 	else
 	{
-		for(int i = 0; i < WS2812B_LEDS; i++)
+		for(int i = 0; i < LED_MATRIX_SIZE; i++)
 		{
 			LED_set_rgb(i,R,G,B);
 		}

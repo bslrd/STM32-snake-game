@@ -1,2 +1,2 @@
-../Core/Src/LED_digits.c:112:7:led_symbole	48	static
-../Core/Src/LED_digits.c:125:7:led_digits	32	static
+../Core/Src/LED_digits.c:111:7:led_symbole	48	static
+../Core/Src/LED_digits.c:124:7:led_digits	32	static
