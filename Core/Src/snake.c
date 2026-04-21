@@ -105,6 +105,8 @@ void collision_check()
 	}
 	if(collision[head_position[0]][head_position[1]] == 1)
 		GAME_OVER = 1;
+
+	////popraw zeby petli nie bylo -> usuwanie ostatneigo elementu ogona z mac kolizji
 }
 
 void game_init()

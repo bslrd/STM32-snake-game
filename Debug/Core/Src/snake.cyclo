@@ -1,4 +1,4 @@
 ../Core/Src/snake.c:17:6:move	15
 ../Core/Src/snake.c:80:6:fruit_check	6
 ../Core/Src/snake.c:92:6:collision_check	5
-../Core/Src/snake.c:110:6:game_init	2
+../Core/Src/snake.c:112:6:game_init	2
