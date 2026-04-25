@@ -101,7 +101,7 @@ void joystick_read()
 
 int8_t joystick_check_tilt()
 {
-	if(Joystick[0]<1000 || Joystick[0]>3000 || Joystick[1] < 1000 || Joystick[1] > 3000)
+	if(Joystick[0]<1300 || Joystick[0]>2500 || Joystick[1] < 1300 || Joystick[1] > 2500)
 	{
 		return 1;
 	}
@@ -113,19 +113,19 @@ int8_t joystick_check_tilt()
 
 direction joystick_get_direction()
 {
-	if(Joystick[0] < 1000)
+	if(Joystick[0] < 1300)
 	{
 		return LEFT;
 	}
-	else if(Joystick[0] > 3000)
+	else if(Joystick[0] > 2500)
 	{
 		return RIGHT;
 	}
-	else if(Joystick[1] > 3000)
+	else if(Joystick[1] > 2500)
 	{
 		return DOWN;
 	}
-	else //if(Joystick[1] < 1000)
+	else //if(Joystick[1] < 1300)
 	{
 		return UP;
 	}
@@ -210,40 +210,7 @@ int main(void)
 	//  movement handling
 	if(MOVE)
 	{
-//		if(iter == 0)
-//			snake_update_direction(RIGHT);
-//		if(iter == 7)
-//			snake_update_direction(UP);
-//		if(iter == 8)
-//			snake_update_direction(LEFT);
-//		if(iter == 14)
-//			snake_update_direction(UP);
-//		if(iter == 15)
-//			snake_update_direction(RIGHT);
-//		if(iter == 21)
-//			snake_update_direction(UP);
-//		if(iter == 22)
-//			snake_update_direction(LEFT);
-//		if(iter == 28)
-//			snake_update_direction(UP);
-//		if(iter == 29)
-//			snake_update_direction(RIGHT);
-//		if(iter == 35)
-//			snake_update_direction(UP);
-//		if(iter == 36)
-//			snake_update_direction(LEFT);
-//		if(iter == 42)
-//			snake_update_direction(UP);
-//		if(iter == 43)
-//			snake_update_direction(RIGHT);
-//		if(iter == 49)
-//			snake_update_direction(UP);
-//		if(iter == 50)
-//			snake_update_direction(LEFT);
-//		if(iter == 57)
-//			snake_update_direction(DOWN);
-//
-//		iter = (iter+1)%64;
+
 
 		snake_move();
 		snake_collision_check();

@@ -72,16 +72,19 @@ void snake_move()
 
 	game.prev_move_direction = game.move_direction;
 }
-
+void fruit_pick_position()
+{
+	do{
+		game.fruit_position[0] = rand()%GAME_DIM;
+		game.fruit_position[1] = rand()%GAME_DIM;
+	}while((game.length != GAME_SIZE - 1) && (game.collision[game.fruit_position[0]][game.fruit_position[1]]==1 || (game.fruit_position[0] == game.head_position[0] && game.fruit_position[1] == game.head_position[1])));
+}
 void snake_fruit_check()
 {
 	if(game.fruit_position[0] == game.head_position[0] && game.fruit_position[1] == game.head_position[1])
 	{
 		GROWTH = 1;
-		do{
-			game.fruit_position[0] = rand()%GAME_DIM;
-			game.fruit_position[1] = rand()%GAME_DIM;
-		}while((game.length != GAME_SIZE - 1) && (game.collision[game.fruit_position[0]][game.fruit_position[1]]==1 || (game.fruit_position[0] == game.head_position[0] && game.fruit_position[1] == game.head_position[1])));
+		fruit_pick_position();
   	}
 }
 
@@ -120,7 +123,7 @@ void snake_game_init(int seed)
 	game.prev_move_direction = RIGHT;
 	game.move_direction = RIGHT;
 	srand(seed);
-	snake_fruit_check();
+	fruit_pick_position();
 
 }
 
