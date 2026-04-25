@@ -6,15 +6,15 @@ uint8_t length = 1;
 int head_position[2]={0};
 uint8_t tail_x[GAME_SIZE] = {0};
 uint8_t tail_y[GAME_SIZE] = {0};
-enum direction move_direction = RIGHT;
-enum direction prev_move_direction = RIGHT;
+static direction move_direction = RIGHT;
+direction prev_move_direction = RIGHT;
 uint8_t fruit_position[2]={0};
 uint8_t collision[GAME_DIM][GAME_DIM]={0};
 uint8_t GROWTH = 0;
 uint8_t MOVE = 0;
 uint8_t GAME_OVER = 1;
 
-void move()
+void snake_move()
 {
 	if(GROWTH)
 	{
@@ -77,7 +77,7 @@ void move()
 	prev_move_direction = move_direction;
 }
 
-void fruit_check()
+void snake_fruit_check()
 {
 	if(fruit_position[0] == head_position[0] && fruit_position[1] == head_position[1])
 	{
@@ -89,7 +89,7 @@ void fruit_check()
   	}
 }
 
-void collision_check()
+void snake_collision_check()
 {
 	for(int i = 0; i < GAME_DIM; i++)
 	{
@@ -109,7 +109,7 @@ void collision_check()
 	////popraw zeby petli nie bylo -> usuwanie ostatneigo elementu ogona z mac kolizji
 }
 
-void game_init()
+void snake_game_init()
 {
 	GAME_OVER = 0;
 	length = 0;
@@ -126,4 +126,9 @@ void game_init()
 	fruit_position[0]= 0;
 	fruit_position[1]= 0;
 
+}
+
+void snake_update_direction(direction mvd)
+{
+	move_direction = mvd;
 }

@@ -61,7 +61,7 @@ static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
-volatile int Joystick[2];
+static int Joystick[2];
 
 /* USER CODE END PFP */
 
@@ -79,6 +79,7 @@ void ADC_SetActiveChannel(ADC_HandleTypeDef *hadc, uint32_t AdcChannel)
 		Error_Handler();
 	}
 }
+
 
 void joystick_read()
 {
@@ -98,23 +99,44 @@ void joystick_read()
 
 }
 
-void joystick_get_direction()
+int8_t joystick_check_tilt()
+{
+	static int8_t did_axis_return[2] = {1,1};
+	if(did_axis_return[0] && (Joystick[0]<100 || Joystick[0]>4000))
+	{
+		did_axis_return[0] = 0;
+		return 1;
+	}
+	else if(did_axis_return[1] && (Joystick[1] < 100 || Joystick[1] > 4000))
+	{
+		did_axis_return[0] = 1;
+		did_axis_return[1] = 0;
+		return 1;
+	}
+	else
+	{
+		did_axis_return[1] = 1;
+		return 0;
+	}
+}
+
+direction joystick_get_direction()
 {
 	if(Joystick[0] < 100)
 	{
-		move_direction = LEFT;
+		return LEFT;
 	}
 	else if(Joystick[0] > 4000)
 	{
-		move_direction = RIGHT;
+		return RIGHT;
 	}
 	else if(Joystick[1] > 4000)
 	{
-		move_direction = UP;
+		return UP;
 	}
 	else if(Joystick[1] < 100)
 	{
-		move_direction = DOWN;
+		return DOWN;
 	}
 }
 /* USER CODE END 0 */
@@ -175,14 +197,18 @@ int main(void)
 	}
 	// joystick handling
 	joystick_read();
-	joystick_get_direction();
+	if(joystick_check_tilt())
+	{
+		snake_update_direction(joystick_get_direction());
+	}
+
 	// fruit consumption handling
-	fruit_check();
+	snake_fruit_check();
 	//  movement handling
 	if(MOVE)
 	{
-		move();
-		collision_check();
+		snake_move();
+		snake_collision_check();
 		MOVE = 0;
 
 		// displaying snake
@@ -440,7 +466,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	game_init();
+	snake_game_init();
 }
 /* USER CODE END 4 */
 

@@ -28,28 +28,26 @@
 
 /***********************************/
 
-enum direction
+typedef enum
 {
 	UP,
 	DOWN,
 	LEFT,
-	RIGHT
-};
+	RIGHT,
+}direction;
 
 #define GAME_SIZE GAME_DIM*GAME_DIM
 
 
-void move(void);			// move snake in set direction
-void fruit_check(void);		// check if fruit was eaten and randomly place new fruit
-void collision_check(void); // update snake collisions and check GAME OVER condition
-void game_init(void);		// initialize game variables
-
+void snake_move(void);			// move snake in set direction
+void snake_fruit_check(void);		// check if fruit was eaten and randomly place new fruit
+void snake_collision_check(void); // update snake collisions and check GAME OVER condition
+void snake_game_init(void);		// initialize game variables
+void snake_update_direction(direction mvd);
 extern uint8_t length;
 extern int head_position[2];
 extern uint8_t tail_x[GAME_SIZE];
 extern uint8_t tail_y[GAME_SIZE];
-extern enum direction move_direction;
-extern enum direction prev_move_direction;
 extern uint8_t fruit_position[2];
 extern uint8_t collision[GAME_DIM][GAME_DIM];
 extern uint8_t GROWTH;
