@@ -20,7 +20,7 @@ void LED_set_rgb(int16_t diode_id, uint8_t R, uint8_t G, uint8_t B)
 
 void LED_set_coord(uint8_t x, uint8_t y, uint8_t R, uint8_t G, uint8_t B)
 {
-	LED_set_rgb(x+y*LED_MATRIX_DIM,R,G,B);
+	LED_set_rgb(x+(LED_MATRIX_DIM-1-y)*LED_MATRIX_DIM,R,G,B);
 }
 
 void LED_update()

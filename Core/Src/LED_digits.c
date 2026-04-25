@@ -108,21 +108,32 @@
 
  // displays two digits on 8x8 LED matrix
 
- void LED_symbole(const uint8_t symbole[8][8], int R, int G, int B, int x_offset, int y_offset)
+ void LED_symbole(const uint8_t symbole[8][8], int R, int G, int B, int x_offset, int y_offset, int rotated)
  {
 		for(int i = 0; i<LED_MATRIX_DIM; i++)
 		{
 			for(int j = 0; j<LED_MATRIX_DIM; j++)
 			{
-				if(symbole[i][j] == 1)
+				if(rotated)
 				{
-					LED_set_coord(j+x_offset,i+y_offset,R,G,B);
+					if(symbole[7-j][i] == 1)
+					{
+						LED_set_coord(i+x_offset,j+y_offset,R,G,B);
+					}
 				}
+				else
+				{
+					if(symbole[i][j] == 1)
+					{
+						LED_set_coord(i+x_offset,j+y_offset,R,G,B);
+					}
+				}
+
 			}
 	 	}
  }
  void LED_digits(int number, int R, int G, int B)
 {
-	LED_symbole(digits[number/10], R, G, B, 0, 0);
-	LED_symbole(digits[number%10], R, G, B, 4, 0);
+	LED_symbole(digits[number/10], R, G, B, 0, 0, 1);
+	LED_symbole(digits[number%10], R, G, B, 4, 0, 1);
 }

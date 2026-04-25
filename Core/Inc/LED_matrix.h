@@ -6,7 +6,7 @@
 
 // brightness configuration !!!
 #define LED_BRIGHTNESS_SWITCH 1			// use brightness?
-#define BRIGHTNESS 0.5// brightness value 0-100 %
+#define BRIGHTNESS 2// brightness value 0-100 %
 
 
 // number of LEDs in matrix

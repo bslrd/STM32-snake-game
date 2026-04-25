@@ -101,40 +101,31 @@ void joystick_read()
 
 int8_t joystick_check_tilt()
 {
-	static int8_t did_axis_return[2] = {1,1};
-	if(did_axis_return[0] && (Joystick[0]<100 || Joystick[0]>4000))
+	if(Joystick[0]<1000 || Joystick[0]>3000 || Joystick[1] < 1000 || Joystick[1] > 3000)
 	{
-		did_axis_return[0] = 0;
-		return 1;
-	}
-	else if(did_axis_return[1] && (Joystick[1] < 100 || Joystick[1] > 4000))
-	{
-		did_axis_return[0] = 1;
-		did_axis_return[1] = 0;
 		return 1;
 	}
 	else
 	{
-		did_axis_return[1] = 1;
 		return 0;
 	}
 }
 
 direction joystick_get_direction()
 {
-	if(Joystick[0] < 100)
+	if(Joystick[0] < 1000)
 	{
 		return LEFT;
 	}
-	else if(Joystick[0] > 4000)
+	else if(Joystick[0] > 3000)
 	{
 		return RIGHT;
 	}
-	else if(Joystick[1] > 4000)
+	else if(Joystick[1] > 3000)
 	{
 		return DOWN;
 	}
-	else
+	else //if(Joystick[1] < 1000)
 	{
 		return UP;
 	}
@@ -142,9 +133,10 @@ direction joystick_get_direction()
 
 void render_snake(const snake_state *game)
 {
+	LED_symbole(game->collision,Rt,Gt,Bt,0,0,0);
 	LED_set_coord(game->fruit_position[0], game->fruit_position[1], Rf,Gf,Bf);
 	LED_set_coord(game->head_position[0], game->head_position[1], Rh,Gh,Bh);
-	LED_symbole(game->collision,Rt,Gt,Bt,0,0);
+
 }
 /* USER CODE END 0 */
 
@@ -185,19 +177,22 @@ int main(void)
   HAL_ADC_Start(&hadc1);
   LED_init(&hspi1);
   int iter = 0;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
 	// game over state handling
 	if(GAME_OVER)
 	{
+
 		LED_fill(255,0,0,10,1);
 		while(GAME_OVER)
 		{
-//			led_digits(length-1,255,255,255);
+			LED_digits(snake_get_state()->length,255,255,255);
 			LED_update();
 		}
 		LED_fill(0,0,0,10,1);
@@ -211,57 +206,54 @@ int main(void)
 	}
 
 	// fruit consumption handling
-	snake_fruit_check();
+
 	//  movement handling
 	if(MOVE)
 	{
-		if(iter == 0)
-			snake_update_direction(RIGHT);
-		if(iter == 7)
-			snake_update_direction(DOWN);
-		if(iter == 8)
-			snake_update_direction(LEFT);
-		if(iter == 14)
-			snake_update_direction(DOWN);
-		if(iter == 15)
-			snake_update_direction(RIGHT);
-		if(iter == 21)
-			snake_update_direction(DOWN);
-		if(iter == 22)
-			snake_update_direction(LEFT);
-		if(iter == 28)
-			snake_update_direction(DOWN);
-		if(iter == 29)
-			snake_update_direction(RIGHT);
-		if(iter == 35)
-			snake_update_direction(DOWN);
-		if(iter == 36)
-			snake_update_direction(LEFT);
-		if(iter == 42)
-			snake_update_direction(DOWN);
-		if(iter == 43)
-			snake_update_direction(RIGHT);
-		if(iter == 49)
-			snake_update_direction(DOWN);
-		if(iter == 50)
-			snake_update_direction(LEFT);
-		if(iter == 57)
-			snake_update_direction(UP);
+//		if(iter == 0)
+//			snake_update_direction(RIGHT);
+//		if(iter == 7)
+//			snake_update_direction(UP);
+//		if(iter == 8)
+//			snake_update_direction(LEFT);
+//		if(iter == 14)
+//			snake_update_direction(UP);
+//		if(iter == 15)
+//			snake_update_direction(RIGHT);
+//		if(iter == 21)
+//			snake_update_direction(UP);
+//		if(iter == 22)
+//			snake_update_direction(LEFT);
+//		if(iter == 28)
+//			snake_update_direction(UP);
+//		if(iter == 29)
+//			snake_update_direction(RIGHT);
+//		if(iter == 35)
+//			snake_update_direction(UP);
+//		if(iter == 36)
+//			snake_update_direction(LEFT);
+//		if(iter == 42)
+//			snake_update_direction(UP);
+//		if(iter == 43)
+//			snake_update_direction(RIGHT);
+//		if(iter == 49)
+//			snake_update_direction(UP);
+//		if(iter == 50)
+//			snake_update_direction(LEFT);
+//		if(iter == 57)
+//			snake_update_direction(DOWN);
+//
+//		iter = (iter+1)%64;
 
-		iter = (iter+1)%64;
 		snake_move();
 		snake_collision_check();
+		snake_fruit_check();
+
 		MOVE = 0;
 
 		// displaying snake
 		LED_fill(0,0,0,0,0);
 		render_snake(snake_get_state());
-//		LED_set_coord(fruit_position[0],fruit_position[1],Rf,Gf,Bf);
-//		LED_set_coord(head_position[0],head_position[1],Rh,Gh,Bh);
-//		for(uint8_t i = 0; i < length; i++)
-//		{
-//			LED_set_coord(tail_x[i],tail_y[i],Rt,Gt,Bt);
-//		}
 		LED_update();
 	}
     /* USER CODE END WHILE */
@@ -509,7 +501,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	snake_game_init();
+	snake_game_init(HAL_GetTick());
 }
 /* USER CODE END 4 */
 

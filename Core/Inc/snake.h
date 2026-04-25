@@ -56,7 +56,7 @@ typedef struct
 void snake_move(void);			// move snake in set direction
 void snake_fruit_check(void);		// check if fruit was eaten and randomly place new fruit
 void snake_collision_check(void); // update snake collisions and check GAME OVER condition
-void snake_game_init(void);		// initialize game variables
+void snake_game_init(int seed);		// initialize game variables
 void snake_update_direction(direction mvd);
 const snake_state* snake_get_state(void);
 //extern uint8_t length;
