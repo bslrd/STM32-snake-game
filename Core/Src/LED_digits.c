@@ -108,7 +108,7 @@
 
  // displays two digits on 8x8 LED matrix
 
- void led_symbole(const uint8_t symbole[8][8], int R, int G, int B, int x_offset, int y_offset)
+ void LED_symbole(const uint8_t symbole[8][8], int R, int G, int B, int x_offset, int y_offset)
  {
 		for(int i = 0; i<LED_MATRIX_DIM; i++)
 		{
@@ -121,8 +121,8 @@
 			}
 	 	}
  }
- void led_digits(int number, int R, int G, int B)
+ void LED_digits(int number, int R, int G, int B)
 {
-	led_symbole(digits[number/10], R, G, B, 0, 0);
-	led_symbole(digits[number%10], R, G, B, 4, 0);
+	LED_symbole(digits[number/10], R, G, B, 0, 0);
+	LED_symbole(digits[number%10], R, G, B, 4, 0);
 }

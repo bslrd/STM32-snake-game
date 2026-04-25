@@ -28,6 +28,8 @@
 
 /***********************************/
 
+#define GAME_SIZE GAME_DIM*GAME_DIM
+
 typedef enum
 {
 	UP,
@@ -36,7 +38,19 @@ typedef enum
 	RIGHT,
 }direction;
 
-#define GAME_SIZE GAME_DIM*GAME_DIM
+typedef struct
+{
+	int length;
+	int8_t head_position[2];
+	uint8_t prev_head_position[2];
+	uint8_t tail_position_x[GAME_SIZE];
+	uint8_t tail_position_y[GAME_SIZE];
+	uint8_t fruit_position[2];
+	direction move_direction;
+	direction prev_move_direction;
+	uint8_t collision[GAME_DIM][GAME_DIM];
+}snake_state;
+
 
 
 void snake_move(void);			// move snake in set direction
@@ -44,12 +58,13 @@ void snake_fruit_check(void);		// check if fruit was eaten and randomly place ne
 void snake_collision_check(void); // update snake collisions and check GAME OVER condition
 void snake_game_init(void);		// initialize game variables
 void snake_update_direction(direction mvd);
-extern uint8_t length;
-extern int head_position[2];
-extern uint8_t tail_x[GAME_SIZE];
-extern uint8_t tail_y[GAME_SIZE];
-extern uint8_t fruit_position[2];
-extern uint8_t collision[GAME_DIM][GAME_DIM];
+const snake_state* snake_get_state(void);
+//extern uint8_t length;
+//extern int head_position[2];
+//extern uint8_t tail_x[GAME_SIZE];
+//extern uint8_t tail_y[GAME_SIZE];
+//extern uint8_t fruit_position[2];
+
 extern uint8_t GROWTH;
 extern uint8_t MOVE;
 extern uint8_t GAME_OVER;

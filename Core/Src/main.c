@@ -132,12 +132,19 @@ direction joystick_get_direction()
 	}
 	else if(Joystick[1] > 4000)
 	{
-		return UP;
-	}
-	else if(Joystick[1] < 100)
-	{
 		return DOWN;
 	}
+	else
+	{
+		return UP;
+	}
+}
+
+void render_snake(const snake_state *game)
+{
+	LED_set_coord(game->fruit_position[0], game->fruit_position[1], Rf,Gf,Bf);
+	LED_set_coord(game->head_position[0], game->head_position[1], Rh,Gh,Bh);
+	LED_symbole(game->collision,Rt,Gt,Bt,0,0);
 }
 /* USER CODE END 0 */
 
@@ -177,7 +184,7 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_ADC_Start(&hadc1);
   LED_init(&hspi1);
-
+  int iter = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -190,10 +197,11 @@ int main(void)
 		LED_fill(255,0,0,10,1);
 		while(GAME_OVER)
 		{
-			led_digits(length-1,255,255,255);
+//			led_digits(length-1,255,255,255);
 			LED_update();
 		}
 		LED_fill(0,0,0,10,1);
+		iter = 0;
 	}
 	// joystick handling
 	joystick_read();
@@ -207,18 +215,53 @@ int main(void)
 	//  movement handling
 	if(MOVE)
 	{
+		if(iter == 0)
+			snake_update_direction(RIGHT);
+		if(iter == 7)
+			snake_update_direction(DOWN);
+		if(iter == 8)
+			snake_update_direction(LEFT);
+		if(iter == 14)
+			snake_update_direction(DOWN);
+		if(iter == 15)
+			snake_update_direction(RIGHT);
+		if(iter == 21)
+			snake_update_direction(DOWN);
+		if(iter == 22)
+			snake_update_direction(LEFT);
+		if(iter == 28)
+			snake_update_direction(DOWN);
+		if(iter == 29)
+			snake_update_direction(RIGHT);
+		if(iter == 35)
+			snake_update_direction(DOWN);
+		if(iter == 36)
+			snake_update_direction(LEFT);
+		if(iter == 42)
+			snake_update_direction(DOWN);
+		if(iter == 43)
+			snake_update_direction(RIGHT);
+		if(iter == 49)
+			snake_update_direction(DOWN);
+		if(iter == 50)
+			snake_update_direction(LEFT);
+		if(iter == 57)
+			snake_update_direction(UP);
+
+		iter = (iter+1)%64;
 		snake_move();
 		snake_collision_check();
 		MOVE = 0;
 
 		// displaying snake
 		LED_fill(0,0,0,0,0);
-		LED_set_coord(fruit_position[0],fruit_position[1],Rf,Gf,Bf);
-		LED_set_coord(head_position[0],head_position[1],Rh,Gh,Bh);
-		for(uint8_t i = 0; i < length; i++)
-		{
-			LED_set_coord(tail_x[i],tail_y[i],Rt,Gt,Bt);
-		}
+		render_snake(snake_get_state());
+//		LED_set_coord(fruit_position[0],fruit_position[1],Rf,Gf,Bf);
+//		LED_set_coord(head_position[0],head_position[1],Rh,Gh,Bh);
+//		for(uint8_t i = 0; i < length; i++)
+//		{
+//			LED_set_coord(tail_x[i],tail_y[i],Rt,Gt,Bt);
+//		}
 		LED_update();
 	}
     /* USER CODE END WHILE */

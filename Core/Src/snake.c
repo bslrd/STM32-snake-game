@@ -2,90 +2,88 @@
 #include "stdlib.h"
 
 // game variables
-uint8_t length = 1;
-int head_position[2]={0};
-uint8_t tail_x[GAME_SIZE] = {0};
-uint8_t tail_y[GAME_SIZE] = {0};
-static direction move_direction = RIGHT;
-direction prev_move_direction = RIGHT;
-uint8_t fruit_position[2]={0};
-uint8_t collision[GAME_DIM][GAME_DIM]={0};
+
 uint8_t GROWTH = 0;
 uint8_t MOVE = 0;
 uint8_t GAME_OVER = 1;
 
+static snake_state game;
+
 void snake_move()
 {
+
 	if(GROWTH)
 	{
-		tail_x[length] = head_position[0];
-		tail_y[length] = head_position[1];
-		length++;
+		game.tail_position_x[game.length] = game.head_position[0];
+		game.tail_position_y[game.length] = game.head_position[1];
+		game.length++;
 		GROWTH = 0;
 	}
 	else
 	{
-		for(int i = 0; i < length-1; i++)
+		for(int i = 0; i < game.length-1; i++)
 		{
-			tail_x[i] = tail_x[i+1];
-			tail_y[i] = tail_y[i+1];
+			game.tail_position_x[i] = game.tail_position_x[i+1];
+			game.tail_position_y[i] = game.tail_position_y[i+1];
 		}
-		tail_x[length-1] = head_position[0];
-		tail_y[length-1] = head_position[1];
+		game.tail_position_x[game.length-1] = game.head_position[0];
+		game.tail_position_y[game.length-1] = game.head_position[1];
 	}
 
-	switch(move_direction)
+	switch(game.move_direction)
 	{
-		case UP:
-			if(prev_move_direction == DOWN)
-				{
-					move_direction = prev_move_direction;
-					head_position[1] -= 1;
-				}
-			else 	head_position[1] += 1;
-			break;
 		case DOWN:
-			if(prev_move_direction == UP)
+			if(game.prev_move_direction == UP)
 				{
-					move_direction = prev_move_direction;
-					head_position[1] += 1;
+					game.move_direction = game.prev_move_direction;
+					game.head_position[1] -= 1;
 				}
-			else 	head_position[1] -= 1;
+			else 	game.head_position[1] += 1;
+			break;
+		case UP:
+			if(game.prev_move_direction == DOWN)
+				{
+					game.move_direction = game.prev_move_direction;
+					game.head_position[1] += 1;
+				}
+			else 	game.head_position[1] -= 1;
 			break;
 		case LEFT:
-			if(prev_move_direction == RIGHT)
+			if(game.prev_move_direction == RIGHT)
 				{
-					move_direction = prev_move_direction;
-					head_position[0] += 1;
+					game.move_direction = game.prev_move_direction;
+					game.head_position[0] += 1;
 				}
-			else 	head_position[0] -= 1;
+			else 	game.head_position[0] -= 1;
 			break;
 		case RIGHT:
-			if(prev_move_direction == LEFT)
+			if(game.prev_move_direction == LEFT)
 				{
-					move_direction = prev_move_direction;
-					head_position[0] -= 1;
+					game.move_direction = game.prev_move_direction;
+					game.head_position[0] -= 1;
 				}
-			else 	head_position[0] += 1;
+			else 	game.head_position[0] += 1;
 			break;
 	}
-	if(head_position[0] < 0) head_position[0] = 0;
-	if(head_position[0] >= GAME_DIM) head_position[0] = GAME_DIM-1;
-	if(head_position[1] < 0) head_position[1] = 0;
-	if(head_position[1] >= GAME_DIM) head_position[1] = GAME_DIM-1;
+	if(game.head_position[0] < 0) game.head_position[0] = 0;
+	if(game.head_position[0] >= GAME_DIM) game.head_position[0] = GAME_DIM-1;
+	if(game.head_position[1] < 0) game.head_position[1] = 0;
+	if(game.head_position[1] >= GAME_DIM) game.head_position[1] = GAME_DIM-1;
 
-	prev_move_direction = move_direction;
+	game.prev_move_direction = game.move_direction;
 }
 
 void snake_fruit_check()
 {
-	if(fruit_position[0] == head_position[0] && fruit_position[1] == head_position[1])
+	if(game.fruit_position[0] == game.head_position[0] && game.fruit_position[1] == game.head_position[1])
 	{
 		GROWTH = 1;
 		do{
-			fruit_position[0] = rand()%GAME_DIM;
-			fruit_position[1] = rand()%GAME_DIM;
-		}while(collision[fruit_position[0]][fruit_position[1]]==1 || (fruit_position[0] == head_position[0] && fruit_position[1] == head_position[1]));
+			game.fruit_position[0] = rand()%GAME_DIM;
+			game.fruit_position[1] = rand()%GAME_DIM;
+		}while(game.collision[game.fruit_position[1]][game.fruit_position[0]]==1 ||
+					(game.fruit_position[0] == game.head_position[0]
+				  && game.fruit_position[1] == game.head_position[1]));
   	}
 }
 
@@ -95,15 +93,15 @@ void snake_collision_check()
 	{
 		for(int j = 0; j < GAME_DIM; j++)
 		{
-			collision[i][j] = 0;
+			game.collision[i][j] = 0;
 		}
 	}
-	for(int i = 0; i < length; i++)
+	for(int i = 0; i < game.length; i++)
 	{
-		collision[tail_x[i]][tail_y[i]] = 1;
+		game.collision[game.tail_position_y[i]][game.tail_position_x[i]] = 1;
 
 	}
-	if(collision[head_position[0]][head_position[1]] == 1)
+	if(game.collision[game.head_position[1]][game.head_position[0]] == 1)
 		GAME_OVER = 1;
 
 	////popraw zeby petli nie bylo -> usuwanie ostatneigo elementu ogona z mac kolizji
@@ -112,23 +110,28 @@ void snake_collision_check()
 void snake_game_init()
 {
 	GAME_OVER = 0;
-	length = 0;
-	head_position[0] = 0;
-	head_position[1] = 0;
+	game.length = 0;
+	game.head_position[0] = 0;
+	game.head_position[1] = 0;
 	for(int i = 0; i < GAME_SIZE; i++)
 	{
-		tail_x[i] = 0;
-		tail_y[i] = 0;
+		game.tail_position_x[i] = 0;
+		game.tail_position_y[i] = 0;
 	}
 
-	prev_move_direction = RIGHT;
-	move_direction = RIGHT;
-	fruit_position[0]= 0;
-	fruit_position[1]= 0;
+	game.prev_move_direction = RIGHT;
+	game.move_direction = RIGHT;
+	game.fruit_position[0]= 0;
+	game.fruit_position[1]= 0;
 
 }
 
 void snake_update_direction(direction mvd)
 {
-	move_direction = mvd;
+	game.move_direction = mvd;
+}
+
+const snake_state* snake_get_state(void)
+{
+    return &game;
 }
