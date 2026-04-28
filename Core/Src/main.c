@@ -101,7 +101,7 @@ void joystick_read()
 
 int8_t joystick_check_tilt()
 {
-	if(Joystick[0]<1300 || Joystick[0]>2500 || Joystick[1] < 1300 || Joystick[1] > 2500)
+	if(Joystick[0]<100 || Joystick[0]>3900 || Joystick[1] < 100 || Joystick[1] > 3900)
 	{
 		return 1;
 	}
@@ -113,15 +113,15 @@ int8_t joystick_check_tilt()
 
 direction joystick_get_direction()
 {
-	if(Joystick[0] < 1300)
+	if(Joystick[0] < 100)
 	{
 		return LEFT;
 	}
-	else if(Joystick[0] > 2500)
+	else if(Joystick[0] > 3900)
 	{
 		return RIGHT;
 	}
-	else if(Joystick[1] > 2500)
+	else if(Joystick[1] > 3900)
 	{
 		return DOWN;
 	}
@@ -213,15 +213,17 @@ int main(void)
 
 
 		snake_move();
-		snake_collision_check();
 		snake_fruit_check();
 
 		MOVE = 0;
-
+		if(!GAME_OVER)
+		{
+			LED_fill(0,0,0,0,0);
+			render_snake(snake_get_state());
+			LED_update();
+		}
 		// displaying snake
-		LED_fill(0,0,0,0,0);
-		render_snake(snake_get_state());
-		LED_update();
+
 	}
     /* USER CODE END WHILE */
 

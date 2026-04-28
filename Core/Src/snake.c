@@ -21,6 +21,7 @@ void snake_move()
 	}
 	else
 	{
+		game.collision[game.tail_position_x[0]][game.tail_position_y[0]] = 0;
 		for(int i = 0; i < game.length-1; i++)
 		{
 			game.tail_position_x[i] = game.tail_position_x[i+1];
@@ -28,7 +29,10 @@ void snake_move()
 		}
 		game.tail_position_x[game.length-1] = game.head_position[0];
 		game.tail_position_y[game.length-1] = game.head_position[1];
+
 	}
+
+	game.collision[game.head_position[0]][game.head_position[1]] = 1;
 
 	switch(game.move_direction)
 	{
@@ -65,11 +69,8 @@ void snake_move()
 			else 	game.head_position[0] += 1;
 			break;
 	}
-	if(game.head_position[0] < 0) game.head_position[0] = 0;
-	if(game.head_position[0] >= GAME_DIM) game.head_position[0] = GAME_DIM-1;
-	if(game.head_position[1] < 0) game.head_position[1] = 0;
-	if(game.head_position[1] >= GAME_DIM) game.head_position[1] = GAME_DIM-1;
-
+	if(game.head_position[0] < 0 || game.head_position[0] >= GAME_DIM || game.head_position[1] < 0 ||game.head_position[1] >= GAME_DIM || game.collision[game.head_position[0]][game.head_position[1]] == 1)
+		GAME_OVER = 1;
 	game.prev_move_direction = game.move_direction;
 }
 void fruit_pick_position()
@@ -88,30 +89,17 @@ void snake_fruit_check()
   	}
 }
 
-void snake_collision_check()
-{
-	for(int i = 0; i < GAME_DIM; i++)
-	{
-		for(int j = 0; j < GAME_DIM; j++)
-		{
-			game.collision[i][j] = 0;
-		}
-	}
-	for(int i = 0; i < game.length; i++)
-	{
-		game.collision[game.tail_position_x[i]][game.tail_position_y[i]] = 1;
-
-	}
-	if(game.collision[game.head_position[0]][game.head_position[1]] == 1)
-		GAME_OVER = 1;
-
-	////popraw zeby petli nie bylo -> usuwanie ostatneigo elementu ogona z mac kolizji
-}
-
 void snake_game_init(int seed)
 {
 	GAME_OVER = 0;
     GROWTH = 1;
+    for(int i = 0; i < GAME_DIM; i++)
+    	{
+    		for(int j = 0; j < GAME_DIM; j++)
+    		{
+    			game.collision[i][j] = 0;
+    		}
+    	}
 	game.length = 0;
 	game.head_position[0] = 0;
 	game.head_position[1] = 0;

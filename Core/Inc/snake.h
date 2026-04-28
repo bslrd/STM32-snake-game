@@ -59,11 +59,7 @@ void snake_collision_check(void); // update snake collisions and check GAME OVER
 void snake_game_init(int seed);		// initialize game variables
 void snake_update_direction(direction mvd);
 const snake_state* snake_get_state(void);
-//extern uint8_t length;
-//extern int head_position[2];
-//extern uint8_t tail_x[GAME_SIZE];
-//extern uint8_t tail_y[GAME_SIZE];
-//extern uint8_t fruit_position[2];
+
 
 extern uint8_t GROWTH;
 extern uint8_t MOVE;
