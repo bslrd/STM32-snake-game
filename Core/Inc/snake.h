@@ -40,29 +40,29 @@ typedef enum
 
 typedef struct
 {
+	uint8_t x;
+	uint8_t y;
+}position;
+
+typedef struct
+{
 	int length;
-	int8_t head_position[2];
-	uint8_t prev_head_position[2];
-	uint8_t tail_position_x[GAME_SIZE];
-	uint8_t tail_position_y[GAME_SIZE];
-	uint8_t fruit_position[2];
-	direction move_direction;
-	direction prev_move_direction;
+	position head;
+	position tail[GAME_SIZE];
+	position fruit;
+	direction move_dir;
+	direction prev_move_dir;
 	uint8_t collision[GAME_DIM][GAME_DIM];
+	uint8_t GROWTH;
+	uint8_t GAME_OVER;
 }snake_state;
 
 
 
 void snake_move(void);			// move snake in set direction
 void snake_fruit_check(void);		// check if fruit was eaten and randomly place new fruit
-void snake_collision_check(void); // update snake collisions and check GAME OVER condition
 void snake_game_init(int seed);		// initialize game variables
 void snake_update_direction(direction mvd);
 const snake_state* snake_get_state(void);
-
-
-extern uint8_t GROWTH;
-extern uint8_t MOVE;
-extern uint8_t GAME_OVER;
 
 #endif

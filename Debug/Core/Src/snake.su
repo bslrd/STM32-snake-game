@@ -1,6 +1,6 @@
-../Core/Src/snake.c:12:6:snake_move	16	static
-../Core/Src/snake.c:76:6:fruit_pick_position	8	static
-../Core/Src/snake.c:83:6:snake_fruit_check	8	static
-../Core/Src/snake.c:92:6:snake_game_init	32	static
-../Core/Src/snake.c:118:6:snake_update_direction	16	static
-../Core/Src/snake.c:123:20:snake_get_state	4	static
+../Core/Src/snake.c:10:6:snake_move	16	static
+../Core/Src/snake.c:73:6:fruit_pick_position	8	static
+../Core/Src/snake.c:80:6:snake_fruit_check	8	static
+../Core/Src/snake.c:89:6:snake_game_init	32	static
+../Core/Src/snake.c:115:6:snake_update_direction	16	static
+../Core/Src/snake.c:120:20:snake_get_state	4	static

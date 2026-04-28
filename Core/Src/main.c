@@ -62,6 +62,7 @@ static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 static int Joystick[2];
+static int MOVE = 0;
 
 /* USER CODE END PFP */
 
@@ -134,8 +135,8 @@ direction joystick_get_direction()
 void render_snake(const snake_state *game)
 {
 	LED_symbole(game->collision,Rt,Gt,Bt,0,0,0);
-	LED_set_coord(game->fruit_position[0], game->fruit_position[1], Rf,Gf,Bf);
-	LED_set_coord(game->head_position[0], game->head_position[1], Rh,Gh,Bh);
+	LED_set_coord(game->fruit.x, game->fruit.y, Rf,Gf,Bf);
+	LED_set_coord(game->head.x, game->head.y, Rh,Gh,Bh);
 
 }
 /* USER CODE END 0 */
@@ -176,7 +177,7 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_ADC_Start(&hadc1);
   LED_init(&hspi1);
-  int iter = 0;
+  LED_fill(255,0,0,10,1);
 
   /* USER CODE END 2 */
 
@@ -186,17 +187,16 @@ int main(void)
   {
 
 	// game over state handling
-	if(GAME_OVER)
+	if(snake_get_state()->GAME_OVER)
 	{
 
 		LED_fill(255,0,0,10,1);
-		while(GAME_OVER)
+		while(snake_get_state()->GAME_OVER)
 		{
 			LED_digits(snake_get_state()->length,255,255,255);
 			LED_update();
 		}
 		LED_fill(0,0,0,10,1);
-		iter = 0;
 	}
 	// joystick handling
 	joystick_read();
@@ -216,7 +216,7 @@ int main(void)
 		snake_fruit_check();
 
 		MOVE = 0;
-		if(!GAME_OVER)
+		if(!snake_get_state()->GAME_OVER)
 		{
 			LED_fill(0,0,0,0,0);
 			render_snake(snake_get_state());
