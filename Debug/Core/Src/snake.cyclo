@@ -1,6 +1,10 @@
-../Core/Src/snake.c:10:6:snake_move	14
-../Core/Src/snake.c:73:6:fruit_pick_position	5
-../Core/Src/snake.c:80:6:snake_fruit_check	3
-../Core/Src/snake.c:89:6:snake_game_init	4
-../Core/Src/snake.c:115:6:snake_update_direction	1
-../Core/Src/snake.c:120:20:snake_get_state	1
+../Core/Src/snake.c:19:6:snake_update	8
+../Core/Src/snake.c:49:6:snake_move	14
+../Core/Src/snake.c:112:6:fruit_pick_position	5
+../Core/Src/snake.c:119:6:snake_fruit_check	3
+../Core/Src/snake.c:128:6:snake_move_request	1
+../Core/Src/snake.c:133:6:snake_init_request	1
+../Core/Src/snake.c:137:6:snake_game_init	4
+../Core/Src/snake.c:161:6:snake_is_over	1
+../Core/Src/snake.c:165:6:snake_update_direction	1
+../Core/Src/snake.c:170:20:snake_get_state	1

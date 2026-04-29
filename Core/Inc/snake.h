@@ -38,6 +38,13 @@ typedef enum
 	RIGHT,
 }direction;
 
+typedef enum
+{
+	INIT,
+	GAME_OVER,
+	RUNNING,
+}state;
+
 typedef struct
 {
 	uint8_t x;
@@ -54,11 +61,13 @@ typedef struct
 	direction prev_move_dir;
 	uint8_t collision[GAME_DIM][GAME_DIM];
 	uint8_t GROWTH;
-	uint8_t GAME_OVER;
+	state state;
 }snake_state;
 
-
-
+void snake_update(void);
+void snake_init_request(void);
+void snake_move_request(void);
+bool snake_is_over(void);
 void snake_move(void);			// move snake in set direction
 void snake_fruit_check(void);		// check if fruit was eaten and randomly place new fruit
 void snake_game_init(int seed);		// initialize game variables

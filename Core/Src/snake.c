@@ -1,12 +1,51 @@
 #include "snake.h"
 #include "stdlib.h"
+#include "stdbool.h"
 
 // game variables
 
 
 
-static snake_state game;
+static snake_state game = {
+	    .state = GAME_OVER,
+	    .length = 0,
+	    .head = {0,0},
+	    .move_dir = RIGHT,
+	    .prev_move_dir = RIGHT,
+	    .GROWTH = 1};
+static bool init_request;
+static bool move_request;
 
+void snake_update()
+{
+	switch(game.state)
+	{
+	case INIT:
+		snake_game_init(1);
+		game.state = RUNNING;
+		break;
+	case RUNNING:
+		if(move_request)
+		{
+			move_request = 0;
+			snake_move();
+			snake_fruit_check();
+		}
+		if(init_request)
+		{
+			init_request = 0;
+			game.state = INIT;
+		}
+		break;
+	case GAME_OVER:
+		if(init_request)
+		{
+			init_request = 0;
+			game.state = INIT;
+		}
+		break;
+	}
+}
 void snake_move()
 {
 	if(game.GROWTH)
@@ -67,7 +106,7 @@ void snake_move()
 			break;
 	}
 	if(game.head.x < 0 || game.head.x >= GAME_DIM || game.head.y < 0 ||game.head.y >= GAME_DIM || game.collision[game.head.x][game.head.y] == 1)
-		game.GAME_OVER = 1;
+		game.state = GAME_OVER;
 	game.prev_move_dir = game.move_dir;
 }
 void fruit_pick_position()
@@ -86,9 +125,17 @@ void snake_fruit_check()
   	}
 }
 
+void snake_move_request()
+{
+	move_request = 1;
+}
+
+void snake_init_request()
+{
+	init_request = 1;
+}
 void snake_game_init(int seed)
 {
-	game.GAME_OVER = 0;
     game.GROWTH = 1;
     for(int i = 0; i < GAME_DIM; i++)
     	{
@@ -111,7 +158,10 @@ void snake_game_init(int seed)
 	fruit_pick_position();
 
 }
-
+bool snake_is_over()
+{
+	return game.state == GAME_OVER;
+}
 void snake_update_direction(direction mvd)
 {
 	game.move_dir = mvd;

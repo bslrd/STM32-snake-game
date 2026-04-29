@@ -25,6 +25,7 @@
 #include "LED_matrix.h"
 #include "LED_digits.h"
 #include "snake.h"
+#include "stdbool.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -62,8 +63,13 @@ static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 static int Joystick[2];
-static int MOVE = 0;
-
+volatile static bool game_tick = 0;
+static enum
+  {
+	  MENU,
+	  GAME
+  }API_STATE;
+volatile static bool start_request = 0;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -134,10 +140,17 @@ direction joystick_get_direction()
 
 void render_snake(const snake_state *game)
 {
+	LED_fill(0,0,0,0,0);
 	LED_symbole(game->collision,Rt,Gt,Bt,0,0,0);
 	LED_set_coord(game->fruit.x, game->fruit.y, Rf,Gf,Bf);
 	LED_set_coord(game->head.x, game->head.y, Rh,Gh,Bh);
-
+	LED_update();
+}
+void render_menu(const snake_state *game)
+{
+	LED_fill(255,0,0,10,1);
+	LED_digits(game->length,255,255,255);
+	LED_update();
 }
 /* USER CODE END 0 */
 
@@ -178,53 +191,46 @@ int main(void)
   HAL_ADC_Start(&hadc1);
   LED_init(&hspi1);
   LED_fill(255,0,0,10,1);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-	// game over state handling
-	if(snake_get_state()->GAME_OVER)
+	switch(API_STATE)
 	{
-
-		LED_fill(255,0,0,10,1);
-		while(snake_get_state()->GAME_OVER)
+	case MENU:
+	  if(start_request)
+	  {
+		  start_request = 0;
+		  API_STATE = GAME;
+		  LED_fill(0,0,0,10,1);
+		  snake_init_request();
+	  }
+	  break;
+	case GAME:
+		joystick_read();
+		if(joystick_check_tilt())
 		{
-			LED_digits(snake_get_state()->length,255,255,255);
-			LED_update();
+			snake_update_direction(joystick_get_direction());
 		}
-		LED_fill(0,0,0,10,1);
-	}
-	// joystick handling
-	joystick_read();
-	if(joystick_check_tilt())
-	{
-		snake_update_direction(joystick_get_direction());
-	}
-
-	// fruit consumption handling
-
-	//  movement handling
-	if(MOVE)
-	{
-
-
-		snake_move();
-		snake_fruit_check();
-
-		MOVE = 0;
-		if(!snake_get_state()->GAME_OVER)
+		if(game_tick)
 		{
-			LED_fill(0,0,0,0,0);
-			render_snake(snake_get_state());
-			LED_update();
+			game_tick = 0;
+			snake_move_request();
 		}
-		// displaying snake
-
+		render_snake(snake_get_state());
+		if(snake_is_over())
+		{
+			API_STATE = MENU;
+			render_menu(snake_get_state());
+		}
+	  break;
 	}
+
+snake_update();
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -465,12 +471,21 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
-    MOVE = 1;
+	if(API_STATE == GAME)
+    game_tick = 1;
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	snake_game_init(HAL_GetTick());
+	static uint32_t last = 0;
+	uint32_t now = HAL_GetTick();
+
+	if(now - last > 500)
+	{
+		last = now;
+		start_request = 1;
+	}
+
 }
 /* USER CODE END 4 */
 
