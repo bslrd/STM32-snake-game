@@ -2,7 +2,7 @@
 #define SNAKE
 
 #include "stdint.h"
-
+#include "stdbool.h"
 /***********************************/
 // SET GAME COLORS //
 
