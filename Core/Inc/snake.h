@@ -58,12 +58,12 @@ typedef struct
 }snake_state;
 
 void snake_update(void);
-void snake_init_request(void);
+void snake_init_request(int fruit_seed);
 void snake_move_request(void);
 bool snake_is_over(void);
 void snake_move(void);			// move snake in set direction
 void snake_fruit_check(void);		// check if fruit was eaten and randomly place new fruit
-void snake_game_init(int seed);		// initialize game variables
+void snake_game_init(void);		// initialize game variables
 void snake_update_direction(direction mvd);
 const snake_state* snake_get_state(void);
 

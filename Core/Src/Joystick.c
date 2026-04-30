@@ -7,7 +7,7 @@
 #include "Joystick.h"
 
 static int Joystick[2];
-ADC_HandleTypeDef *hadc_joystick;
+static ADC_HandleTypeDef *hadc_joystick;
 
 void Joystick_init(ADC_HandleTypeDef * adc_handler)
 {
@@ -49,7 +49,7 @@ void joystick_read()
 
 int8_t joystick_check_tilt()
 {
-	if(Joystick[0]<100 || Joystick[0]>3900 || Joystick[1] < 100 || Joystick[1] > 3900)
+	if(Joystick[0]<JOYSTICK_TH_LOW || Joystick[0]>JOYSTICK_TH_HIGH || Joystick[1] < JOYSTICK_TH_LOW || Joystick[1] > JOYSTICK_TH_HIGH)
 	{
 		return 1;
 	}
@@ -62,19 +62,19 @@ int8_t joystick_check_tilt()
 
 direction joystick_get_direction()
 {
-	if(Joystick[0] < 100)
+	if(Joystick[0] < JOYSTICK_TH_LOW)
 	{
 		return LEFT;
 	}
-	else if(Joystick[0] > 3900)
+	else if(Joystick[0] > JOYSTICK_TH_HIGH)
 	{
 		return RIGHT;
 	}
-	else if(Joystick[1] > 3900)
+	else if(Joystick[1] > JOYSTICK_TH_HIGH)
 	{
 		return DOWN;
 	}
-	else //if(Joystick[1] < 1300)
+	else //if(Joystick[1] < JOYSTICK_TH_LOW)
 	{
 		return UP;
 	}

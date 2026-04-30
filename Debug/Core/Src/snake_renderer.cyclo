@@ -1,2 +1,2 @@
-../Core/Src/snake_renderer.c:11:6:render_snake	1
-../Core/Src/snake_renderer.c:19:6:render_menu	1
+../Core/Src/snake_renderer.c:12:6:render_snake	1
+../Core/Src/snake_renderer.c:20:6:render_menu	1

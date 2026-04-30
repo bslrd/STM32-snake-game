@@ -23,7 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "game.h"
 #include "Joystick.h"
-#include "LED_matrix.h"
+#include "ws2812b.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -103,9 +103,10 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-  LED_init(&hspi1);
+  ws2812b_init(&hspi1);
   Joystick_init(&hadc1);
   game_init();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -363,7 +364,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if(now - last > 500)
 	{
 		last = now;
-		game_start_request();
+		game_start_request(HAL_GetTick());
 	}
 
 }

@@ -10,7 +10,7 @@
 
 
 
-void game_start_request();
+void game_start_request(int game_seed);
 void game_tick();
 void game_loop();
 void game_menu();

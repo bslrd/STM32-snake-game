@@ -1,4 +1,4 @@
-#include "LED_digits.h"
+#include "ws2812b_matrix.h"
 
 // number definitions
 
@@ -106,34 +106,34 @@
      M9
  };
 
- // displays two digits on 8x8 LED matrix
+ // displays two digits on 8x8 ws2812b matrix
 
- void LED_symbole(const uint8_t symbole[8][8], int R, int G, int B, int x_offset, int y_offset, int rotated)
+ void ws2812b_matrix_symboles(const uint8_t symbole[8][8], int R, int G, int B, int x_offset, int y_offset, int rotated)
  {
-		for(int i = 0; i<LED_MATRIX_DIM; i++)
+		for(int i = 0; i<MATRIX_DIM; i++)
 		{
-			for(int j = 0; j<LED_MATRIX_DIM; j++)
+			for(int j = 0; j<MATRIX_DIM; j++)
 			{
 				if(rotated)
 				{
-					if(symbole[7-j][i] == 1)
+					if(symbole[MATRIX_DIM-1-j][i] == 1)
 					{
-						LED_set_coord(i+x_offset,j+y_offset,R,G,B);
+						ws2812b_matrix_set_coord(i+x_offset,j+y_offset,R,G,B);
 					}
 				}
 				else
 				{
 					if(symbole[i][j] == 1)
 					{
-						LED_set_coord(i+x_offset,j+y_offset,R,G,B);
+						ws2812b_matrix_set_coord(i+x_offset,j+y_offset,R,G,B);
 					}
 				}
 
 			}
 	 	}
  }
- void LED_digits(int number, int R, int G, int B)
+ void ws2812b_matrix_digits(int number, int R, int G, int B)
 {
-	LED_symbole(digits[number/10], R, G, B, 0, 0, 1);
-	LED_symbole(digits[number%10], R, G, B, 4, 0, 1);
+	ws2812b_matrix_symboles(digits[number/10], R, G, B, 0, 0, 1);
+	ws2812b_matrix_symboles(digits[number%10], R, G, B, MATRIX_DIM/2, 0, 1);
 }

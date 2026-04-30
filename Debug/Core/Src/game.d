@@ -1,6 +1,7 @@
-Core/Src/game.o: ../Core/Src/game.c ../Core/Inc/snake_renderer.h \
- ../Core/Inc/snake.h ../Core/Inc/direction.h ../Core/Inc/game.h \
- ../Core/Inc/LED_matrix.h ../Core/Inc/main.h \
+Core/Src/game.o: ../Core/Src/game.c ../Core/Inc/ws2812b_matrix.h \
+ ../Core/Inc/ws2812b_matrix_symboles.h ../Core/Inc/ws2812b_matrix.h \
+ ../Core/Inc/snake_renderer.h ../Core/Inc/snake.h ../Core/Inc/direction.h \
+ ../Core/Inc/game.h ../Core/Inc/ws2812b.h ../Core/Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
  ../Core/Inc/stm32f3xx_hal_conf.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h \
@@ -33,13 +34,15 @@ Core/Src/game.o: ../Core/Src/game.c ../Core/Inc/snake_renderer.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
- ../Core/Inc/LED_digits.h ../Core/Inc/LED_matrix.h ../Core/Inc/snake.h \
- ../Core/Inc/Joystick.h
+ ../Core/Inc/snake.h ../Core/Inc/Joystick.h
+../Core/Inc/ws2812b_matrix.h:
+../Core/Inc/ws2812b_matrix_symboles.h:
+../Core/Inc/ws2812b_matrix.h:
 ../Core/Inc/snake_renderer.h:
 ../Core/Inc/snake.h:
 ../Core/Inc/direction.h:
 ../Core/Inc/game.h:
-../Core/Inc/LED_matrix.h:
+../Core/Inc/ws2812b.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 ../Core/Inc/stm32f3xx_hal_conf.h:
@@ -73,7 +76,5 @@ Core/Src/game.o: ../Core/Src/game.c ../Core/Inc/snake_renderer.h \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
-../Core/Inc/LED_digits.h:
-../Core/Inc/LED_matrix.h:
 ../Core/Inc/snake.h:
 ../Core/Inc/Joystick.h:

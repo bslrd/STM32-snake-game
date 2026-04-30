@@ -5,10 +5,11 @@
  *      Author: dominik
  */
 
-#include <snake_renderer.h>
+#include <ws2812b_matrix.h>
+#include <ws2812b_matrix_symboles.h>
+#include "snake_renderer.h"
 #include "game.h"
-#include "LED_matrix.h"
-#include "LED_digits.h"
+#include "ws2812b.h"
 #include "snake.h"
 #include "stdbool.h"
 #include "Joystick.h"
@@ -21,9 +22,11 @@ static enum
 
 volatile static bool tick = 0;
 volatile static bool start_request = 0;
+volatile static int seed = 0;
 
-void game_start_request()
+void game_start_request(int game_seed)
 {
+	seed = game_seed;
 	start_request = 1;
 }
 void game_tick()
@@ -33,9 +36,9 @@ void game_tick()
 }
 void game_init()
 {
-	LED_fill(255,0,0,10,1);
-	LED_digits(00,255,255,255);
-	LED_update();
+	ws2812b_matrix_fill(255,0,0,10,1);
+	ws2812b_matrix_digits(00,255,255,255);
+	ws2812b_update();
 }
 void game_loop()
 {
@@ -56,9 +59,10 @@ void game_menu()
 	if(start_request)
 	{
 	  start_request = 0;
+	  snake_init_request(seed);
+	  snake_update();
 	  API_STATE = GAME;
-	  LED_fill(0,0,0,10,1);
-	  snake_init_request();
+	  ws2812b_matrix_fill(0,0,0,10,1);
 	}
 }
 
@@ -74,10 +78,12 @@ void game_run()
 		tick = 0;
 		snake_move_request();
 	}
-	render_snake(snake_get_state());
+
 	if(snake_is_over())
 	{
 		API_STATE = MENU;
 		render_menu(snake_get_state());
+		return;
 	}
+	render_snake(snake_get_state());
 }

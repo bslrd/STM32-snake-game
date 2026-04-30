@@ -10,15 +10,16 @@ static snake_state game = {
 	    .move_dir = RIGHT,
 	    .prev_move_dir = RIGHT,
 	    .GROWTH = 1};
-static bool init_request;
-static bool move_request;
+volatile static bool init_request;
+volatile static bool move_request;
+volatile static int seed = 0;
 
 void snake_update()
 {
 	switch(game.state)
 	{
 	case INIT:
-		snake_game_init(1);
+		snake_game_init();
 		game.state = RUNNING;
 		break;
 	case RUNNING:
@@ -127,11 +128,12 @@ void snake_move_request()
 	move_request = 1;
 }
 
-void snake_init_request()
+void snake_init_request(int fruit_seed)
 {
+	seed = fruit_seed;
 	init_request = 1;
 }
-void snake_game_init(int seed)
+void snake_game_init()
 {
     game.GROWTH = 1;
     for(int i = 0; i < GAME_DIM; i++)
@@ -153,7 +155,6 @@ void snake_game_init(int seed)
 	game.move_dir = RIGHT;
 	srand(seed);
 	fruit_pick_position();
-
 }
 bool snake_is_over()
 {

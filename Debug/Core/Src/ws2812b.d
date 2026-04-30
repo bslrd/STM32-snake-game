@@ -1,6 +1,5 @@
-Core/Src/LED_digits.o: ../Core/Src/LED_digits.c ../Core/Inc/LED_digits.h \
- ../Core/Inc/LED_matrix.h ../Core/Inc/main.h \
- ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
+Core/Src/ws2812b.o: ../Core/Src/ws2812b.c ../Core/Inc/ws2812b.h \
+ ../Core/Inc/main.h ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
  ../Core/Inc/stm32f3xx_hal_conf.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h \
@@ -32,8 +31,7 @@ Core/Src/LED_digits.o: ../Core/Src/LED_digits.c ../Core/Inc/LED_digits.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h
-../Core/Inc/LED_digits.h:
-../Core/Inc/LED_matrix.h:
+../Core/Inc/ws2812b.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 ../Core/Inc/stm32f3xx_hal_conf.h:
