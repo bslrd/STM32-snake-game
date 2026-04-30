@@ -21,11 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stdlib.h"
+#include "game.h"
+#include "Joystick.h"
 #include "LED_matrix.h"
-#include "LED_digits.h"
-#include "snake.h"
-#include "stdbool.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -62,96 +60,13 @@ static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
-static int Joystick[2];
-volatile static bool game_tick = 0;
-static enum
-  {
-	  MENU,
-	  GAME
-  }API_STATE;
-volatile static bool start_request = 0;
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-void ADC_SetActiveChannel(ADC_HandleTypeDef *hadc, uint32_t AdcChannel)
-{
-	ADC_ChannelConfTypeDef sConfig = {0};
-	sConfig.Channel = AdcChannel;
-	sConfig.Rank = 1;
-	sConfig.SamplingTime = 480;
-	if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK)
-	{
-		Error_Handler();
-	}
-}
 
-
-void joystick_read()
-{
-	if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
-	{
-		Joystick[0] = HAL_ADC_GetValue(&hadc1); // Get X value
-		ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_7);
-		HAL_ADC_Start(&hadc1);
-	}
-
-	if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
-	{
-		Joystick[1] = HAL_ADC_GetValue(&hadc1); // Get Y value
-		ADC_SetActiveChannel(&hadc1, ADC_CHANNEL_6);
-		HAL_ADC_Start(&hadc1);
-	}
-
-}
-
-int8_t joystick_check_tilt()
-{
-	if(Joystick[0]<100 || Joystick[0]>3900 || Joystick[1] < 100 || Joystick[1] > 3900)
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
-}
-
-direction joystick_get_direction()
-{
-	if(Joystick[0] < 100)
-	{
-		return LEFT;
-	}
-	else if(Joystick[0] > 3900)
-	{
-		return RIGHT;
-	}
-	else if(Joystick[1] > 3900)
-	{
-		return DOWN;
-	}
-	else //if(Joystick[1] < 1300)
-	{
-		return UP;
-	}
-}
-
-void render_snake(const snake_state *game)
-{
-	LED_fill(0,0,0,0,0);
-	LED_symbole(game->collision,Rt,Gt,Bt,0,0,0);
-	LED_set_coord(game->fruit.x, game->fruit.y, Rf,Gf,Bf);
-	LED_set_coord(game->head.x, game->head.y, Rh,Gh,Bh);
-	LED_update();
-}
-void render_menu(const snake_state *game)
-{
-	LED_fill(255,0,0,10,1);
-	LED_digits(game->length,255,255,255);
-	LED_update();
-}
 /* USER CODE END 0 */
 
 /**
@@ -188,51 +103,17 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-  HAL_ADC_Start(&hadc1);
   LED_init(&hspi1);
-  LED_fill(255,0,0,10,1);
+  Joystick_init(&hadc1);
+  game_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	switch(API_STATE)
-	{
-	case MENU:
-	  if(start_request)
-	  {
-		  start_request = 0;
-		  API_STATE = GAME;
-		  LED_fill(0,0,0,10,1);
-		  snake_init_request();
-	  }
-	  break;
-	case GAME:
-		joystick_read();
-		if(joystick_check_tilt())
-		{
-			snake_update_direction(joystick_get_direction());
-		}
-		if(game_tick)
-		{
-			game_tick = 0;
-			snake_move_request();
-		}
-		render_snake(snake_get_state());
-		if(snake_is_over())
-		{
-			API_STATE = MENU;
-			render_menu(snake_get_state());
-		}
-	  break;
-	}
-
-snake_update();
-
-
+	  game_loop();
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -471,8 +352,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
-	if(API_STATE == GAME)
-    game_tick = 1;
+    game_tick();
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -483,7 +363,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if(now - last > 500)
 	{
 		last = now;
-		start_request = 1;
+		game_start_request();
 	}
 
 }

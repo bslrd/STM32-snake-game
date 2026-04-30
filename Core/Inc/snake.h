@@ -3,6 +3,7 @@
 
 #include "stdint.h"
 #include "stdbool.h"
+#include "direction.h"
 /***********************************/
 // SET GAME COLORS //
 
@@ -29,14 +30,6 @@
 /***********************************/
 
 #define GAME_SIZE GAME_DIM*GAME_DIM
-
-typedef enum
-{
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
-}direction;
 
 typedef enum
 {

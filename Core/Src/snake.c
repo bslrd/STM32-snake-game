@@ -2,9 +2,6 @@
 #include "stdlib.h"
 #include "stdbool.h"
 
-// game variables
-
-
 
 static snake_state game = {
 	    .state = GAME_OVER,
