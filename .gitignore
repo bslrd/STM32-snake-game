@@ -1,3 +1,14 @@
+# STM32CubeIDE
+/.settings/
+/Assets/Docs/
+/Drivers/
+/Debug/
+/Release/
+*.launch
+
+# Libraries with undefined licenses
+
+
 # Prerequisites
 *.d
 
@@ -50,10 +61,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-
-# debug information files
-*.dwo
-
-latex/
-Debug/
-Drivers/
+/latex/
+# System
+.DS_Store
