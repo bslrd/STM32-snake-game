@@ -1,0 +1,108 @@
+\doxysection{snake\+\_\+state Struct Reference}
+\hypertarget{structsnake__state}{}\label{structsnake__state}\index{snake\_state@{snake\_state}}
+
+
+Structure holding all snake info.  
+
+
+
+
+{\ttfamily \+\#include $<$snake.\+h$>$}
+
+
+
+Collaboration diagram for snake\+\_\+state:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=149pt]{structsnake__state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{structsnake__state_ab49f399d03ee2491db8008a25e730aa4}{length}}
+\item 
+\doxymbox{\hyperlink{structvec2__t}{vec2\+\_\+t}} \doxymbox{\hyperlink{structsnake__state_aad9aeee483136a1a2076423c6e6bf66f}{head}}
+\item 
+\doxymbox{\hyperlink{structvec2__t}{vec2\+\_\+t}} \doxymbox{\hyperlink{structsnake__state_afb49bc7d1ef9e61b3d511843d1f446bb}{tail}} \+[\doxymbox{\hyperlink{snake_8h_af9134ada9274391889c00aa4c991b10d}{MAX\+\_\+\+SNAKE\+\_\+\+SIZE}}]\+
+\item 
+\doxymbox{\hyperlink{structvec2__t}{vec2\+\_\+t}} \doxymbox{\hyperlink{structsnake__state_ad805204bf58981efb0b314fb63a763c0}{fruit}}
+\item 
+\doxymbox{\hyperlink{2dspace_8h_ae9ae980041e438eed7a3af43ce4e9f6b}{direction\+\_\+t}} \doxymbox{\hyperlink{structsnake__state_aaa5dac4284286f2ee0349747664788fc}{move\+\_\+dir}}
+\item 
+\doxymbox{\hyperlink{2dspace_8h_ae9ae980041e438eed7a3af43ce4e9f6b}{direction\+\_\+t}} \doxymbox{\hyperlink{structsnake__state_ac08a7c8deebabfae7dc6e89b0aaa7b03}{prev\+\_\+move\+\_\+dir}}
+\item 
+bool \doxymbox{\hyperlink{structsnake__state_abcc4c84641de013c33353ec43a59e189}{collision\+\_\+map}} \+[\doxymbox{\hyperlink{snake_8h_aa3b34508983213e776680e7c26bf3f3a}{GAME\+\_\+\+DIM}}]\+\+[\doxymbox{\hyperlink{snake_8h_aa3b34508983213e776680e7c26bf3f3a}{GAME\+\_\+\+DIM}}]\+
+\item 
+bool \doxymbox{\hyperlink{structsnake__state_a13f55cf3617b1a766459de1f4a13ff8c}{GROWTH}}
+\item 
+\doxymbox{\hyperlink{snake_8h_aa0aafed44fec19806d8f9ad834be1248}{state\+\_\+t}} \doxymbox{\hyperlink{structsnake__state_a2dd6715dcb4a0b78324a55ed7f48e6f7}{state}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure holding all snake info. 
+
+\label{structsnake__state_doc-variable-members}
+\Hypertarget{structsnake__state_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structsnake__state_abcc4c84641de013c33353ec43a59e189}\index{snake\_state@{snake\_state}!collision\_map@{collision\_map}}
+\index{collision\_map@{collision\_map}!snake\_state@{snake\_state}}
+\doxysubsubsection{\texorpdfstring{collision\_map}{collision\_map}}
+{\footnotesize\ttfamily \label{structsnake__state_abcc4c84641de013c33353ec43a59e189} 
+bool snake\+\_\+state::\+collision\+\_\+map\+[\doxymbox{\hyperlink{snake_8h_aa3b34508983213e776680e7c26bf3f3a}{GAME\+\_\+\+DIM}}]\+\+[\doxymbox{\hyperlink{snake_8h_aa3b34508983213e776680e7c26bf3f3a}{GAME\+\_\+\+DIM}}]\+}
+
+\Hypertarget{structsnake__state_ad805204bf58981efb0b314fb63a763c0}\index{snake\_state@{snake\_state}!fruit@{fruit}}
+\index{fruit@{fruit}!snake\_state@{snake\_state}}
+\doxysubsubsection{\texorpdfstring{fruit}{fruit}}
+{\footnotesize\ttfamily \label{structsnake__state_ad805204bf58981efb0b314fb63a763c0} 
+\doxymbox{\hyperlink{structvec2__t}{vec2\+\_\+t}} snake\+\_\+state::\+fruit}
+
+\Hypertarget{structsnake__state_a13f55cf3617b1a766459de1f4a13ff8c}\index{snake\_state@{snake\_state}!GROWTH@{GROWTH}}
+\index{GROWTH@{GROWTH}!snake\_state@{snake\_state}}
+\doxysubsubsection{\texorpdfstring{GROWTH}{GROWTH}}
+{\footnotesize\ttfamily \label{structsnake__state_a13f55cf3617b1a766459de1f4a13ff8c} 
+bool snake\+\_\+state::\+\+GROWTH}
+
+\Hypertarget{structsnake__state_aad9aeee483136a1a2076423c6e6bf66f}\index{snake\_state@{snake\_state}!head@{head}}
+\index{head@{head}!snake\_state@{snake\_state}}
+\doxysubsubsection{\texorpdfstring{head}{head}}
+{\footnotesize\ttfamily \label{structsnake__state_aad9aeee483136a1a2076423c6e6bf66f} 
+\doxymbox{\hyperlink{structvec2__t}{vec2\+\_\+t}} snake\+\_\+state::\+head}
+
+\Hypertarget{structsnake__state_ab49f399d03ee2491db8008a25e730aa4}\index{snake\_state@{snake\_state}!length@{length}}
+\index{length@{length}!snake\_state@{snake\_state}}
+\doxysubsubsection{\texorpdfstring{length}{length}}
+{\footnotesize\ttfamily \label{structsnake__state_ab49f399d03ee2491db8008a25e730aa4} 
+uint8\+\_\+t snake\+\_\+state::\+length}
+
+\Hypertarget{structsnake__state_aaa5dac4284286f2ee0349747664788fc}\index{snake\_state@{snake\_state}!move\_dir@{move\_dir}}
+\index{move\_dir@{move\_dir}!snake\_state@{snake\_state}}
+\doxysubsubsection{\texorpdfstring{move\_dir}{move\_dir}}
+{\footnotesize\ttfamily \label{structsnake__state_aaa5dac4284286f2ee0349747664788fc} 
+\doxymbox{\hyperlink{2dspace_8h_ae9ae980041e438eed7a3af43ce4e9f6b}{direction\+\_\+t}} snake\+\_\+state::\+move\+\_\+dir}
+
+\Hypertarget{structsnake__state_ac08a7c8deebabfae7dc6e89b0aaa7b03}\index{snake\_state@{snake\_state}!prev\_move\_dir@{prev\_move\_dir}}
+\index{prev\_move\_dir@{prev\_move\_dir}!snake\_state@{snake\_state}}
+\doxysubsubsection{\texorpdfstring{prev\_move\_dir}{prev\_move\_dir}}
+{\footnotesize\ttfamily \label{structsnake__state_ac08a7c8deebabfae7dc6e89b0aaa7b03} 
+\doxymbox{\hyperlink{2dspace_8h_ae9ae980041e438eed7a3af43ce4e9f6b}{direction\+\_\+t}} snake\+\_\+state::\+prev\+\_\+move\+\_\+dir}
+
+\Hypertarget{structsnake__state_a2dd6715dcb4a0b78324a55ed7f48e6f7}\index{snake\_state@{snake\_state}!state@{state}}
+\index{state@{state}!snake\_state@{snake\_state}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \label{structsnake__state_a2dd6715dcb4a0b78324a55ed7f48e6f7} 
+\doxymbox{\hyperlink{snake_8h_aa0aafed44fec19806d8f9ad834be1248}{state\+\_\+t}} snake\+\_\+state::\+state}
+
+\Hypertarget{structsnake__state_afb49bc7d1ef9e61b3d511843d1f446bb}\index{snake\_state@{snake\_state}!tail@{tail}}
+\index{tail@{tail}!snake\_state@{snake\_state}}
+\doxysubsubsection{\texorpdfstring{tail}{tail}}
+{\footnotesize\ttfamily \label{structsnake__state_afb49bc7d1ef9e61b3d511843d1f446bb} 
+\doxymbox{\hyperlink{structvec2__t}{vec2\+\_\+t}} snake\+\_\+state::\+tail\+[\doxymbox{\hyperlink{snake_8h_af9134ada9274391889c00aa4c991b10d}{MAX\+\_\+\+SNAKE\+\_\+\+SIZE}}]\+}
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+libs/\+snake/\+\doxymbox{\hyperlink{snake_8h}{snake.\+h}}\end{DoxyCompactItemize}

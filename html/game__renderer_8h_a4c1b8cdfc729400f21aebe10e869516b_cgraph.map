@@ -1,0 +1,17 @@
+<map id="render_menu" name="render_menu">
+<area shape="rect" id="Node000001" title="Renders game menu on the LED matrix." alt="" coords="5,70,102,96"/>
+<area shape="rect" id="Node000002" href="$ws2812b__matrix__symbols_8c.html#a8423cf576d3965671f31c966c43fc2af" title="displays two digit numbers on led matrix." alt="" coords="150,17,304,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,67,170,46,166,49,99,72"/>
+<area shape="rect" id="Node000006" href="$ws2812b__matrix_8c.html#afd2ac5b6cb24b10650a5edf29c9de612" title="Fills diode matrix with one chosen color." alt="" coords="159,70,295,96"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="101,80,145,82,141,84,102,86"/>
+<area shape="rect" id="Node000007" href="$ws2812b_8c.html#a49749488b29745683984a0d21d4e7af9" title="Transfers diode color values specified with ws2812b_set_rgb to physical display." alt="" coords="382,121,501,146"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="99,94,150,106,264,121,369,131,364,131,263,126,149,111,99,99"/>
+<area shape="rect" id="Node000003" href="$ws2812b__matrix__symbols_8c.html#a980bf93620bbaf588c3dc82a25c675b9" title=" " alt="" coords="352,14,531,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="304,26,339,28,334,29,305,31"/>
+<area shape="rect" id="Node000004" href="$ws2812b__matrix_8c.html#a7b849798a89d5560008f524bade0007d" title="Sets diode of chosen coordinates to specified RGB color." alt="" coords="579,5,721,46"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="531,24,566,26,561,27,532,29"/>
+<area shape="rect" id="Node000005" href="$ws2812b_8c.html#a3902a17bd449d5ff5f29486dc1d46d11" title="Sets chosen diode to specified RGB color." alt="" coords="769,42,892,68"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="721,35,756,42,751,42,721,40"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="295,77,753,56,753,61,296,83"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="285,94,372,117,367,117,284,99"/>
+</map>

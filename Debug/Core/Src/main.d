@@ -31,8 +31,10 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
- ../Core/Inc/game.h ../Core/Inc/Joystick.h ../Core/Inc/direction.h \
- ../Core/Inc/main.h ../Core/Inc/ws2812b.h
+ /Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/game/game.h \
+ /Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/joystick/joystick.h \
+ /Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/2dspace/2dspace.h \
+ /Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/ws2812b/ws2812b.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 ../Core/Inc/stm32f3xx_hal_conf.h:
@@ -66,8 +68,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
-../Core/Inc/game.h:
-../Core/Inc/Joystick.h:
-../Core/Inc/direction.h:
-../Core/Inc/main.h:
-../Core/Inc/ws2812b.h:
+/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/game/game.h:
+/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/joystick/joystick.h:
+/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/2dspace/2dspace.h:
+/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/ws2812b/ws2812b.h:

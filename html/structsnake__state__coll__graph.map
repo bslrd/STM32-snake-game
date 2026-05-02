@@ -1,0 +1,5 @@
+<map id="snake_state" name="snake_state">
+<area shape="rect" id="Node000001" title="Structure holding all snake info." alt="" coords="5,143,98,168"/>
+<area shape="rect" id="Node000002" href="$structvec2__t.html" title="X&#45;Y position type." alt="" coords="21,5,82,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="54,46,54,142,49,142,49,47"/>
+</map>

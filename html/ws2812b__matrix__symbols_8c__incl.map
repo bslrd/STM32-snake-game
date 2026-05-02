@@ -1,0 +1,9 @@
+<map id="libs/ws2812b/ws2812b_matrix_symbols.c" name="libs/ws2812b/ws2812b_matrix_symbols.c">
+<area shape="rect" id="Node000001" title="Implementation of ws2812b diode matrix symbols display module." alt="" coords="8,5,161,46"/>
+<area shape="rect" id="Node000002" href="$ws2812b__matrix_8h.html" title="ws2812b diode matrix handling module based on ws2812b driver." alt="" coords="20,94,148,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,44,87,79,82,78,83,49"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,168,70,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="79,118,56,156,52,153,74,121"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="94,168,168,193"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="93,118,117,154,112,155,91,122"/>
+</map>

@@ -1,0 +1,134 @@
+\doxysection{libs/\+ws2812b/\+ws2812b\+\_\+matrix.h File Reference}
+\hypertarget{ws2812b__matrix_8h}{}\label{ws2812b__matrix_8h}\index{libs/ws2812b/ws2812b\_matrix.h@{libs/ws2812b/ws2812b\_matrix.h}}
+
+
+ws2812b diode matrix handling module based on ws2812b driver.  
+
+
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdbool.\+h$>$}\newline
+Include dependency graph for ws2812b\+\_\+matrix.\+h:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{ws2812b__matrix_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ws2812b__matrix_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{ws2812b__matrix_8h_ada19daca97ab3986939954a482013aea}{MATRIX\+\_\+\+DIM}}~8
+\begin{DoxyCompactList}\small\item\em Width of the ws2812b matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{ws2812b__matrix_8h_a7b849798a89d5560008f524bade0007d}{ws2812b\+\_\+matrix\+\_\+set\+\_\+coord}} (uint8\+\_\+t x, uint8\+\_\+t y, uint8\+\_\+t R, uint8\+\_\+t G, uint8\+\_\+t B)
+\begin{DoxyCompactList}\small\item\em Sets diode of chosen coordinates to specified RGB color. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{ws2812b__matrix_8h_afd2ac5b6cb24b10650a5edf29c9de612}{ws2812b\+\_\+matrix\+\_\+fill}} (uint8\+\_\+t R, uint8\+\_\+t G, uint8\+\_\+t B, uint8\+\_\+t delay, bool update)
+\begin{DoxyCompactList}\small\item\em Fills diode matrix with one chosen color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+ws2812b diode matrix handling module based on ws2812b driver. 
+
+\begin{DoxyAuthor}{Author}
+bslrd 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026
+\end{DoxyDate}
+SPDX-\/\+License-\/\+Identifier:\+ MIT 
+
+\label{ws2812b__matrix_8h_doc-define-members}
+\Hypertarget{ws2812b__matrix_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ws2812b__matrix_8h_ada19daca97ab3986939954a482013aea}\index{ws2812b\_matrix.h@{ws2812b\_matrix.h}!MATRIX\_DIM@{MATRIX\_DIM}}
+\index{MATRIX\_DIM@{MATRIX\_DIM}!ws2812b\_matrix.h@{ws2812b\_matrix.h}}
+\doxysubsubsection{\texorpdfstring{MATRIX\_DIM}{MATRIX\_DIM}}
+{\footnotesize\ttfamily \label{ws2812b__matrix_8h_ada19daca97ab3986939954a482013aea} 
+\+\#define MATRIX\+\_\+\+DIM~8}
+
+
+
+Width of the ws2812b matrix. 
+
+
+
+\label{ws2812b__matrix_8h_doc-func-members}
+\Hypertarget{ws2812b__matrix_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{ws2812b__matrix_8h_afd2ac5b6cb24b10650a5edf29c9de612}\index{ws2812b\_matrix.h@{ws2812b\_matrix.h}!ws2812b\_matrix\_fill@{ws2812b\_matrix\_fill}}
+\index{ws2812b\_matrix\_fill@{ws2812b\_matrix\_fill}!ws2812b\_matrix.h@{ws2812b\_matrix.h}}
+\doxysubsubsection{\texorpdfstring{ws2812b\_matrix\_fill()}{ws2812b\_matrix\_fill()}}
+{\footnotesize\ttfamily \label{ws2812b__matrix_8h_afd2ac5b6cb24b10650a5edf29c9de612} 
+void ws2812b\+\_\+matrix\+\_\+fill (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{R}{, }\item[{uint8\+\_\+t}]{G}{, }\item[{uint8\+\_\+t}]{B}{, }\item[{uint8\+\_\+t}]{delay}{, }\item[{bool}]{update}{}\end{DoxyParamCaption})}
+
+
+
+Fills diode matrix with one chosen color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R} & R value of color (0 to 255) \\
+\hline
+{\em G} & G value of color (0 to 255) \\
+\hline
+{\em B} & B value of color (0 to 255) \\
+\hline
+{\em delay} & value of delay in ms between each diode state change (use only with update = true) \\
+\hline
+{\em update} & specifies if this function should update physical diode state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Stores RGB value in internal buffer (\doxylink{structws2812b__color}{ws2812b\+\_\+color}); does not update physical LEDs unless update = true. 
+\end{DoxyNote}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{ws2812b__matrix_8h_afd2ac5b6cb24b10650a5edf29c9de612_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ws2812b__matrix_8h_a7b849798a89d5560008f524bade0007d}\index{ws2812b\_matrix.h@{ws2812b\_matrix.h}!ws2812b\_matrix\_set\_coord@{ws2812b\_matrix\_set\_coord}}
+\index{ws2812b\_matrix\_set\_coord@{ws2812b\_matrix\_set\_coord}!ws2812b\_matrix.h@{ws2812b\_matrix.h}}
+\doxysubsubsection{\texorpdfstring{ws2812b\_matrix\_set\_coord()}{ws2812b\_matrix\_set\_coord()}}
+{\footnotesize\ttfamily \label{ws2812b__matrix_8h_a7b849798a89d5560008f524bade0007d} 
+void ws2812b\+\_\+matrix\+\_\+set\+\_\+coord (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x}{, }\item[{uint8\+\_\+t}]{y}{, }\item[{uint8\+\_\+t}]{R}{, }\item[{uint8\+\_\+t}]{G}{, }\item[{uint8\+\_\+t}]{B}{}\end{DoxyParamCaption})}
+
+
+
+Sets diode of chosen coordinates to specified RGB color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & horizontal coordinate of chosen diode (0 to MATRIX\+\_\+\+DIM -\/1) \\
+\hline
+{\em y} & vertical coordinate of chosen diode (0 to MATRIX\+\_\+\+DIM -\/1) \\
+\hline
+{\em R} & R value of color (0-\/255) \\
+\hline
+{\em G} & G value of color (0-\/255) \\
+\hline
+{\em B} & B value of color (0-\/255)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Stores RGB value in internal buffer (\doxylink{structws2812b__color}{ws2812b\+\_\+color}); does not update physical LEDs. 
+
+Coordinate mapping depends on physical wiring (zigzag layout assumed). 
+\end{DoxyNote}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{ws2812b__matrix_8h_a7b849798a89d5560008f524bade0007d_cgraph}
+\end{center}
+\end{figure}

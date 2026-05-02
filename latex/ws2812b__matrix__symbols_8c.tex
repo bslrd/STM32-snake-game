@@ -1,0 +1,315 @@
+\doxysection{libs/\+ws2812b/\+ws2812b\+\_\+matrix\+\_\+symbols.c File Reference}
+\hypertarget{ws2812b__matrix__symbols_8c}{}\label{ws2812b__matrix__symbols_8c}\index{libs/ws2812b/ws2812b\_matrix\_symbols.c@{libs/ws2812b/ws2812b\_matrix\_symbols.c}}
+
+
+Implementation of ws2812b diode matrix symbols display module.  
+
+
+{\ttfamily \+\#include "{}ws2812b\+\_\+matrix.\+h"{}}\newline
+Include dependency graph for ws2812b\+\_\+matrix\+\_\+symbols.\+c:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{ws2812b__matrix__symbols_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a980bf93620bbaf588c3dc82a25c675b9}{ws2812b\+\_\+matrix\+\_\+symboles}} (const uint8\+\_\+t symbole\+[8]\+\+[8]\+, int R, int G, int B, int x\+\_\+offset, int y\+\_\+offset, bool rotated)
+\item 
+void \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a8423cf576d3965671f31c966c43fc2af}{ws2812b\+\_\+matrix\+\_\+digits}} (int number, int R, int G, int B)
+\begin{DoxyCompactList}\small\item\em displays two digit numbers on led matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_ad786f477ddd4f8e18bca1b7c7023cb43}{M0}} \+[8]\+\+[8]\+
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_aff0ef740c8c89e5136a5a3435a253b96}{M1}} \+[8]\+\+[8]\+
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a44202b0c7a604c5f911712e6d36e0494}{M2}} \+[8]\+\+[8]\+
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_aa7bfb968338054841c948d12f82be53d}{M3}} \+[8]\+\+[8]\+
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a6fdf7db63ce7b27635e4e7dc5fbf8bae}{M4}} \+[8]\+\+[8]\+
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a0b538db5fa85d902f8162add277735e9}{M5}} \+[8]\+\+[8]\+
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a4ae0bae874e7ef122d8d5e24824c11d7}{M6}} \+[8]\+\+[8]\+
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a71d2422f78c7a1f4aefd0ce052bf520b}{M7}} \+[8]\+\+[8]\+
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a054f22dd2c7367b881ed08729c52756e}{M8}} \+[8]\+\+[8]\+
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_af802c9968edbca71fded0fcd6a7e757d}{M9}} \+[8]\+\+[8]\+
+\item 
+const uint8\+\_\+t(\texorpdfstring{$\ast$}{*}\+[10]\+ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a28afb24b9bd6249402ac3f4dbac99219}{digits}} )\+[8]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of ws2812b diode matrix symbols display module. 
+
+\begin{DoxyAuthor}{Author}
+bslrd 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026
+\end{DoxyDate}
+SPDX-\/\+License-\/\+Identifier:\+ MIT 
+
+\label{ws2812b__matrix__symbols_8c_doc-func-members}
+\Hypertarget{ws2812b__matrix__symbols_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{ws2812b__matrix__symbols_8c_a8423cf576d3965671f31c966c43fc2af}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!ws2812b\_matrix\_digits@{ws2812b\_matrix\_digits}}
+\index{ws2812b\_matrix\_digits@{ws2812b\_matrix\_digits}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{ws2812b\_matrix\_digits()}{ws2812b\_matrix\_digits()}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_a8423cf576d3965671f31c966c43fc2af} 
+void ws2812b\+\_\+matrix\+\_\+digits (\begin{DoxyParamCaption}\item[{int}]{number}{, }\item[{int}]{R}{, }\item[{int}]{G}{, }\item[{int}]{B}{}\end{DoxyParamCaption})}
+
+
+
+displays two digit numbers on led matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & Number to display (0-\/99) \\
+\hline
+{\em R} & R value of color (0-\/255) \\
+\hline
+{\em G} & G value of color (0-\/255) \\
+\hline
+{\em B} & B value of color (0-\/255)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+predefined digits are created for 8x8 matrix display. 
+\end{DoxyNote}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ws2812b__matrix__symbols_8c_a8423cf576d3965671f31c966c43fc2af_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ws2812b__matrix__symbols_8c_a980bf93620bbaf588c3dc82a25c675b9}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!ws2812b\_matrix\_symboles@{ws2812b\_matrix\_symboles}}
+\index{ws2812b\_matrix\_symboles@{ws2812b\_matrix\_symboles}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{ws2812b\_matrix\_symboles()}{ws2812b\_matrix\_symboles()}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_a980bf93620bbaf588c3dc82a25c675b9} 
+void ws2812b\+\_\+matrix\+\_\+symboles (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{symbole}{\+[8]\+\+[8]\+, }\item[{int}]{R}{, }\item[{int}]{G}{, }\item[{int}]{B}{, }\item[{int}]{x\+\_\+offset}{, }\item[{int}]{y\+\_\+offset}{, }\item[{bool}]{rotated}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ws2812b__matrix__symbols_8c_a980bf93620bbaf588c3dc82a25c675b9_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{ws2812b__matrix__symbols_8c_doc-var-members}
+\Hypertarget{ws2812b__matrix__symbols_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{ws2812b__matrix__symbols_8c_a28afb24b9bd6249402ac3f4dbac99219}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!digits@{digits}}
+\index{digits@{digits}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{digits}{digits}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_a28afb24b9bd6249402ac3f4dbac99219} 
+const uint8\+\_\+t(\texorpdfstring{$\ast$}{*}\+[10]\+ digits)\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_ad786f477ddd4f8e18bca1b7c7023cb43}{M0}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_aff0ef740c8c89e5136a5a3435a253b96}{M1}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a44202b0c7a604c5f911712e6d36e0494}{M2}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_aa7bfb968338054841c948d12f82be53d}{M3}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a6fdf7db63ce7b27635e4e7dc5fbf8bae}{M4}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a0b538db5fa85d902f8162add277735e9}{M5}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a4ae0bae874e7ef122d8d5e24824c11d7}{M6}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a71d2422f78c7a1f4aefd0ce052bf520b}{M7}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_a054f22dd2c7367b881ed08729c52756e}{M8}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{ws2812b__matrix__symbols_8c_af802c9968edbca71fded0fcd6a7e757d}{M9}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{ws2812b__matrix__symbols_8c_ad786f477ddd4f8e18bca1b7c7023cb43}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!M0@{M0}}
+\index{M0@{M0}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{M0}{M0}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_ad786f477ddd4f8e18bca1b7c7023cb43} 
+const uint8\+\_\+t M0\+[8]\+\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\}\}}
+
+\end{DoxyCode}
+\Hypertarget{ws2812b__matrix__symbols_8c_aff0ef740c8c89e5136a5a3435a253b96}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!M1@{M1}}
+\index{M1@{M1}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{M1}{M1}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_aff0ef740c8c89e5136a5a3435a253b96} 
+const uint8\+\_\+t M1\+[8]\+\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,1,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,1,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,1,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\}\}}
+
+\end{DoxyCode}
+\Hypertarget{ws2812b__matrix__symbols_8c_a44202b0c7a604c5f911712e6d36e0494}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!M2@{M2}}
+\index{M2@{M2}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{M2}{M2}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_a44202b0c7a604c5f911712e6d36e0494} 
+const uint8\+\_\+t M2\+[8]\+\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\}\}}
+
+\end{DoxyCode}
+\Hypertarget{ws2812b__matrix__symbols_8c_aa7bfb968338054841c948d12f82be53d}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!M3@{M3}}
+\index{M3@{M3}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{M3}{M3}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_aa7bfb968338054841c948d12f82be53d} 
+const uint8\+\_\+t M3\+[8]\+\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\}\}}
+
+\end{DoxyCode}
+\Hypertarget{ws2812b__matrix__symbols_8c_a6fdf7db63ce7b27635e4e7dc5fbf8bae}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!M4@{M4}}
+\index{M4@{M4}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{M4}{M4}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_a6fdf7db63ce7b27635e4e7dc5fbf8bae} 
+const uint8\+\_\+t M4\+[8]\+\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\}\}}
+
+\end{DoxyCode}
+\Hypertarget{ws2812b__matrix__symbols_8c_a0b538db5fa85d902f8162add277735e9}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!M5@{M5}}
+\index{M5@{M5}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{M5}{M5}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_a0b538db5fa85d902f8162add277735e9} 
+const uint8\+\_\+t M5\+[8]\+\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\}\}}
+
+\end{DoxyCode}
+\Hypertarget{ws2812b__matrix__symbols_8c_a4ae0bae874e7ef122d8d5e24824c11d7}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!M6@{M6}}
+\index{M6@{M6}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{M6}{M6}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_a4ae0bae874e7ef122d8d5e24824c11d7} 
+const uint8\+\_\+t M6\+[8]\+\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\}\}}
+
+\end{DoxyCode}
+\Hypertarget{ws2812b__matrix__symbols_8c_a71d2422f78c7a1f4aefd0ce052bf520b}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!M7@{M7}}
+\index{M7@{M7}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{M7}{M7}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_a71d2422f78c7a1f4aefd0ce052bf520b} 
+const uint8\+\_\+t M7\+[8]\+\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\}\}}
+
+\end{DoxyCode}
+\Hypertarget{ws2812b__matrix__symbols_8c_a054f22dd2c7367b881ed08729c52756e}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!M8@{M8}}
+\index{M8@{M8}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{M8}{M8}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_a054f22dd2c7367b881ed08729c52756e} 
+const uint8\+\_\+t M8\+[8]\+\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\}\}}
+
+\end{DoxyCode}
+\Hypertarget{ws2812b__matrix__symbols_8c_af802c9968edbca71fded0fcd6a7e757d}\index{ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}!M9@{M9}}
+\index{M9@{M9}!ws2812b\_matrix\_symbols.c@{ws2812b\_matrix\_symbols.c}}
+\doxysubsubsection{\texorpdfstring{M9}{M9}}
+{\footnotesize\ttfamily \label{ws2812b__matrix__symbols_8c_af802c9968edbca71fded0fcd6a7e757d} 
+const uint8\+\_\+t M9\+[8]\+\+[8]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,1,1,1,0,0,0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{0,0,0,0,0,0,0,0\}\}}
+
+\end{DoxyCode}

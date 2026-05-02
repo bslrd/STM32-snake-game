@@ -1,0 +1,12 @@
+<map id="libs/snake/snake.h" name="libs/snake/snake.h">
+<area shape="rect" id="Node000001" title="Snake game logic module with low level state machine." alt="" coords="105,5,235,31"/>
+<area shape="rect" id="Node000002" href="$game_8c.html" title="Implementation of high&#45;level game state machine module." alt="" coords="5,175,130,201"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,41,114,59,95,80,83,105,76,131,70,176,65,174,71,130,78,103,91,78,110,55,136,37"/>
+<area shape="rect" id="Node000003" href="$game__renderer_8h.html" title="Snake rendering module dedicated for ws2812b matrix display." alt="" coords="104,79,236,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,44,173,80,168,78,169,49"/>
+<area shape="rect" id="Node000005" href="$snake_8c.html" title="Implementation of game logic module with low level state machine." alt="" coords="260,86,390,112"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="208,36,304,85,299,87,207,41"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="138,130,83,177,80,173,133,130"/>
+<area shape="rect" id="Node000004" href="$game__renderer_8c.html" title="Implementation of snake rendering module for ws2812b matrix display." alt="" coords="154,168,285,208"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="190,131,211,168,206,167,188,136"/>
+</map>

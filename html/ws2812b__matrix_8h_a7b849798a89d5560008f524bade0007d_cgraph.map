@@ -1,0 +1,5 @@
+<map id="ws2812b_matrix_set_coord" name="ws2812b_matrix_set_coord">
+<area shape="rect" id="Node000001" title="Sets diode of chosen coordinates to specified RGB color." alt="" coords="5,5,147,46"/>
+<area shape="rect" id="Node000002" href="$ws2812b_8c.html#a3902a17bd449d5ff5f29486dc1d46d11" title="Sets chosen diode to specified RGB color." alt="" coords="195,13,318,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,23,182,25,176,26,147,28"/>
+</map>

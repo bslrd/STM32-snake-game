@@ -1,2 +1,0 @@
-../Core/Src/ws2812b_matrix.c:4:6:ws2812b_matrix_set_coord	24	static
-../Core/Src/ws2812b_matrix.c:10:6:ws2812b_matrix_fill	32	static

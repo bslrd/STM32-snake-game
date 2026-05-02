@@ -1,2 +1,0 @@
-../Core/Src/snake_renderer.c:12:6:render_snake	32	static
-../Core/Src/snake_renderer.c:20:6:render_menu	24	static

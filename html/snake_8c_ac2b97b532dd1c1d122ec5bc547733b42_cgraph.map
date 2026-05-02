@@ -1,0 +1,5 @@
+<map id="snake_game_init" name="snake_game_init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,125,31"/>
+<area shape="rect" id="Node000002" href="$snake_8c.html#a5d621da002df03025e1b6e514c6b8f1b" title=" " alt="" coords="173,5,299,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,16,159,18,154,18,125,21"/>
+</map>

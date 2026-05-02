@@ -1,0 +1,12 @@
+<map id="snake_update" name="snake_update">
+<area shape="rect" id="Node000001" title="snake logic state machine function." alt="" coords="5,55,108,80"/>
+<area shape="rect" id="Node000002" href="$snake_8c.html#a45eba8e00ff5b9c12b158ad5047bc1ac" title=" " alt="" coords="156,5,283,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,52,162,34,158,38,103,56"/>
+<area shape="rect" id="Node000004" href="$snake_8c.html#ac2b97b532dd1c1d122ec5bc547733b42" title=" " alt="" coords="160,55,279,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="108,65,147,67,142,68,109,70"/>
+<area shape="rect" id="Node000005" href="$snake_8c.html#a9ac3b0ac18b61ee8efa5d646f56c148b" title=" " alt="" coords="172,104,267,130"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="102,78,162,98,158,100,101,84"/>
+<area shape="rect" id="Node000003" href="$snake_8c.html#a5d621da002df03025e1b6e514c6b8f1b" title=" " alt="" coords="331,31,457,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="283,25,318,32,313,32,283,30"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="279,57,318,54,313,55,280,62"/>
+</map>

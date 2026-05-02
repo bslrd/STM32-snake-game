@@ -1,0 +1,229 @@
+\doxysection{libs/\+snake/\+snake.h File Reference}
+\hypertarget{snake_8h}{}\label{snake_8h}\index{libs/snake/snake.h@{libs/snake/snake.h}}
+
+
+Snake game logic module with low level state machine.  
+
+
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \+\#include "{}2dspace.\+h"{}}\newline
+Include dependency graph for snake.\+h:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{snake_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structsnake__state}{snake\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Structure holding all snake info. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{snake_8h_aa3b34508983213e776680e7c26bf3f3a}{GAME\+\_\+\+DIM}}~8
+\begin{DoxyCompactList}\small\item\em Width of the game in snake length units (should be consulted with dispay width). \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{snake_8h_af9134ada9274391889c00aa4c991b10d}{MAX\+\_\+\+SNAKE\+\_\+\+SIZE}}~(\doxymbox{\hyperlink{snake_8h_aa3b34508983213e776680e7c26bf3f3a}{GAME\+\_\+\+DIM}}\texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{snake_8h_aa3b34508983213e776680e7c26bf3f3a}{GAME\+\_\+\+DIM}})
+\begin{DoxyCompactList}\small\item\em Maximum size that can be occupied by snake body parts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \doxymbox{\hyperlink{snake_8h_aa0aafed44fec19806d8f9ad834be1248}{state\+\_\+t}} \{ \doxymbox{\hyperlink{snake_8h_aa0aafed44fec19806d8f9ad834be1248a0cb1b2c6a7db1f1084886c98909a3f36}{INIT}}
+, \doxymbox{\hyperlink{snake_8h_aa0aafed44fec19806d8f9ad834be1248a871723195985a4ae22d7e10d99bf8a00}{GAME\+\_\+\+OVER}}
+, \doxymbox{\hyperlink{snake_8h_aa0aafed44fec19806d8f9ad834be1248a1061be6c3fb88d32829cba6f6b2be304}{RUNNING}}
+ \}
+\begin{DoxyCompactList}\small\item\em snake game state type \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{snake_8h_a9ad0c6652388f93a9690220ecca59e25}{snake\+\_\+update}} (void)
+\begin{DoxyCompactList}\small\item\em snake logic state machine function. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{snake_8h_a8b19e8baa6432e9a20966dd2877f1cce}{snake\+\_\+direction\+\_\+request}} (\doxymbox{\hyperlink{2dspace_8h_ae9ae980041e438eed7a3af43ce4e9f6b}{direction\+\_\+t}} requested\+\_\+direction)
+\begin{DoxyCompactList}\small\item\em Requests change of current snake direction in state machine. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{snake_8h_a9c45ea30fcccd16551d94f295a5e4565}{snake\+\_\+init\+\_\+request}} (int fruit\+\_\+seed)
+\begin{DoxyCompactList}\small\item\em Requests initialization of the snake game in state machine. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{snake_8h_a3db470c618bac028d254d9543f03d99f}{snake\+\_\+move\+\_\+request}} (void)
+\begin{DoxyCompactList}\small\item\em Requests 1-\/tile move of snake in state machine. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{snake_8h_a3299c9c8fe4b3b2bd21daf0bcc8b9af1}{snake\+\_\+is\+\_\+over}} (void)
+\begin{DoxyCompactList}\small\item\em Checks if snake game state is GAME\+\_\+\+OVER. \end{DoxyCompactList}\item 
+const \doxymbox{\hyperlink{structsnake__state}{snake\+\_\+state}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{snake_8h_adaea49e1508c6112c13847d0536739d3}{snake\+\_\+get\+\_\+state}} (void)
+\begin{DoxyCompactList}\small\item\em Passes current snake game state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Snake game logic module with low level state machine. 
+
+\begin{DoxyAuthor}{Author}
+bslrd 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026
+\end{DoxyDate}
+SPDX-\/\+License-\/\+Identifier:\+ MIT 
+
+\label{snake_8h_doc-define-members}
+\Hypertarget{snake_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{snake_8h_aa3b34508983213e776680e7c26bf3f3a}\index{snake.h@{snake.h}!GAME\_DIM@{GAME\_DIM}}
+\index{GAME\_DIM@{GAME\_DIM}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{GAME\_DIM}{GAME\_DIM}}
+{\footnotesize\ttfamily \label{snake_8h_aa3b34508983213e776680e7c26bf3f3a} 
+\+\#define GAME\+\_\+\+DIM~8}
+
+
+
+Width of the game in snake length units (should be consulted with dispay width). 
+
+\Hypertarget{snake_8h_af9134ada9274391889c00aa4c991b10d}\index{snake.h@{snake.h}!MAX\_SNAKE\_SIZE@{MAX\_SNAKE\_SIZE}}
+\index{MAX\_SNAKE\_SIZE@{MAX\_SNAKE\_SIZE}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_SNAKE\_SIZE}{MAX\_SNAKE\_SIZE}}
+{\footnotesize\ttfamily \label{snake_8h_af9134ada9274391889c00aa4c991b10d} 
+\+\#define MAX\+\_\+\+SNAKE\+\_\+\+SIZE~(\doxymbox{\hyperlink{snake_8h_aa3b34508983213e776680e7c26bf3f3a}{GAME\+\_\+\+DIM}}\texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{snake_8h_aa3b34508983213e776680e7c26bf3f3a}{GAME\+\_\+\+DIM}})}
+
+
+
+Maximum size that can be occupied by snake body parts. 
+
+
+
+\label{snake_8h_doc-enum-members}
+\Hypertarget{snake_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{snake_8h_aa0aafed44fec19806d8f9ad834be1248}\index{snake.h@{snake.h}!state\_t@{state\_t}}
+\index{state\_t@{state\_t}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{state\_t}{state\_t}}
+{\footnotesize\ttfamily \label{snake_8h_aa0aafed44fec19806d8f9ad834be1248} 
+enum \doxymbox{\hyperlink{snake_8h_aa0aafed44fec19806d8f9ad834be1248}{state\+\_\+t}}}
+
+
+
+snake game state type 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INIT@{INIT}!snake.h@{snake.h}}
+\index{snake.h@{snake.h}!INIT@{INIT}}
+}\Hypertarget{snake_8h_aa0aafed44fec19806d8f9ad834be1248a0cb1b2c6a7db1f1084886c98909a3f36}\label{snake_8h_aa0aafed44fec19806d8f9ad834be1248a0cb1b2c6a7db1f1084886c98909a3f36} 
+INIT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME\_OVER@{GAME\_OVER}!snake.h@{snake.h}}
+\index{snake.h@{snake.h}!GAME\_OVER@{GAME\_OVER}}
+}\Hypertarget{snake_8h_aa0aafed44fec19806d8f9ad834be1248a871723195985a4ae22d7e10d99bf8a00}\label{snake_8h_aa0aafed44fec19806d8f9ad834be1248a871723195985a4ae22d7e10d99bf8a00} 
+GAME\+\_\+\+OVER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RUNNING@{RUNNING}!snake.h@{snake.h}}
+\index{snake.h@{snake.h}!RUNNING@{RUNNING}}
+}\Hypertarget{snake_8h_aa0aafed44fec19806d8f9ad834be1248a1061be6c3fb88d32829cba6f6b2be304}\label{snake_8h_aa0aafed44fec19806d8f9ad834be1248a1061be6c3fb88d32829cba6f6b2be304} 
+RUNNING&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{snake_8h_doc-func-members}
+\Hypertarget{snake_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{snake_8h_a8b19e8baa6432e9a20966dd2877f1cce}\index{snake.h@{snake.h}!snake\_direction\_request@{snake\_direction\_request}}
+\index{snake\_direction\_request@{snake\_direction\_request}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{snake\_direction\_request()}{snake\_direction\_request()}}
+{\footnotesize\ttfamily \label{snake_8h_a8b19e8baa6432e9a20966dd2877f1cce} 
+void snake\+\_\+direction\+\_\+request (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{2dspace_8h_ae9ae980041e438eed7a3af43ce4e9f6b}{direction\+\_\+t}}}]{requested\+\_\+direction}{}\end{DoxyParamCaption})}
+
+
+
+Requests change of current snake direction in state machine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em requested\+\_\+direction} & Direction requested by input system.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Called by \doxylink{game_8c}{game.\+c} state machine. 
+\end{DoxyNote}
+\Hypertarget{snake_8h_adaea49e1508c6112c13847d0536739d3}\index{snake.h@{snake.h}!snake\_get\_state@{snake\_get\_state}}
+\index{snake\_get\_state@{snake\_get\_state}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{snake\_get\_state()}{snake\_get\_state()}}
+{\footnotesize\ttfamily \label{snake_8h_adaea49e1508c6112c13847d0536739d3} 
+const \doxymbox{\hyperlink{structsnake__state}{snake\+\_\+state}} \texorpdfstring{$\ast$}{*} snake\+\_\+get\+\_\+state (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Passes current snake game state. 
+
+\begin{DoxyNote}{Note}
+The pointer represents valid state until next \doxylink{snake_8h_a9ad0c6652388f93a9690220ecca59e25}{snake\+\_\+update()} function use. 
+\end{DoxyNote}
+\Hypertarget{snake_8h_a9c45ea30fcccd16551d94f295a5e4565}\index{snake.h@{snake.h}!snake\_init\_request@{snake\_init\_request}}
+\index{snake\_init\_request@{snake\_init\_request}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{snake\_init\_request()}{snake\_init\_request()}}
+{\footnotesize\ttfamily \label{snake_8h_a9c45ea30fcccd16551d94f295a5e4565} 
+void snake\+\_\+init\+\_\+request (\begin{DoxyParamCaption}\item[{int}]{fruit\+\_\+seed}{}\end{DoxyParamCaption})}
+
+
+
+Requests initialization of the snake game in state machine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fruit\+\_\+seed} & Seed used for random fruit position generator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Called by \doxylink{game_8c}{game.\+c} state machine. 
+\end{DoxyNote}
+\Hypertarget{snake_8h_a3299c9c8fe4b3b2bd21daf0bcc8b9af1}\index{snake.h@{snake.h}!snake\_is\_over@{snake\_is\_over}}
+\index{snake\_is\_over@{snake\_is\_over}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{snake\_is\_over()}{snake\_is\_over()}}
+{\footnotesize\ttfamily \label{snake_8h_a3299c9c8fe4b3b2bd21daf0bcc8b9af1} 
+bool snake\+\_\+is\+\_\+over (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Checks if snake game state is GAME\+\_\+\+OVER. 
+
+\Hypertarget{snake_8h_a3db470c618bac028d254d9543f03d99f}\index{snake.h@{snake.h}!snake\_move\_request@{snake\_move\_request}}
+\index{snake\_move\_request@{snake\_move\_request}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{snake\_move\_request()}{snake\_move\_request()}}
+{\footnotesize\ttfamily \label{snake_8h_a3db470c618bac028d254d9543f03d99f} 
+void snake\+\_\+move\+\_\+request (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Requests 1-\/tile move of snake in state machine. 
+
+\begin{DoxyNote}{Note}
+Called by \doxylink{game_8c}{game.\+c} state machine. 
+\end{DoxyNote}
+\Hypertarget{snake_8h_a9ad0c6652388f93a9690220ecca59e25}\index{snake.h@{snake.h}!snake\_update@{snake\_update}}
+\index{snake\_update@{snake\_update}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{snake\_update()}{snake\_update()}}
+{\footnotesize\ttfamily \label{snake_8h_a9ad0c6652388f93a9690220ecca59e25} 
+void snake\+\_\+update (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+snake logic state machine function. 
+
+Handles three snake game states (INIT, GAME\+\_\+\+OVER, RUNNING).
+
+\begin{DoxyNote}{Note}
+Called by \doxylink{game_8c}{game.\+c} state machine. 
+\end{DoxyNote}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snake_8h_a9ad0c6652388f93a9690220ecca59e25_cgraph}
+\end{center}
+\end{figure}

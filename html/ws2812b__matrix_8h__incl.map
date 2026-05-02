@@ -1,0 +1,7 @@
+<map id="libs/ws2812b/ws2812b_matrix.h" name="libs/ws2812b/ws2812b_matrix.h">
+<area shape="rect" id="Node000001" title="ws2812b diode matrix handling module based on ws2812b driver." alt="" coords="8,5,161,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,70,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,45,55,82,50,79,70,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="94,94,168,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,44,119,80,113,80,94,49"/>
+</map>

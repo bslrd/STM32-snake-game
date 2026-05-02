@@ -25,4 +25,9 @@ SUBDIRS := \
 Core/Src \
 Core/Startup \
 Drivers/STM32F3xx_HAL_Driver/Src \
+libs/game \
+libs/game_renderer \
+libs/joystick \
+libs/snake \
+libs/ws2812b \
 

@@ -5,59 +5,38 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/Joystick.c \
-../Core/Src/game.c \
 ../Core/Src/main.c \
-../Core/Src/snake.c \
-../Core/Src/snake_renderer.c \
 ../Core/Src/stm32f3xx_hal_msp.c \
 ../Core/Src/stm32f3xx_it.c \
 ../Core/Src/syscalls.c \
 ../Core/Src/sysmem.c \
-../Core/Src/system_stm32f3xx.c \
-../Core/Src/ws2812b.c \
-../Core/Src/ws2812b_matrix.c \
-../Core/Src/ws2812b_matrix_symboles.c 
+../Core/Src/system_stm32f3xx.c 
 
 OBJS += \
-./Core/Src/Joystick.o \
-./Core/Src/game.o \
 ./Core/Src/main.o \
-./Core/Src/snake.o \
-./Core/Src/snake_renderer.o \
 ./Core/Src/stm32f3xx_hal_msp.o \
 ./Core/Src/stm32f3xx_it.o \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o \
-./Core/Src/system_stm32f3xx.o \
-./Core/Src/ws2812b.o \
-./Core/Src/ws2812b_matrix.o \
-./Core/Src/ws2812b_matrix_symboles.o 
+./Core/Src/system_stm32f3xx.o 
 
 C_DEPS += \
-./Core/Src/Joystick.d \
-./Core/Src/game.d \
 ./Core/Src/main.d \
-./Core/Src/snake.d \
-./Core/Src/snake_renderer.d \
 ./Core/Src/stm32f3xx_hal_msp.d \
 ./Core/Src/stm32f3xx_it.d \
 ./Core/Src/syscalls.d \
 ./Core/Src/sysmem.d \
-./Core/Src/system_stm32f3xx.d \
-./Core/Src/ws2812b.d \
-./Core/Src/ws2812b_matrix.d \
-./Core/Src/ws2812b_matrix_symboles.d 
+./Core/Src/system_stm32f3xx.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -I"/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs" -I"/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/Debug" -I"/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/2dspace" -I"/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/game" -I"/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/game_renderer" -I"/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/joystick" -I"/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/snake" -I"/Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/libs/ws2812b" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/Joystick.cyclo ./Core/Src/Joystick.d ./Core/Src/Joystick.o ./Core/Src/Joystick.su ./Core/Src/game.cyclo ./Core/Src/game.d ./Core/Src/game.o ./Core/Src/game.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/snake.cyclo ./Core/Src/snake.d ./Core/Src/snake.o ./Core/Src/snake.su ./Core/Src/snake_renderer.cyclo ./Core/Src/snake_renderer.d ./Core/Src/snake_renderer.o ./Core/Src/snake_renderer.su ./Core/Src/stm32f3xx_hal_msp.cyclo ./Core/Src/stm32f3xx_hal_msp.d ./Core/Src/stm32f3xx_hal_msp.o ./Core/Src/stm32f3xx_hal_msp.su ./Core/Src/stm32f3xx_it.cyclo ./Core/Src/stm32f3xx_it.d ./Core/Src/stm32f3xx_it.o ./Core/Src/stm32f3xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f3xx.cyclo ./Core/Src/system_stm32f3xx.d ./Core/Src/system_stm32f3xx.o ./Core/Src/system_stm32f3xx.su ./Core/Src/ws2812b.cyclo ./Core/Src/ws2812b.d ./Core/Src/ws2812b.o ./Core/Src/ws2812b.su ./Core/Src/ws2812b_matrix.cyclo ./Core/Src/ws2812b_matrix.d ./Core/Src/ws2812b_matrix.o ./Core/Src/ws2812b_matrix.su ./Core/Src/ws2812b_matrix_symboles.cyclo ./Core/Src/ws2812b_matrix_symboles.d ./Core/Src/ws2812b_matrix_symboles.o ./Core/Src/ws2812b_matrix_symboles.su
+	-$(RM) ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32f3xx_hal_msp.cyclo ./Core/Src/stm32f3xx_hal_msp.d ./Core/Src/stm32f3xx_hal_msp.o ./Core/Src/stm32f3xx_hal_msp.su ./Core/Src/stm32f3xx_it.cyclo ./Core/Src/stm32f3xx_it.d ./Core/Src/stm32f3xx_it.o ./Core/Src/stm32f3xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f3xx.cyclo ./Core/Src/system_stm32f3xx.d ./Core/Src/system_stm32f3xx.o ./Core/Src/system_stm32f3xx.su
 
 .PHONY: clean-Core-2f-Src
 

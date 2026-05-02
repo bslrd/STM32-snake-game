@@ -1,6 +1,0 @@
-../Core/Src/game.c:27:6:game_start_request	1
-../Core/Src/game.c:32:6:game_tick	2
-../Core/Src/game.c:37:6:game_init	1
-../Core/Src/game.c:43:6:game_loop	3
-../Core/Src/game.c:57:6:game_menu	2
-../Core/Src/game.c:69:6:game_run	4

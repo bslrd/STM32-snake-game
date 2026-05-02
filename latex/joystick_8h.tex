@@ -1,0 +1,127 @@
+\doxysection{libs/\+joystick/\+joystick.h File Reference}
+\hypertarget{joystick_8h}{}\label{joystick_8h}\index{libs/joystick/joystick.h@{libs/joystick/joystick.h}}
+
+
+Joystick handling module based on ADC (STM32 HAL).  
+
+
+{\ttfamily \+\#include "{}2dspace.\+h"{}}\newline
+{\ttfamily \+\#include "{}main.\+h"{}}\newline
+{\ttfamily \+\#include $<$stdbool.\+h$>$}\newline
+Include dependency graph for joystick.\+h:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{joystick_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{joystick_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{joystick_8h_a46d904aee56a705b61961c735a8374da}{joystick\+\_\+init}} (ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+\_\+handler)
+\begin{DoxyCompactList}\small\item\em Initializes joystick handling by passing given ADC handler and starting ADC. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{structvec2__t}{vec2\+\_\+t}} \doxymbox{\hyperlink{joystick_8h_abcc8562e717873cb872b0be0ccb3f5ec}{joystick\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Reads current joystick position from ADC. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{joystick_8h_a897d7905ab45d1bc2dff2aee85780ced}{joystick\+\_\+check\+\_\+tilt}} (void)
+\begin{DoxyCompactList}\small\item\em Checks if joystick is tilted past the defined dead zone. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{2dspace_8h_ae9ae980041e438eed7a3af43ce4e9f6b}{direction\+\_\+t}} \doxymbox{\hyperlink{joystick_8h_aa93c93caeb3196c2b52590a6236d491f}{joystick\+\_\+get\+\_\+direction}} (void)
+\begin{DoxyCompactList}\small\item\em interprets current joystick state as one of 4 directions or NONE. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Joystick handling module based on ADC (STM32 HAL). 
+
+\begin{DoxyAuthor}{Author}
+bslrd 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026
+\end{DoxyDate}
+SPDX-\/\+License-\/\+Identifier:\+ MIT 
+
+\label{joystick_8h_doc-func-members}
+\Hypertarget{joystick_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{joystick_8h_a897d7905ab45d1bc2dff2aee85780ced}\index{joystick.h@{joystick.h}!joystick\_check\_tilt@{joystick\_check\_tilt}}
+\index{joystick\_check\_tilt@{joystick\_check\_tilt}!joystick.h@{joystick.h}}
+\doxysubsubsection{\texorpdfstring{joystick\_check\_tilt()}{joystick\_check\_tilt()}}
+{\footnotesize\ttfamily \label{joystick_8h_a897d7905ab45d1bc2dff2aee85780ced} 
+bool joystick\+\_\+check\+\_\+tilt (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Checks if joystick is tilted past the defined dead zone. 
+
+\begin{DoxyReturn}{Returns}
+returns true if joystick is outside the deadzone and false otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{joystick_8h_a897d7905ab45d1bc2dff2aee85780ced_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{joystick_8h_aa93c93caeb3196c2b52590a6236d491f}\index{joystick.h@{joystick.h}!joystick\_get\_direction@{joystick\_get\_direction}}
+\index{joystick\_get\_direction@{joystick\_get\_direction}!joystick.h@{joystick.h}}
+\doxysubsubsection{\texorpdfstring{joystick\_get\_direction()}{joystick\_get\_direction()}}
+{\footnotesize\ttfamily \label{joystick_8h_aa93c93caeb3196c2b52590a6236d491f} 
+\doxymbox{\hyperlink{2dspace_8h_ae9ae980041e438eed7a3af43ce4e9f6b}{direction\+\_\+t}} joystick\+\_\+get\+\_\+direction (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+interprets current joystick state as one of 4 directions or NONE. 
+
+\begin{DoxyReturn}{Returns}
+direction type value. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{joystick_8h_aa93c93caeb3196c2b52590a6236d491f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{joystick_8h_a46d904aee56a705b61961c735a8374da}\index{joystick.h@{joystick.h}!joystick\_init@{joystick\_init}}
+\index{joystick\_init@{joystick\_init}!joystick.h@{joystick.h}}
+\doxysubsubsection{\texorpdfstring{joystick\_init()}{joystick\_init()}}
+{\footnotesize\ttfamily \label{joystick_8h_a46d904aee56a705b61961c735a8374da} 
+void joystick\+\_\+init (\begin{DoxyParamCaption}\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc\+\_\+handler}{}\end{DoxyParamCaption})}
+
+
+
+Initializes joystick handling by passing given ADC handler and starting ADC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adc\+\_\+handler} & pointer to ADC handler of choice.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Should be called from \doxylink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()} before use of other joystick functions 
+\end{DoxyNote}
+\Hypertarget{joystick_8h_abcc8562e717873cb872b0be0ccb3f5ec}\index{joystick.h@{joystick.h}!joystick\_read@{joystick\_read}}
+\index{joystick\_read@{joystick\_read}!joystick.h@{joystick.h}}
+\doxysubsubsection{\texorpdfstring{joystick\_read()}{joystick\_read()}}
+{\footnotesize\ttfamily \label{joystick_8h_abcc8562e717873cb872b0be0ccb3f5ec} 
+\doxymbox{\hyperlink{structvec2__t}{vec2\+\_\+t}} joystick\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Reads current joystick position from ADC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adc\+\_\+handler} & pointer to ADC handler of choice.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structvec2__t}{vec2\+\_\+t} type vector with vec.\+x and vec.\+y values of joystick position. 
+\end{DoxyReturn}

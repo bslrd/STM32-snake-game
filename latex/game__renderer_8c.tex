@@ -1,0 +1,265 @@
+\doxysection{libs/\+game\+\_\+renderer/\+game\+\_\+renderer.c File Reference}
+\hypertarget{game__renderer_8c}{}\label{game__renderer_8c}\index{libs/game\_renderer/game\_renderer.c@{libs/game\_renderer/game\_renderer.c}}
+
+
+Implementation of snake rendering module for ws2812b matrix display.  
+
+
+{\ttfamily \+\#include "{}ws2812b.\+h"{}}\newline
+{\ttfamily \+\#include "{}ws2812b\+\_\+matrix.\+h"{}}\newline
+{\ttfamily \+\#include "{}ws2812b\+\_\+matrix\+\_\+symbols.\+h"{}}\newline
+{\ttfamily \+\#include "{}game\+\_\+renderer.\+h"{}}\newline
+Include dependency graph for game\+\_\+renderer.\+c:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game__renderer_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a27c3c0551b8e8976fdc19e930ff3b595}{Rh}}~0
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a7388c9ee26cbacbb9ce09f70073914fa}{Gh}}~50
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_aaaf9d2e56fa8cd912b89c73cd441a4b9}{Bh}}~255
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a97bb5fd2772572f117e9db885cba4a71}{Rt}}~0
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a0df8ee29d73bd83bfd66a26d8f101b97}{Gt}}~255
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a6944ab7682e2ef0111060a5804e16611}{Bt}}~50
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a3f64ac7800ac4b3eaa1db343fa0fbc02}{Rf}}~255
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a5e0c07e523d4e77a2cafca06feb836f6}{Gf}}~0
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a94c4dee3081aaa99d8ac9cb5c74d8727}{Bf}}~0
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a201f2a56b020997525a41c7d7d506df0}{Rb}}~0
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a8860e72a8dac19e9be8274a1cc0cbaf1}{Gb}}~0
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_af3b82d5032dc5683028ce3ae1c5daba6}{Bb}}~0
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a8477967dcb251a4d75c2a4e46414c2cc}{Rm}}~255
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_acd8f76c2e1e889ccbf6f734d0f848714}{Gm}}~0
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a528bb585cf62af8ef23917b3c2d914f3}{Bm}}~0
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a9151700714b0ec53aa32af2f907d0a99}{Rd}}~255
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_ac3e0929d1183decb1a8947f972bdcac9}{Gd}}~255
+\item 
+\+\#define \doxymbox{\hyperlink{game__renderer_8c_a3eee51ef51ac0cd70398410266bb823e}{Bd}}~255
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{game__renderer_8c_a73249982a798cc2dcb921553c6ffe15c}{render\+\_\+snake}} (const \doxymbox{\hyperlink{structsnake__state}{snake\+\_\+state}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em Renders the snake on the LED matrix. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{game__renderer_8c_a4c1b8cdfc729400f21aebe10e869516b}{render\+\_\+menu}} (const \doxymbox{\hyperlink{structsnake__state}{snake\+\_\+state}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em Renders game menu on the LED matrix. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{game__renderer_8c_a2d6aed46b32f0e07f6bba89dc8f7a746}{render\+\_\+start}} (void)
+\begin{DoxyCompactList}\small\item\em Renders game start animation on the LED matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of snake rendering module for ws2812b matrix display. 
+
+\begin{DoxyAuthor}{Author}
+bslrd 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026
+\end{DoxyDate}
+SPDX-\/\+License-\/\+Identifier:\+ MIT 
+
+\label{game__renderer_8c_doc-define-members}
+\Hypertarget{game__renderer_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{game__renderer_8c_af3b82d5032dc5683028ce3ae1c5daba6}\index{game\_renderer.c@{game\_renderer.c}!Bb@{Bb}}
+\index{Bb@{Bb}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Bb}{Bb}}
+{\footnotesize\ttfamily \label{game__renderer_8c_af3b82d5032dc5683028ce3ae1c5daba6} 
+\+\#define Bb~0}
+
+\Hypertarget{game__renderer_8c_a3eee51ef51ac0cd70398410266bb823e}\index{game\_renderer.c@{game\_renderer.c}!Bd@{Bd}}
+\index{Bd@{Bd}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Bd}{Bd}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a3eee51ef51ac0cd70398410266bb823e} 
+\+\#define Bd~255}
+
+\Hypertarget{game__renderer_8c_a94c4dee3081aaa99d8ac9cb5c74d8727}\index{game\_renderer.c@{game\_renderer.c}!Bf@{Bf}}
+\index{Bf@{Bf}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Bf}{Bf}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a94c4dee3081aaa99d8ac9cb5c74d8727} 
+\+\#define Bf~0}
+
+\Hypertarget{game__renderer_8c_aaaf9d2e56fa8cd912b89c73cd441a4b9}\index{game\_renderer.c@{game\_renderer.c}!Bh@{Bh}}
+\index{Bh@{Bh}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Bh}{Bh}}
+{\footnotesize\ttfamily \label{game__renderer_8c_aaaf9d2e56fa8cd912b89c73cd441a4b9} 
+\+\#define Bh~255}
+
+\Hypertarget{game__renderer_8c_a528bb585cf62af8ef23917b3c2d914f3}\index{game\_renderer.c@{game\_renderer.c}!Bm@{Bm}}
+\index{Bm@{Bm}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Bm}{Bm}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a528bb585cf62af8ef23917b3c2d914f3} 
+\+\#define Bm~0}
+
+\Hypertarget{game__renderer_8c_a6944ab7682e2ef0111060a5804e16611}\index{game\_renderer.c@{game\_renderer.c}!Bt@{Bt}}
+\index{Bt@{Bt}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Bt}{Bt}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a6944ab7682e2ef0111060a5804e16611} 
+\+\#define Bt~50}
+
+\Hypertarget{game__renderer_8c_a8860e72a8dac19e9be8274a1cc0cbaf1}\index{game\_renderer.c@{game\_renderer.c}!Gb@{Gb}}
+\index{Gb@{Gb}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Gb}{Gb}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a8860e72a8dac19e9be8274a1cc0cbaf1} 
+\+\#define Gb~0}
+
+\Hypertarget{game__renderer_8c_ac3e0929d1183decb1a8947f972bdcac9}\index{game\_renderer.c@{game\_renderer.c}!Gd@{Gd}}
+\index{Gd@{Gd}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Gd}{Gd}}
+{\footnotesize\ttfamily \label{game__renderer_8c_ac3e0929d1183decb1a8947f972bdcac9} 
+\+\#define Gd~255}
+
+\Hypertarget{game__renderer_8c_a5e0c07e523d4e77a2cafca06feb836f6}\index{game\_renderer.c@{game\_renderer.c}!Gf@{Gf}}
+\index{Gf@{Gf}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Gf}{Gf}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a5e0c07e523d4e77a2cafca06feb836f6} 
+\+\#define Gf~0}
+
+\Hypertarget{game__renderer_8c_a7388c9ee26cbacbb9ce09f70073914fa}\index{game\_renderer.c@{game\_renderer.c}!Gh@{Gh}}
+\index{Gh@{Gh}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Gh}{Gh}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a7388c9ee26cbacbb9ce09f70073914fa} 
+\+\#define Gh~50}
+
+\Hypertarget{game__renderer_8c_acd8f76c2e1e889ccbf6f734d0f848714}\index{game\_renderer.c@{game\_renderer.c}!Gm@{Gm}}
+\index{Gm@{Gm}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Gm}{Gm}}
+{\footnotesize\ttfamily \label{game__renderer_8c_acd8f76c2e1e889ccbf6f734d0f848714} 
+\+\#define Gm~0}
+
+\Hypertarget{game__renderer_8c_a0df8ee29d73bd83bfd66a26d8f101b97}\index{game\_renderer.c@{game\_renderer.c}!Gt@{Gt}}
+\index{Gt@{Gt}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Gt}{Gt}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a0df8ee29d73bd83bfd66a26d8f101b97} 
+\+\#define Gt~255}
+
+\Hypertarget{game__renderer_8c_a201f2a56b020997525a41c7d7d506df0}\index{game\_renderer.c@{game\_renderer.c}!Rb@{Rb}}
+\index{Rb@{Rb}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Rb}{Rb}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a201f2a56b020997525a41c7d7d506df0} 
+\+\#define Rb~0}
+
+\Hypertarget{game__renderer_8c_a9151700714b0ec53aa32af2f907d0a99}\index{game\_renderer.c@{game\_renderer.c}!Rd@{Rd}}
+\index{Rd@{Rd}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Rd}{Rd}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a9151700714b0ec53aa32af2f907d0a99} 
+\+\#define Rd~255}
+
+\Hypertarget{game__renderer_8c_a3f64ac7800ac4b3eaa1db343fa0fbc02}\index{game\_renderer.c@{game\_renderer.c}!Rf@{Rf}}
+\index{Rf@{Rf}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Rf}{Rf}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a3f64ac7800ac4b3eaa1db343fa0fbc02} 
+\+\#define Rf~255}
+
+\Hypertarget{game__renderer_8c_a27c3c0551b8e8976fdc19e930ff3b595}\index{game\_renderer.c@{game\_renderer.c}!Rh@{Rh}}
+\index{Rh@{Rh}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Rh}{Rh}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a27c3c0551b8e8976fdc19e930ff3b595} 
+\+\#define Rh~0}
+
+\Hypertarget{game__renderer_8c_a8477967dcb251a4d75c2a4e46414c2cc}\index{game\_renderer.c@{game\_renderer.c}!Rm@{Rm}}
+\index{Rm@{Rm}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Rm}{Rm}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a8477967dcb251a4d75c2a4e46414c2cc} 
+\+\#define Rm~255}
+
+\Hypertarget{game__renderer_8c_a97bb5fd2772572f117e9db885cba4a71}\index{game\_renderer.c@{game\_renderer.c}!Rt@{Rt}}
+\index{Rt@{Rt}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{Rt}{Rt}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a97bb5fd2772572f117e9db885cba4a71} 
+\+\#define Rt~0}
+
+
+
+\label{game__renderer_8c_doc-func-members}
+\Hypertarget{game__renderer_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{game__renderer_8c_a4c1b8cdfc729400f21aebe10e869516b}\index{game\_renderer.c@{game\_renderer.c}!render\_menu@{render\_menu}}
+\index{render\_menu@{render\_menu}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{render\_menu()}{render\_menu()}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a4c1b8cdfc729400f21aebe10e869516b} 
+void render\+\_\+menu (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{structsnake__state}{snake\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{game}{}\end{DoxyParamCaption})}
+
+
+
+Renders game menu on the LED matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & pointer to current snake state used for rendering.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+color scheme is defined inside snake\+\_\+renderer.\+c. 
+\end{DoxyNote}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game__renderer_8c_a4c1b8cdfc729400f21aebe10e869516b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game__renderer_8c_a73249982a798cc2dcb921553c6ffe15c}\index{game\_renderer.c@{game\_renderer.c}!render\_snake@{render\_snake}}
+\index{render\_snake@{render\_snake}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{render\_snake()}{render\_snake()}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a73249982a798cc2dcb921553c6ffe15c} 
+void render\+\_\+snake (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{structsnake__state}{snake\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{game}{}\end{DoxyParamCaption})}
+
+
+
+Renders the snake on the LED matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & pointer to current snake state used for rendering.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+color scheme is defined inside snake\+\_\+renderer.\+c. 
+\end{DoxyNote}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game__renderer_8c_a73249982a798cc2dcb921553c6ffe15c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{game__renderer_8c_a2d6aed46b32f0e07f6bba89dc8f7a746}\index{game\_renderer.c@{game\_renderer.c}!render\_start@{render\_start}}
+\index{render\_start@{render\_start}!game\_renderer.c@{game\_renderer.c}}
+\doxysubsubsection{\texorpdfstring{render\_start()}{render\_start()}}
+{\footnotesize\ttfamily \label{game__renderer_8c_a2d6aed46b32f0e07f6bba89dc8f7a746} 
+void render\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Renders game start animation on the LED matrix. 
+
+\begin{DoxyNote}{Note}
+color scheme is defined inside snake\+\_\+renderer.\+c. 
+\end{DoxyNote}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game__renderer_8c_a2d6aed46b32f0e07f6bba89dc8f7a746_cgraph}
+\end{center}
+\end{figure}

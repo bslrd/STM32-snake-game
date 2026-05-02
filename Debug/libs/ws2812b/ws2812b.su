@@ -1,0 +1,3 @@
+../libs/ws2812b/ws2812b.c:38:6:ws2812b_init	16	static
+../libs/ws2812b/ws2812b.c:43:6:ws2812b_set_rgb	32	static
+../libs/ws2812b/ws2812b.c:77:6:ws2812b_update	24	static

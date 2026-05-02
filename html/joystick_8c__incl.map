@@ -1,0 +1,11 @@
+<map id="libs/joystick/joystick.c" name="libs/joystick/joystick.c">
+<area shape="rect" id="Node000001" title="Implementation of joystick handling module (STM32 HAL)." alt="" coords="66,5,216,31"/>
+<area shape="rect" id="Node000002" href="$joystick_8h.html" title="Joystick handling module based on ADC (STM32 HAL)." alt="" coords="102,79,179,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,29,143,64,138,62,139,34"/>
+<area shape="rect" id="Node000003" href="$2dspace_8h.html" title="Definition of 2D space orientation types." alt="" coords="5,153,87,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="127,105,76,145,73,141,122,106"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="110,153,171,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="142,103,143,138,138,136,139,107"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="196,153,270,178"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="157,103,208,143,203,143,155,108"/>
+</map>

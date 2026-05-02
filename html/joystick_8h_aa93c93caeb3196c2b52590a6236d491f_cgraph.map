@@ -1,0 +1,5 @@
+<map id="joystick_get_direction" name="joystick_get_direction">
+<area shape="rect" id="Node000001" title="interprets current joystick state as one of 4 directions or NONE." alt="" coords="5,5,153,31"/>
+<area shape="rect" id="Node000002" href="$joystick_8c.html#abcc8562e717873cb872b0be0ccb3f5ec" title="Reads current joystick position from ADC." alt="" coords="201,5,299,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,16,188,18,183,18,153,21"/>
+</map>

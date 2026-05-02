@@ -1,0 +1,16 @@
+<map id="render_snake" name="render_snake">
+<area shape="rect" id="Node000001" title="Renders the snake on the LED matrix." alt="" coords="5,81,105,107"/>
+<area shape="rect" id="Node000002" href="$ws2812b__matrix_8c.html#afd2ac5b6cb24b10650a5edf29c9de612" title="Fills diode matrix with one chosen color." alt="" coords="174,5,310,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,79,152,48,190,35,186,38,154,53,85,83"/>
+<area shape="rect" id="Node000004" href="$ws2812b_8c.html#a49749488b29745683984a0d21d4e7af9" title="Transfers diode color values specified with ws2812b_set_rgb to physical display." alt="" coords="391,56,510,82"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="105,88,376,71,375,76,106,94"/>
+<area shape="rect" id="Node000005" href="$ws2812b__matrix_8c.html#a7b849798a89d5560008f524bade0007d" title="Sets diode of chosen coordinates to specified RGB color." alt="" coords="380,106,521,146"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="105,95,366,117,364,122,105,101"/>
+<area shape="rect" id="Node000006" href="$ws2812b__matrix__symbols_8c.html#a980bf93620bbaf588c3dc82a25c675b9" title=" " alt="" coords="153,157,332,183"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="84,105,154,136,190,152,185,152,152,141,83,110"/>
+<area shape="rect" id="Node000003" href="$ws2812b_8c.html#a3902a17bd449d5ff5f29486dc1d46d11" title="Sets chosen diode to specified RGB color." alt="" coords="569,60,693,86"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="311,18,411,26,522,41,575,55,570,55,521,46,410,31,311,24"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="298,29,383,51,377,52,298,34"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="521,103,568,91,573,90,522,108"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="306,154,362,145,367,144,307,159"/>
+</map>

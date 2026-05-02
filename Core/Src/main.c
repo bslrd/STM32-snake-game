@@ -22,7 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "game.h"
-#include "Joystick.h"
+#include "joystick.h"
 #include "ws2812b.h"
 /* USER CODE END Includes */
 
@@ -104,7 +104,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
   ws2812b_init(&hspi1);
-  Joystick_init(&hadc1);
+  joystick_init(&hadc1);
   game_init();
 
   /* USER CODE END 2 */
@@ -353,7 +353,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
-    game_tick();
+    game_tick_request();
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
