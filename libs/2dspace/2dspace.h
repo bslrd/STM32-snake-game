@@ -11,7 +11,7 @@
 
 #ifndef INC_2DSPACE_H_
 #define INC_2DSPACE_H_
-
+aaa
 /**
  * @brief Movement direction type.
  */
