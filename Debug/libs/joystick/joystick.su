@@ -1,5 +1,0 @@
-../libs/joystick/joystick.c:27:13:ADC_SetActiveChannel	40	static
-../libs/joystick/joystick.c:42:6:joystick_init	16	static
-../libs/joystick/joystick.c:48:8:joystick_read	24	static
-../libs/joystick/joystick.c:67:6:joystick_check_tilt	16	static
-../libs/joystick/joystick.c:80:13:joystick_get_direction	16	static

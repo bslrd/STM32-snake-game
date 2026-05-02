@@ -1,5 +1,0 @@
-<map id="joystick_check_tilt" name="joystick_check_tilt">
-<area shape="rect" id="Node000001" title="Checks if joystick is tilted past the defined dead zone." alt="" coords="5,5,135,31"/>
-<area shape="rect" id="Node000002" href="$joystick_8c.html#abcc8562e717873cb872b0be0ccb3f5ec" title="Reads current joystick position from ADC." alt="" coords="183,5,281,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,16,170,18,165,18,135,21"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="ws2812b_matrix_fill" name="ws2812b_matrix_fill">
-<area shape="rect" id="Node000001" title="Fills diode matrix with one chosen color." alt="" coords="5,31,142,56"/>
-<area shape="rect" id="Node000002" href="$ws2812b_8c.html#a3902a17bd449d5ff5f29486dc1d46d11" title="Sets chosen diode to specified RGB color." alt="" coords="190,5,313,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,31,177,28,172,30,143,36"/>
-<area shape="rect" id="Node000003" href="$ws2812b_8c.html#a49749488b29745683984a0d21d4e7af9" title="Transfers diode color values specified with ws2812b_set_rgb to physical display." alt="" coords="192,55,311,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,50,179,57,173,58,142,55"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="libs/ws2812b/ws2812b_matrix_symbols.h" name="libs/ws2812b/ws2812b_matrix_symbols.h">
-<area shape="rect" id="Node000001" title="ws2812b diode matrix symbols display module." alt="" coords="5,5,159,46"/>
-<area shape="rect" id="Node000002" href="$game__renderer_8c.html" title="Implementation of snake rendering module for ws2812b matrix display." alt="" coords="16,94,148,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,60,85,94,79,93,80,64"/>
-</map>
