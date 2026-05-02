@@ -47,5 +47,4 @@ void ws2812b_set_rgb(uint16_t diode_id, uint8_t R, uint8_t G, uint8_t B);
  */
 void ws2812b_update(void);
 
-
 #endif /* INC_WS2812B_H_ */

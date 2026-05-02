@@ -9,8 +9,6 @@
  *  SPDX-License-Identifier: MIT
  */
 
-
-
 #ifndef INC_2DSPACE_H_
 #define INC_2DSPACE_H_
 
