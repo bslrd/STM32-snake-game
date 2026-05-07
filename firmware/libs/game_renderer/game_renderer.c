@@ -20,13 +20,13 @@
 /***********************************/
 // snake head color
 #define Rh		0
-#define Gh		50
+#define Gh		0
 #define Bh		255
 
 // snake tail color
 #define Rt		0
 #define Gt		255
-#define Bt		50
+#define Bt		0
 
 // fruit color
 #define Rf		255
@@ -39,14 +39,14 @@
 #define Bb		0
 
 // menu color
-#define Rm		255
+#define Rm		125
 #define Gm		0
 #define Bm		0
 
 // digits color
-#define Rd		255
-#define Gd		255
-#define Bd		255
+#define Rd		75
+#define Gd		75
+#define Bd		75
 /***********************************/
 
 

@@ -15,7 +15,7 @@
 // CONFIGURATION
 /***********************************/
 #define BRIGHTNESS_MODE 2			// 0 - OFF, 1 - Dont preserve colors, 2 - preserve colors
-#define BRIGHTNESS 0.5				// 0 to 100 [%]
+#define BRIGHTNESS 5			// 0 to 100 [%]
 static SPI_HandleTypeDef *hspi_ws2812b;
 
 /***********************************/

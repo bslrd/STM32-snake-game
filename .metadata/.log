@@ -1,0 +1,13 @@
+!SESSION 2026-05-07 22:14:12.790 -----------------------------------------------
+eclipse.buildId=Version 2.1.1
+java.version=21.0.9
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=pl_PL
+Framework arguments:  -keyring /Users/dominik/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -keyring /Users/dominik/.eclipse_keyring -data /Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-05-07 22:14:16.148
+!MESSAGE Log4j2 initialized with config file /Users/dominik/Desktop/STM/WORKSPACE/LED_MATRIX/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-05-07 22:14:18.117
+!MESSAGE Started RMI Server, listening on port 41338
