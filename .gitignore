@@ -4,6 +4,9 @@
 /Drivers/
 /Debug/
 /Release/
+/firmware/SNAKE_STM32F3/Debug/
+/firmware/SNAKE_STM32F3/Drivers/
+/firmware/SNAKE_STM32F3/Release/
 *.launch
 
 # Libraries with undefined licenses

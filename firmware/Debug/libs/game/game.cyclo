@@ -1,6 +1,0 @@
-../libs/game/game.c:41:6:game_loop	3
-../libs/game/game.c:55:6:game_init	1
-../libs/game/game.c:60:6:game_start_request	2
-../libs/game/game.c:69:6:game_tick_request	2
-../libs/game/game.c:78:6:game_menu	2
-../libs/game/game.c:91:6:game_run	3
