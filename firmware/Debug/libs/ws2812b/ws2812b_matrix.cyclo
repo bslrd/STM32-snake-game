@@ -1,0 +1,2 @@
+../libs/ws2812b/ws2812b_matrix.c:15:6:ws2812b_matrix_set_coord	1
+../libs/ws2812b/ws2812b_matrix.c:21:6:ws2812b_matrix_fill	6
