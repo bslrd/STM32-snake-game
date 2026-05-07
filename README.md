@@ -1,4 +1,4 @@
-# STM-32F3 SNAKE GAME
+# SNAKE_STM32F3
 
 Simple snake game using STM32 and a WS2812B LED matrix display.
 
@@ -40,9 +40,9 @@ The firmware is developed in C using STM32CubeIDE. The project is structured int
 
 ## Project presentation
 ### Gameplay:
-![Project schematic](images/snake.gif)
+<img src="snake.gif" width="600">
 ### Assembled Hardware:
-![Project schematic](images/hardware.png)
+<img src="hardware.png" width="600">
 
 ## Project setup
 
@@ -53,7 +53,7 @@ The firmware is developed in C using STM32CubeIDE. The project is structured int
 4. Import project into CubeIDE and build 
 
 ### Hardware connections
-![Project schematic](images/snake_game_schematic.png)
+<img src="snake_game_schematic.png" width="600">
 ## Usage
 Upon successful flashing, you should see the display turning red. After whole display is filled click the joystick button and the game will start. 
 Enjoy!
