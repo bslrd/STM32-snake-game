@@ -39,7 +39,10 @@ The firmware is developed in C using STM32CubeIDE. The project is structured int
 + joystick module - handles joystick input and movement interpretation.
 
 ## Project presentation
-This section will be updated soon...
+### Gameplay:
+![Project schematic](images/snake.gif)
+### Assembled Hardware:
+![Project schematic](images/hardware.png)
 
 ## Project setup
 
