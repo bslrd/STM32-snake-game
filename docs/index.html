@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SNAKE: Main Page</title>
+<title>SNAKE_STM32F3: SNAKE_STM32F3</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -30,7 +30,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SNAKE
+   <div id="projectname">SNAKE_STM32F3
    </div>
   </td>
  </tr>
@@ -114,10 +114,70 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">SNAKE Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">SNAKE_STM32F3 </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
+<p>Simple snake game using STM32 and a WS2812B LED matrix display.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+Features</h1>
+<ul>
+<li>Classic Snake game logic implementing typical mechanics such as:<ul>
+<li>Synchronized snake movement;</li>
+<li>Random fruit placement;</li>
+<li>Growth after fruit consumption;</li>
+<li>Game over when the snake hits a wall or its own tail.</li>
+</ul>
+</li>
+<li>Game API features such as:<ul>
+<li>Score display after game;</li>
+<li>Game start from button;</li>
+<li>Current game state display.</li>
+</ul>
+</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Hardware</h1>
+<p>The project uses popular STM32 NUCLEO-F303RE development board but can be applied to any compatible F3 MCU. Other parts needed for implementation are:</p><ul>
+<li>WS2812B matrix display (project uses 8x8 matrix but dimensions can be tuned to preference);</li>
+<li>Two dimensional joystick module;</li>
+<li>Breadboard;</li>
+<li>Jumper cables.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Firmware</h1>
+<p>The firmware is developed in C using STM32CubeIDE. The project is structured into several modules:</p><ul>
+<li>game module - handles the main API state machine and enabling for game dimensions and colors configuration;</li>
+<li>snake module - handles the internal game logic state machine;</li>
+<li>WS2812B modules - controls the LED matrix display and allows configuration of size and brightness;</li>
+<li>joystick module - handles joystick input and movement interpretation.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Project presentation</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Gameplay:</h2>
+<p><img src="snake.gif" alt="" class="inline" title="Project schematic"/>    </p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Assembled Hardware:</h2>
+<p><img src="hardware.png" alt="" class="inline" title="Project schematic"/>    </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+Project setup</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+Installation</h2>
+<ol type="1">
+<li>Download project</li>
+<li>Open SNAKE.ioc file in CubeMX</li>
+<li>Click “Generate Code” to generate all required drivers</li>
+<li>Import project into CubeIDE and build</li>
+</ol>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+Hardware connections</h2>
+<p><img src="snake_game_schematic.png" alt="" class="inline" title="Project schematic"/>    </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Usage</h1>
+<p>Upon successful flashing, you should see the display turning red. After whole display is filled click the joystick button and the game will start. Enjoy! </p>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

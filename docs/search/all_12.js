@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['up_0',['UP',['../2dspace_8h.html#ae9ae980041e438eed7a3af43ce4e9f6baba595d8bca8bc5e67c37c0a9d89becfa',1,'2dspace.h']]]
+  ['tail_0',['tail',['../structsnake__state.html#afb49bc7d1ef9e61b3d511843d1f446bb',1,'snake_state']]]
 ];

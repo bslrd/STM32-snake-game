@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['clock_20as_20follows_3a_0',['3. This file configures the system clock as follows:',['../system__stm32f3xx_8c.html#autotoc_md0',1,'']]],
-  ['clock_20disable_1',['USB Clock | DISABLE',['../system__stm32f3xx_8c.html#autotoc_md8',1,'']]],
-  ['clock_20source_20hsi_2',['System Clock source | HSI',['../system__stm32f3xx_8c.html#autotoc_md2',1,'']]],
-  ['configures_20the_20system_20clock_20as_20follows_3a_3',['3. This file configures the system clock as follows:',['../system__stm32f3xx_8c.html#autotoc_md0',1,'']]]
+  ['hardware_0',['Hardware',['../index.html#autotoc_md2',1,'']]],
+  ['hardware_20connections_1',['Hardware connections',['../index.html#autotoc_md9',1,'']]],
+  ['hardware_3a_2',['Assembled Hardware:',['../index.html#autotoc_md6',1,'']]]
 ];

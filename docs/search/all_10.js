@@ -1,18 +1,16 @@
 var searchData=
 [
-  ['snake_2ec_0',['snake.c',['../snake_8c.html',1,'']]],
-  ['snake_2eh_1',['snake.h',['../snake_8h.html',1,'']]],
-  ['snake_5fdirection_5frequest_2',['snake_direction_request',['../snake_8c.html#a8b19e8baa6432e9a20966dd2877f1cce',1,'snake_direction_request(direction_t requested_direction):&#160;snake.c'],['../snake_8h.html#a8b19e8baa6432e9a20966dd2877f1cce',1,'snake_direction_request(direction_t requested_direction):&#160;snake.c']]],
-  ['snake_5ffruit_5fcheck_3',['snake_fruit_check',['../snake_8c.html#a45eba8e00ff5b9c12b158ad5047bc1ac',1,'snake.c']]],
-  ['snake_5fgame_5finit_4',['snake_game_init',['../snake_8c.html#ac2b97b532dd1c1d122ec5bc547733b42',1,'snake.c']]],
-  ['snake_5fget_5fstate_5',['snake_get_state',['../snake_8c.html#adaea49e1508c6112c13847d0536739d3',1,'snake_get_state(void):&#160;snake.c'],['../snake_8h.html#adaea49e1508c6112c13847d0536739d3',1,'snake_get_state(void):&#160;snake.c']]],
-  ['snake_5finit_5frequest_6',['snake_init_request',['../snake_8c.html#a9c45ea30fcccd16551d94f295a5e4565',1,'snake_init_request(int fruit_seed):&#160;snake.c'],['../snake_8h.html#a9c45ea30fcccd16551d94f295a5e4565',1,'snake_init_request(int fruit_seed):&#160;snake.c']]],
-  ['snake_5fis_5fover_7',['snake_is_over',['../snake_8c.html#a3299c9c8fe4b3b2bd21daf0bcc8b9af1',1,'snake_is_over(void):&#160;snake.c'],['../snake_8h.html#a3299c9c8fe4b3b2bd21daf0bcc8b9af1',1,'snake_is_over(void):&#160;snake.c']]],
-  ['snake_5fmove_8',['snake_move',['../snake_8c.html#a9ac3b0ac18b61ee8efa5d646f56c148b',1,'snake.c']]],
-  ['snake_5fmove_5frequest_9',['snake_move_request',['../snake_8c.html#a3db470c618bac028d254d9543f03d99f',1,'snake_move_request(void):&#160;snake.c'],['../snake_8h.html#a3db470c618bac028d254d9543f03d99f',1,'snake_move_request(void):&#160;snake.c']]],
-  ['snake_5fstate_10',['snake_state',['../structsnake__state.html',1,'']]],
-  ['snake_5fupdate_11',['snake_update',['../snake_8c.html#a9ad0c6652388f93a9690220ecca59e25',1,'snake_update(void):&#160;snake.c'],['../snake_8h.html#a9ad0c6652388f93a9690220ecca59e25',1,'snake_update(void):&#160;snake.c']]],
-  ['state_12',['state',['../structsnake__state.html#a2dd6715dcb4a0b78324a55ed7f48e6f7',1,'snake_state']]],
-  ['state_5ft_13',['state_t',['../snake_8h.html#aa0aafed44fec19806d8f9ad834be1248',1,'snake.h']]],
-  ['systemclock_5fconfig_14',['SystemClock_Config',['../main_8c.html#a70af21c671abfcc773614a9a4f63d920',1,'main.c']]]
+  ['rb_0',['Rb',['../game__renderer_8c.html#a201f2a56b020997525a41c7d7d506df0',1,'game_renderer.c']]],
+  ['rd_1',['Rd',['../game__renderer_8c.html#a9151700714b0ec53aa32af2f907d0a99',1,'game_renderer.c']]],
+  ['readme_2emd_2',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['red_3',['red',['../structws2812b__color.html#a98ec601ee6bf8696fe468e22004689c7',1,'ws2812b_color']]],
+  ['render_5fmenu_4',['render_menu',['../game__renderer_8c.html#a4c1b8cdfc729400f21aebe10e869516b',1,'render_menu(const snake_state *game):&#160;game_renderer.c'],['../game__renderer_8h.html#a4c1b8cdfc729400f21aebe10e869516b',1,'render_menu(const snake_state *game):&#160;game_renderer.c']]],
+  ['render_5fsnake_5',['render_snake',['../game__renderer_8c.html#a73249982a798cc2dcb921553c6ffe15c',1,'render_snake(const snake_state *game):&#160;game_renderer.c'],['../game__renderer_8h.html#a73249982a798cc2dcb921553c6ffe15c',1,'render_snake(const snake_state *game):&#160;game_renderer.c']]],
+  ['render_5fstart_6',['render_start',['../game__renderer_8c.html#a2d6aed46b32f0e07f6bba89dc8f7a746',1,'render_start(void):&#160;game_renderer.c'],['../game__renderer_8h.html#a2d6aed46b32f0e07f6bba89dc8f7a746',1,'render_start(void):&#160;game_renderer.c']]],
+  ['rf_7',['Rf',['../game__renderer_8c.html#a3f64ac7800ac4b3eaa1db343fa0fbc02',1,'game_renderer.c']]],
+  ['rh_8',['Rh',['../game__renderer_8c.html#a27c3c0551b8e8976fdc19e930ff3b595',1,'game_renderer.c']]],
+  ['right_9',['RIGHT',['../2dspace_8h.html#ae9ae980041e438eed7a3af43ce4e9f6baec8379af7490bb9eaaf579cf17876f38',1,'2dspace.h']]],
+  ['rm_10',['Rm',['../game__renderer_8c.html#a8477967dcb251a4d75c2a4e46414c2cc',1,'game_renderer.c']]],
+  ['rt_11',['Rt',['../game__renderer_8c.html#a97bb5fd2772572f117e9db885cba4a71',1,'game_renderer.c']]],
+  ['running_12',['RUNNING',['../snake_8h.html#aa0aafed44fec19806d8f9ad834be1248a1061be6c3fb88d32829cba6f6b2be304',1,'snake.h']]]
 ];

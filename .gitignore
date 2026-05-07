@@ -9,7 +9,7 @@
 /firmware/SNAKE_STM32F3/Release/
 /firmware/SNAKE_STM32F3/.metadata/
 *.launch
-
+Doxyfile
 # Libraries with undefined licenses
 
 

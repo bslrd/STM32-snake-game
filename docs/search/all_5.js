@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['fruit_0',['fruit',['../structsnake__state.html#ad805204bf58981efb0b314fb63a763c0',1,'snake_state']]],
-  ['fruit_5fpick_5fposition_1',['fruit_pick_position',['../snake_8c.html#a5d621da002df03025e1b6e514c6b8f1b',1,'snake.c']]]
+  ['error_5fhandler_0',['Error_Handler',['../main_8c.html#a1730ffe1e560465665eb47d9264826f9',1,'main.c']]]
 ];
