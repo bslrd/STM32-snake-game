@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['setup_0',['Project setup',['../index.html#autotoc_md8',1,'']]],
+  ['setup_0',['Project setup',['../index.html#autotoc_md7',1,'']]],
   ['snake_2ec_1',['snake.c',['../snake_8c.html',1,'']]],
   ['snake_2eh_2',['snake.h',['../snake_8h.html',1,'']]],
   ['snake_5fdirection_5frequest_3',['snake_direction_request',['../snake_8c.html#a8b19e8baa6432e9a20966dd2877f1cce',1,'snake_direction_request(direction_t requested_direction):&#160;snake.c'],['../snake_8h.html#a8b19e8baa6432e9a20966dd2877f1cce',1,'snake_direction_request(direction_t requested_direction):&#160;snake.c']]],
