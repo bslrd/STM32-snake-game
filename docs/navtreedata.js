@@ -25,18 +25,19 @@
 var NAVTREE =
 [
   [ "SNAKE_STM32F3", "index.html", [
-    [ "Features", "index.html#autotoc_md1", null ],
-    [ "Hardware", "index.html#autotoc_md2", null ],
-    [ "Firmware", "index.html#autotoc_md3", null ],
-    [ "Project presentation", "index.html#autotoc_md4", [
-      [ "Gameplay:", "index.html#autotoc_md5", null ],
-      [ "Assembled Hardware:", "index.html#autotoc_md6", null ]
+    [ "Table of Contents", "index.html#autotoc_md1", null ],
+    [ "Features", "index.html#autotoc_md2", null ],
+    [ "Hardware", "index.html#autotoc_md3", null ],
+    [ "Firmware", "index.html#autotoc_md4", null ],
+    [ "Project presentation", "index.html#autotoc_md5", [
+      [ "Gameplay:", "index.html#autotoc_md6", null ],
+      [ "Assembled Hardware:", "index.html#autotoc_md7", null ]
     ] ],
-    [ "Project setup", "index.html#autotoc_md7", [
-      [ "Installation", "index.html#autotoc_md8", null ],
-      [ "Hardware connections", "index.html#autotoc_md9", null ]
+    [ "Project setup", "index.html#autotoc_md8", [
+      [ "Installation", "index.html#autotoc_md9", null ],
+      [ "Hardware connections", "index.html#autotoc_md10", null ]
     ] ],
-    [ "Usage", "index.html#autotoc_md10", null ],
+    [ "Usage", "index.html#autotoc_md11", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],

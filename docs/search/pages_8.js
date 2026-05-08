@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['usage_0',['Usage',['../index.html#autotoc_md10',1,'']]]
+  ['setup_0',['Project setup',['../index.html#autotoc_md8',1,'']]],
+  ['snake_5fstm32f3_1',['SNAKE_STM32F3',['../index.html',1,'']]]
 ];
