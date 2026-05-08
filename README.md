@@ -40,10 +40,16 @@ The firmware is developed in C using STM32CubeIDE. The project is structured int
 
 ## Project presentation
 ### Gameplay:
-<img src="images/snake.gif" width="600">
+<p align="center">
+    <img src="images/snake.gif" width="600">
+</p>
+
 
 ### Assembled Hardware:
-<img src="images/hardware.png" width="600">
+
+<p align="center">
+   <img src="images/hardware.png" width="600">
+</p>
 
 ## Project setup
 
@@ -54,7 +60,9 @@ The firmware is developed in C using STM32CubeIDE. The project is structured int
 4. Import project into CubeIDE and build 
 
 ### Hardware connections
-<img src="images/snake_game_schematic.png" width="600">
+<p align="center">
+   <img src="images/snake_game_schematic.png" width="600">
+</p>
 
 ## Usage
 Upon successful flashing, you should see the display turning red. After whole display is filled click the joystick button and the game will start. 
