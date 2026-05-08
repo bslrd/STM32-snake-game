@@ -41,6 +41,7 @@ The firmware is developed in C using STM32CubeIDE. The project is structured int
 ## Project presentation
 ### Gameplay:
 <img src="images/snake.gif" width="600">
+
 ### Assembled Hardware:
 <img src="images/hardware.png" width="600">
 
